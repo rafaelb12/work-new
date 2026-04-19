@@ -7,7 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  <style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+  
     :root {
       --gold: #C9A84C;
       --gold-light: #E8C96B;
@@ -509,23 +512,63 @@
   </p>
 
   <!-- Encontros -->
-  <div style="margin:8px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
-    <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;display:flex;align-items:center;gap:10px;">
-      <span style="font-size:1.2rem;"></span>
-      <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:600;">Nossos Encontros</span>
-    </div>
-    <div style="padding:16px 18px;display:flex;align-items:center;gap:16px;">
+ <div style="margin:8px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
+  
+  <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;display:flex;align-items:center;gap:10px;">
+    <span style="font-size:1.2rem;"></span>
+    <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:600;">Nossos Encontros</span>
+  </div>
+
+  <div style="padding:16px 18px;display:flex;flex-direction:column;gap:16px;">
+
+    <!-- PRESENCIAL -->
+    <div style="display:flex;align-items:center;gap:16px;">
       <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;">
         <span style="font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);">SEG</span>
-        <span style="font-size:1.4rem;font-weight:700;color:var(--brown);line-height:1;"></span>
       </div>
       <div>
         <p style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--brown);font-weight:600;">Toda Segunda-feira</p>
-        <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">às <strong style="color:var(--gold-dark);">19h00</strong> — venha rezar conosco!</p>
+        <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">
+          às <strong style="color:var(--gold-dark);">19h00</strong> — venha rezar conosco!
+        </p>
       </div>
     </div>
-  </div>
 
+    <!-- TERÇO ONLINE -->
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;">
+        <i class="bi bi-whatsapp"></i>
+                <span style="font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);"></span>
+
+      </div>
+      <div>
+        <p style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);font-weight:600;">
+          Terço Diário Online
+        </p>
+        <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">
+          Todos os dias às <strong style="color:var(--gold-dark);">22h00</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- LECTIO DIVINA -->
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;">
+        <i class="bi bi-whatsapp"></i>
+      </div>
+      <div>
+        <p style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);font-weight:600;">
+          Lectio Divina Online
+        </p>
+        <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">
+          Segunda a sábado às <strong style="color:var(--gold-dark);">09h00</strong>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
   <!-- Sobre nós -->
   <div style="margin:14px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
     <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;display:flex;align-items:center;gap:10px;">
