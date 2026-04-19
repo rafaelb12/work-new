@@ -1162,13 +1162,13 @@ Object.entries(misterios).forEach(([key, data]) => {
   const tab = document.createElement('button');
   tab.className = 'terco-tab' + (first ? ' active' : '');
   tab.dataset.key = key;
-  tab.textContent =  data.label;
+  tab.textContent = data.label;
   tabsEl.appendChild(tab);
 
   const panel = document.createElement('div');
   panel.className = 'terco-panel' + (first ? ' active' : '');
   panel.id = 'terco-' + key;
-  panel.innerHTML = `<p style="font-size:.78rem;color:var(--gold-dark);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;">${data.emoji} Rezados às ${data.dias}</p>`;
+  panel.innerHTML = `<p style="font-size:.78rem;color:var(--gold-dark);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;"> Rezados às ${data.dias}</p>`;
 
   data.lista.forEach(m => {
     const card = document.createElement('div');
