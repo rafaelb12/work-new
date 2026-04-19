@@ -1162,7 +1162,7 @@ Object.entries(misterios).forEach(([key, data]) => {
   const tab = document.createElement('button');
   tab.className = 'terco-tab' + (first ? ' active' : '');
   tab.dataset.key = key;
-  tab.textContent = data.emoji + ' ' + data.label;
+  tab.textContent =  data.label;
   tabsEl.appendChild(tab);
 
   const panel = document.createElement('div');
