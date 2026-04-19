@@ -639,10 +639,7 @@
     <button class="btn-compartilhar" onclick="compartilhar('evangelho')">Compartilhar</button>
   </div>
 
-  <div class="card">
-    <h3>🙏 Santo do dia</h3>
-    <p id="santo"></p>
-  </div>
+
 
   
 
@@ -682,17 +679,17 @@
   </div>
 
 
-     <!-- </div>
-    </div>
-    <div class="liturgia-card">
-      <div class="liturgia-card-header"><span>🕊️</span><h3>Santos do Dia</h3></div>
-      <div class="liturgia-card-body">
-        <a class="liturgia-link" href="https://santo.cancaonova.com" target="_blank">
-          <span>⭐</span> Ver Santo(s) do Dia <span class="arr">›</span>
-        </a>
-      </div>
-    </div>
-  </div> -->
+     <!-- <div class="accordion-item" id="santo-card">
+    <button class="accordion-trigger">
+    <span class="acc-icon">🙏</span>
+    <span class="acc-title">Santo do dia</span>
+    <span class="acc-chevron">▾</span>
+  </button>
+
+  <div class="accordion-body">
+    <p id="santo"></p>
+  </div>
+</div> -->
   
 </section>
 
@@ -993,7 +990,14 @@ document.getElementById('liturgia-date-text').textContent =
         true
   );;
 
-    document.getElementById("santo").innerText = data.santo;
+     //document.getElementById("santo").innerText = data.santo;
+
+   // const santoTrigger = document.querySelector("#santo-card .accordion-trigger");
+
+//santoTrigger.addEventListener("click", () => {
+  //const item = santoTrigger.parentElement;
+  //item.classList.toggle("open");
+//}); -->
 
   } catch (erro) {
     document.querySelector(".liturgia-container").innerHTML =
