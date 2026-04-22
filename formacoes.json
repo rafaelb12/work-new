@@ -1,0 +1,433 @@
+[
+  {
+    "id": "missa-1",
+    "cat": "missa",
+    "icon": "✝️",
+    "titulo": "Como Vivenciar a Santa Missa",
+    "desc": "Entenda cada parte da Missa e participe com o coração",
+    "leitura": "8 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "A Santa Missa é o maior ato de culto da Igreja Católica. Nela, o sacrifício de Jesus na Cruz é tornado presente de maneira sacramental. Participar conscientemente da Missa transforma a nossa vida!"
+      },
+      { "tipo": "titulo", "texto": "As Duas Grandes Partes" },
+      {
+        "tipo": "texto",
+        "texto": "A Missa divide-se em duas partes principais: a Liturgia da Palavra e a Liturgia Eucarística. Cada uma possui uma riqueza própria que merece ser conhecida e vivenciada."
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"Participai da Mesa da Palavra e da Mesa do Pão — estas são as duas fontes das quais a Igreja se alimenta.\" — Dei Verbum"
+      },
+      { "tipo": "titulo", "texto": "Passo a Passo da Missa" },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Ritos Iniciais — Sinal da Cruz, Ato Penitencial, Glória.",
+            "detalhe": "Os Ritos Iniciais têm a função de preparar a assembleia para o encontro sagrado. O Sinal da Cruz nos situa na identidade batismal: pertencemos ao Pai, ao Filho e ao Espírito Santo. O Ato Penitencial é um momento de humildade, onde reconhecemos que chegamos diante de Deus como pecadores que precisam de misericórdia. O Glória é o primeiro grande cântico da Missa, unindo nossa voz à dos anjos. Chegue uns minutos antes e diga interiormente: 'Senhor, estou aqui. Fala, pois o teu servo ouve.'"
+          },
+          {
+            "num": 2,
+            "texto": "Liturgia da Palavra — Ouça as leituras como se Deus falasse diretamente a você.",
+            "detalhe": "A Palavra de Deus proclamada na Missa não é mera leitura de um livro antigo — é Deus mesmo falando à Sua Igreja hoje. A Igreja dispõe as leituras num ciclo de três anos (A, B, C). Normalmente há uma leitura do Antigo Testamento, um Salmo Responsorial, uma leitura do Novo Testamento e o Evangelho. Acompanhe no missal ou num aplicativo. Ao ouvir, pergunte-se: 'O que Deus quer me dizer hoje com esse texto?'"
+          },
+          {
+            "num": 3,
+            "texto": "Homilia — O sacerdote explica a Palavra.",
+            "detalhe": "A Homilia não é uma palestra de teologia — é um serviço à Palavra. O sacerdote tem a missão de partir o Pão da Palavra para o povo. Ouça com abertura, mesmo que o estilo do pregador não seja o seu favorito. Uma boa prática é anotar a frase da homilia que mais te tocou e retornar a ela em oração durante a semana. É frequente que Deus use a Homilia para responder uma pergunta que carregamos no coração."
+          },
+          {
+            "num": 4,
+            "texto": "Liturgia Eucarística — O pão e o vinho são consagrados.",
+            "detalhe": "Aqui começa a parte mais sagrada da Missa. Pela ação do Espírito Santo e pelas palavras da consagração, o pão e o vinho se tornam verdadeiramente o Corpo e Sangue de Jesus — isso se chama Transubstanciação. O mesmo sacrifício do Calvário é tornado presente sacramentalmente naquele altar. Quando o sacerdote elevar a hóstia e o cálice, fixe o olhar e diga interiormente: 'Meu Senhor e meu Deus!'"
+          },
+          {
+            "num": 5,
+            "texto": "Comunhão — Receba Jesus com a alma em graça.",
+            "detalhe": "A Santa Comunhão é o ápice da participação na Missa. Recebemos não um símbolo, mas Jesus Cristo — Corpo, Sangue, Alma e Divindade. Para receber dignamente: esteja em graça (sem pecado grave — caso contrário, primeiro vá à Confissão), faça o jejum eucarístico de pelo menos uma hora. Após receber, permaneça em silêncio por alguns minutos. É o momento mais íntimo possível com Deus nesta vida — converse com Jesus, agradeça, peça, entregue."
+          },
+          {
+            "num": 6,
+            "texto": "Rito de Envio — Vá em paz! Leve Jesus para o mundo.",
+            "detalhe": "A palavra 'Missa' vem do latim 'missa', que significa envio. Não saímos da Missa para voltar à vida normal — saímos como missionários enviados. Durante a semana, o modo de viver a Missa é o testemunho: a paciência no trabalho, a gentileza em casa, a honestidade nos negócios — tudo isso é o prolongamento do que recebemos no altar."
+          }
+        ]
+      },
+      { "tipo": "titulo", "texto": "Dicas Práticas" },
+      {
+        "tipo": "texto",
+        "texto": "Chegue com 5 minutos de antecedência e faça uma oração de preparação. Desligue o celular. Acompanhe as leituras no missal ou aplicativo. Após a Missa, permaneça em silêncio por alguns momentos em ação de graças."
+      }
+    ]
+  },
+  {
+    "id": "missa-2",
+    "cat": "missa",
+    "icon": "🕯️",
+    "titulo": "O Significado da Consagração",
+    "desc": "O coração da Missa: o que acontece no altar",
+    "leitura": "5 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "A consagração é o momento mais sagrado da Santa Missa. É quando o sacerdote, agindo in persona Christi, pronuncia as palavras que Jesus pronunciou na Última Ceia."
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"Isto é o Meu Corpo... Este é o cálice do Meu Sangue.\" — Jesus Cristo na Última Ceia (Lc 22,19-20)"
+      },
+      { "tipo": "titulo", "texto": "O que é a Transubstanciação?" },
+      {
+        "tipo": "texto",
+        "texto": "Pela Transubstanciação, a substância do pão e do vinho se converte verdadeiramente no Corpo e Sangue de Cristo. Permanecem as aparências (pão e vinho), mas a realidade é Jesus mesmo, inteiro e verdadeiro."
+      },
+      { "tipo": "titulo", "texto": "Como me preparar para a Consagração?" },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Ao começar o Prefácio, eleve o coração a Deus com um ato de fé.",
+            "detalhe": "O Prefácio é a grande oração de ação de graças que abre a Liturgia Eucarística. O sacerdote convida: 'Corações ao alto!' — e a assembleia responde: 'O nosso coração está em Deus.' Nesse momento, diga mentalmente: 'Senhor, acredito que Tu estás aqui. Acredito que o que está prestes a acontecer é real.' Fechar os olhos por alguns instantes ajuda a interiorizar essa disposição."
+          },
+          {
+            "num": 2,
+            "texto": "No Sanctus ('Santo, Santo, Santo'), una-se à liturgia celestial.",
+            "detalhe": "O Sanctus não é apenas um cântico bonito — é a nossa participação na adoração eterna que os anjos e santos oferecem a Deus no Céu. O Apocalipse (cap. 4) e o profeta Isaías (cap. 6) descrevem os seres celestiais clamando 'Santo, Santo, Santo é o Senhor!'. Quando cantamos o Sanctus na Missa, nossa voz se une a essa liturgia eterna. Cante com voz firme e coração elevado — não por hábito mecânico, mas como quem de fato quer adorar."
+          },
+          {
+            "num": 3,
+            "texto": "Durante a consagração, ajoelhe-se em adoração.",
+            "detalhe": "A genuflexão e o ajoelhar-se são gestos corporais que expressam com o corpo o que o coração crê. Quando o sacerdote eleva a hóstia consagrada, a Igreja inteira se prostra diante do seu Senhor. O silêncio interior nesse momento é fundamental: evite olhar ao redor ou se distrair. Este é o instante mais sagrado do dia — Jesus está ali, real e presente."
+          },
+          {
+            "num": 4,
+            "texto": "Reze interiormente: 'Meu Senhor e meu Deus!' (Jo 20,28).",
+            "detalhe": "Essa exclamação de São Tomé Apóstolo, proferida diante do Cristo ressuscitado, é a oração perfeita para o momento da elevação. São Pedro Julião Eymard ensinava que essa breve prece — dita com fé — vale mais do que longas orações ditas distraidamente. Você pode acrescentar: 'Meu Senhor e meu Deus — creio, adoro, espero e amo-Vos. Peço perdão pelos que não creem, não adoram e não Vos amam.' Faça desta oração um hábito em toda Missa."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "santos-1",
+    "cat": "santos",
+    "icon": "⭐",
+    "titulo": "São Francisco de Assis",
+    "desc": "O poverello de Assis e o amor radical à pobreza",
+    "leitura": "6 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "Francisco de Assis (1181–1226) é um dos santos mais amados da história da Igreja. Filho de um rico comerciante italiano, abandonou tudo para seguir radicalmente o Evangelho de Jesus Cristo."
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"Senhor, fazei de mim um instrumento da Vossa paz.\" — Oração de São Francisco"
+      },
+      { "tipo": "titulo", "texto": "Conversão e Vocação" },
+      {
+        "tipo": "texto",
+        "texto": "Após uma doença grave e uma experiência de oração diante do crucifixo de São Damião — onde ouviu Jesus dizer 'Francisco, vai e reconstrói a minha Igreja' — ele abandonou a riqueza paterna, abraçou a pobreza e passou a pregar a penitência e o amor ao próximo."
+      },
+      { "tipo": "titulo", "texto": "Pilares da Espiritualidade Franciscana" },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Amor à pobreza — possuir só o necessário, confiando na Providência.",
+            "detalhe": "Para Francisco, a pobreza não era uma penalidade, mas uma escolha de amor — ele a chamava de 'Dama Pobreza'. Desprender-se dos bens materiais era, para ele, a condição para receber plenamente a Deus. Em termos práticos, isso nos convida a questionar: O que possuo que não preciso? O que o apego às coisas está me impedindo de receber de Deus? Não se trata de largar tudo, mas de cultivar um coração desapegado, que usa os bens do mundo sem ser escravizado por eles."
+          },
+          {
+            "num": 2,
+            "texto": "Fraternidade universal — tratar todos como irmãos, incluindo a natureza.",
+            "detalhe": "Francisco chamava o sol de 'irmão sol', a lua de 'irmã lua', até o lobo de 'irmão lobo'. Não era romantismo — era uma visão teológica profunda: toda a criação é obra do mesmo Pai e merece respeito. A encíclica Laudato Si' do Papa Francisco é diretamente inspirada nessa espiritualidade. Na prática: como estou cuidando da criação? Como trato os mais pobres e descartados — os 'lobos' que a maioria evita?"
+          },
+          {
+            "num": 3,
+            "texto": "Alegria cristã — a joy que nasce da entrega total a Deus.",
+            "detalhe": "Francisco era conhecido por sua alegria contagiante. Ele dizia que a tristeza é obra do diabo e a alegria, fruto do Espírito Santo. Mas atenção: não é uma alegria superficial. A alegria franciscana nasce do desprendimento — quando paramos de buscar a felicidade nas coisas e nas aprovações humanas, descobrimos uma paz profunda que o mundo não pode dar nem tirar. É a alegria do Evangelho que o Papa Francisco descreveu na Evangelii Gaudium."
+          },
+          {
+            "num": 4,
+            "texto": "Amor à Eucaristia e à Igreja — reverência profunda pelos sacerdotes.",
+            "detalhe": "Apesar de toda a sua radicalidade, Francisco era profundamente obediente à Igreja. Ele dizia que, se encontrasse um anjo e um padre ao mesmo tempo, primeiro cumprimentaria o padre, porque o padre tem o poder de tornar Jesus presente na Eucaristia. Essa atitude nos desafia: é fácil criticar a Igreja e os padres, mas Francisco nos convida a enxergar a graça de Deus agindo através de vasos de barro."
+          }
+        ]
+      },
+      {
+        "tipo": "texto",
+        "texto": "São Francisco recebeu os estigmas (as cinco chagas de Cristo) em 1224 no monte Alverne. É padroeiro da ecologia, dos animais e da Itália. Festa: 4 de outubro."
+      }
+    ]
+  },
+  {
+    "id": "santos-2",
+    "cat": "santos",
+    "icon": "🌹",
+    "titulo": "Santa Teresa do Menino Jesus",
+    "desc": "A 'pequena via' da santidade no cotidiano",
+    "leitura": "5 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "Teresa Martin (1873–1897), conhecida como a Pequena Flor, foi uma carmelita descalça francesa que morreu aos 24 anos de tuberculose, deixando um dos maiores legados espirituais da história."
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"Minha vocação é o amor. No coração da Igreja, minha Mãe, eu serei o amor.\" — Santa Teresa"
+      },
+      { "tipo": "titulo", "texto": "A Pequena Via" },
+      {
+        "tipo": "texto",
+        "texto": "Teresa ensinou que a santidade não está apenas nas grandes penitências ou feitos heróicos, mas nos pequenos atos de amor cotidiano. Cada gesto simples — um sorriso dado ao próximo, uma tarefa doméstica feita com amor — pode ser ofertado a Deus e tem valor eterno."
+      },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Ofereça as pequenas contrariedades do dia a Deus como orações.",
+            "detalhe": "Teresa descobriu que os momentos mais difíceis — a colega irritante no convento, o trabalho monótono, a dor física — podiam ser transformados em oração quando oferecidos a Deus com amor. Ela chamava isso de 'flores pequenas': sacrifícios invisíveis aos olhos humanos, mas de grande valor diante de Deus. Experimente hoje: quando algo te incomodar — um trânsito, uma crítica injusta, um cansaço — em vez de reclamar, diga interiormente: 'Senhor, ofereço isso por amor a Vós e pelas almas do purgatório.'"
+          },
+          {
+            "num": 2,
+            "texto": "Pratique a caridade com quem convive, especialmente os mais difíceis.",
+            "detalhe": "Teresa tinha uma irmã no convento que a irritava profundamente. Ela decidiu tratar essa irmã como se fosse a pessoa mais amável do mundo. O resultado? A irmã perguntou por que Teresa sempre sorria para ela. Teresa respondia que era o amor de Jesus que a movia. A caridade não é um sentimento — é uma decisão. Amar os difíceis é o treino mais eficaz da santidade."
+          },
+          {
+            "num": 3,
+            "texto": "Confie no amor misericordioso do Pai como uma criança.",
+            "detalhe": "A grande intuição de Teresa é a infância espiritual: não se trata de ingenuidade, mas de reconhecer a própria pequenez e jogar-se nos braços de Deus com total confiança. Uma criança pequena não se preocupa com o aluguel — ela confia que o pai vai prover. Teresa nos convida a essa mesma confiança. Quando o peso dos pecados e das fraquezas nos esmaga, a resposta não é o desespero, mas uma confiança ainda maior na misericórdia de Deus."
+          },
+          {
+            "num": 4,
+            "texto": "Não busque consolações sensíveis; ame mesmo na aridez.",
+            "detalhe": "Teresa viveu seus últimos anos numa escuridão espiritual profunda — sem sentir a presença de Deus, sem consolações na oração. Ela descreveu esse estado como uma 'noite de nada'. Mas continuou amando, continuou confiando. Essa fidelidade sem sentimentos é, para muitos teólogos, a parte mais heroica de sua vida. Se você passa por uma fase de oração seca, saiba que isso é normal e pode ser o sinal de um amor mais maduro, que não depende de emoções."
+          }
+        ]
+      },
+      {
+        "tipo": "texto",
+        "texto": "Santa Teresa é Doutora da Igreja e padroeira das missões. Festa: 1 de outubro."
+      }
+    ]
+  },
+  {
+    "id": "oracao-1",
+    "cat": "oracao",
+    "icon": "🙏",
+    "titulo": "Como Aprofundar a Oração Pessoal",
+    "desc": "Saia da oração mecânica para um encontro real com Deus",
+    "leitura": "7 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "A oração é o fôlego da alma. Sem ela, a vida espiritual murcha. Mas muitos cristãos sentem que a oração é seca, cansativa ou mecânica. Como transformar esse momento em um encontro vivo com Deus?"
+      },
+      { "tipo": "titulo", "texto": "Os Três Elementos da Oração Profunda" },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Presença — Tome consciência de que Deus está presente.",
+            "detalhe": "São João da Cruz ensinava que o maior obstáculo à oração não é a distração — é a falta de fé na presença de Deus. Antes de começar a orar, pare por 30 segundos em silêncio e diga com fé: 'Deus, acredito que estás aqui. Que esta oração seja um encontro real.' Essa tomada de consciência muda completamente a qualidade do que vem a seguir. A presença de Deus não é criada por nós; ela é reconhecida — Deus já está lá, somos nós que chegamos distraídos e precisamos nos sintonizar."
+          },
+          {
+            "num": 2,
+            "texto": "Palavra — Leia um trecho do Evangelho devagar, deixando uma frase tocar o coração.",
+            "detalhe": "A diferença entre ler a Bíblia como estudo e lê-la como oração é a velocidade e a disposição interior. Na oração, não se trata de cobrir quantidade de texto. Leia tão devagar que, quando uma frase te tocar, você pare, repita em voz baixa e deixe-a descer do intelecto para o coração. Os monges beneditinos chamam isso de 'ruminatio': mastigar a Palavra como os ruminantes mastigam o alimento, extraindo todo o nutrimento. Uma única frase bem 'ruminada' vale mais do que um capítulo inteiro lido às pressas."
+          },
+          {
+            "num": 3,
+            "texto": "Resposta — Fale com Deus como um amigo. Agradeça, peça, ouça.",
+            "detalhe": "A oração não é um monólogo nem uma lista de pedidos — é um diálogo. Depois de acolher a Palavra, responda: agradeça pelo que Deus lhe disse, peça graça para viver aquilo, e então... cale-se. O silêncio contemplativo é a parte da oração mais negligenciada e da qual mais precisamos. É no silêncio que Deus fala — não necessariamente com palavras, mas com uma paz interior, uma luz, uma certeza que vai chegando devagar. Santa Teresa d'Ávila dizia que a oração é 'um trato de amizade com Aquele que sabemos nos ama.'"
+          }
+        ]
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"A oração é uma elevação do espírito a Deus ou um pedido de bens convenientes.\" — Catecismo da Igreja Católica, n. 2590"
+      },
+      { "tipo": "titulo", "texto": "A Lectio Divina" },
+      {
+        "tipo": "texto",
+        "texto": "A Lectio Divina (Leitura Divina) é um método milenário de oração com a Palavra de Deus. Possui quatro etapas: Lectio (ler o texto), Meditatio (meditar, repetir em silêncio), Oratio (orar a partir do texto) e Contemplatio (repousar em Deus em silêncio)."
+      },
+      { "tipo": "titulo", "texto": "Dica Prática" },
+      {
+        "tipo": "texto",
+        "texto": "Reserve 15 minutos pela manhã, antes de qualquer tela. Comece pelo sinal da cruz, leia o Evangelho do dia (disponível na aba Liturgia), medite uma frase e termine com uma oração espontânea. A constância é mais importante do que a duração."
+      }
+    ]
+  },
+  {
+    "id": "oracao-2",
+    "cat": "oracao",
+    "icon": "✨",
+    "titulo": "O Que é um Grupo de Oração?",
+    "desc": "Entenda a graça de rezar em comunidade",
+    "leitura": "4 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "Os grupos de oração são células vivas da Igreja onde os fiéis se reúnem para louvar, adorar e interceder em comunidade. Nasceram com força renovada durante o movimento de Renovação Carismática Católica."
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"Onde dois ou três estão reunidos em Meu nome, aí estou Eu no meio deles.\" — Mt 18,20"
+      },
+      { "tipo": "titulo", "texto": "Elementos de um Encontro" },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Louvor e adoração — Cânticos que elevam o coração a Deus.",
+            "detalhe": "O louvor é a resposta espontânea do coração que reconhece a grandeza de Deus — não pelo que Ele faz, mas por quem Ele é. A adoração vai ainda mais fundo: é o silêncio da alma diante do Mistério. Nos grupos de oração, os cânticos têm uma função catalisadora: ajudam a desligar o barulho interno do dia e a sintonizar o coração com a presença de Deus. Não é necessário ter boa voz — o que importa é o coração."
+          },
+          {
+            "num": 2,
+            "texto": "Oração espontânea — Cada pessoa fala com Deus com suas próprias palavras.",
+            "detalhe": "A oração espontânea pode assustar quem está começando — afinal, o que dizer? Mas é exatamente nessa 'imperfeição' que reside sua beleza. Não há fórmula certa. Pode ser uma frase de gratidão, um pedido simples, uma adoração. Se sentir bloqueio, comece com: 'Senhor, obrigado por...' e deixe fluir. Com o tempo, a oração espontânea vai ficando mais natural e se tornando o idioma do coração."
+          },
+          {
+            "num": 3,
+            "texto": "Palavra de Deus — Partilha de uma passagem bíblica.",
+            "detalhe": "Nos encontros de grupo, alguém traz um trecho das Escrituras para meditar em conjunto. Cada pessoa partilha o que aquele texto disse ao seu coração — não como uma aula de teologia, mas como um testemunho de como Deus falou. Essa partilha enriquece a todos: é como uma luz vista por vários ângulos, cuja riqueza se multiplica na comunidade."
+          },
+          {
+            "num": 4,
+            "texto": "Intercessão — Levar as intenções uns dos outros ao Pai.",
+            "detalhe": "A intercessão é um dos ministérios mais poderosos e menos valorizados da vida cristã. Quando oramos pelos outros, participamos da própria missão de Jesus, que 'vive sempre para interceder' por nós (Hb 7,25). Nos grupos de oração, as intenções são partilhadas e levadas coletivamente a Deus. Essa oração comunitária tem uma eficácia especial — Jesus prometeu que onde dois ou três estão reunidos em seu nome, ele está no meio."
+          }
+        ]
+      },
+      {
+        "tipo": "texto",
+        "texto": "No grupo Obra Nova, nos reunimos toda segunda-feira às 19h00. Venha participar! A comunidade é o ambiente onde a fé cresce e se fortalece."
+      }
+    ]
+  },
+  {
+    "id": "fe-1",
+    "cat": "fe",
+    "icon": "📜",
+    "titulo": "O Credo: Nossa Profissão de Fé",
+    "desc": "Entenda cada afirmação do Credo Niceno-Constantinopolitano",
+    "leitura": "8 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "O Credo é o resumo de tudo aquilo que os cristãos creem. Recitamos no Domingo, mas quantas vezes paramos para entender profundamente o que estamos afirmando?"
+      },
+      { "tipo": "titulo", "texto": "Estrutura do Credo" },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Creio em um só Deus Pai — Afirmamos o monoteísmo e a paternidade divina.",
+            "detalhe": "A primeira palavra do Credo é 'Creio' — no singular. Mesmo recitado em assembleia, é um ato pessoal e intransferível de fé. Dizer 'Creio' é comprometer-se. Afirmar que Deus é Pai não é uma metáfora sentimental — é uma revelação: Deus não é uma força impessoal, mas uma Pessoa que nos conhece, nos ama e nos chama filhos. Isso muda tudo: a oração deixa de ser um ritual para se tornar um diálogo entre filho e Pai."
+          },
+          {
+            "num": 2,
+            "texto": "E em Jesus Cristo — A Encarnação, Paixão, Morte e Ressurreição.",
+            "detalhe": "O centro do Credo é Jesus Cristo. Cada afirmação tem peso teológico imenso: 'concebido pelo Espírito Santo' — não é um mero homem extraordinário, mas Deus feito carne. 'Padeceu sob Pôncio Pilatos' — a fé cristã é histórica, ancorada no tempo e no espaço. 'Ressuscitou ao terceiro dia' — o eixo de toda a fé; sem a Ressurreição, como diz São Paulo, a nossa fé seria vã. 'Virá de novo em glória' — a história caminha para uma consumação, não para o nada."
+          },
+          {
+            "num": 3,
+            "texto": "E no Espírito Santo — Senhor e Vivificador.",
+            "detalhe": "O Espírito Santo é a Pessoa da Santíssima Trindade mais desconhecida por muitos cristãos. O Credo o chama de 'Senhor e Vivificador' — não é uma força ou uma energia, mas uma Pessoa divina que 'falou pelos profetas' e habita em cada batizado. Vivificador significa que Ele dá vida — a graça, os carismas, os frutos do Espírito (Gl 5,22) vêm d'Ele. Invocar o Espírito antes de decisões importantes, antes da oração, antes de servir é um hábito de vida cristã madura."
+          },
+          {
+            "num": 4,
+            "texto": "A Igreja — Una, Santa, Católica e Apostólica.",
+            "detalhe": "Crer na Igreja não é crer numa instituição burocrática — é crer no Corpo de Cristo, no povo reunido pelo Espírito. As quatro marcas (Una, Santa, Católica, Apostólica) são simultaneamente dom e missão: ela já é una, mas deve trabalhar pela unidade; já é santa pela graça, mas seus membros são pecadores em processo de santificação. Católica significa 'universal' — abraça todos os povos. Apostólica significa que guarda intacta a fé transmitida pelos Apóstolos."
+          },
+          {
+            "num": 5,
+            "texto": "A ressurreição da carne e a vida eterna.",
+            "detalhe": "O Credo termina com a esperança maior: não morremos definitivamente. A fé cristã afirma a ressurreição do corpo — não apenas a imortalidade da alma, mas a redenção total da pessoa humana. Isso valoriza o corpo: ele não é um cárcere da alma, mas parte integrante do ser humano chamado à glória. A 'vida eterna' não é uma existência entediante nas nuvens — é a participação plena na vida de Deus numa comunhão de amor que excede toda imaginação."
+          }
+        ]
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"O Credo pertence às fontes essenciais da catequese. É um resumo e uma professio fidei.\" — Catecismo da Igreja Católica, n. 186"
+      },
+      { "tipo": "titulo", "texto": "Como Rezar o Credo com Mais Profundidade" },
+      {
+        "tipo": "texto",
+        "texto": "Na próxima Missa, ao recitar o Credo, pause mentalmente em cada afirmação. Pergunte-se: 'Eu realmente acredito nisso? O que isso significa para minha vida?' Transformar o Credo em oração pessoal é um exercício poderoso de renovação da fé."
+      }
+    ]
+  },
+  {
+    "id": "fe-2",
+    "cat": "fe",
+    "icon": "💧",
+    "titulo": "Os Sacramentos: Sinais de Graça",
+    "desc": "Os 7 sacramentos e seu papel na vida cristã",
+    "leitura": "6 min",
+    "conteudo": [
+      {
+        "tipo": "intro",
+        "texto": "Os sacramentos são sinais eficazes da graça, instituídos por Cristo e confiados à Igreja, pelos quais a vida divina é dispensada. São sete, e cada um corresponde a um momento fundamental da vida."
+      },
+      {
+        "tipo": "lista",
+        "itens": [
+          {
+            "num": 1,
+            "texto": "Batismo — Nascimento para a vida de Deus. Apaga o pecado original.",
+            "detalhe": "O Batismo é a porta de entrada para todos os outros sacramentos. Pela água e pelo Espírito Santo, a pessoa morre para o pecado e nasce para a vida divina. O pecado original é apagado, a pessoa torna-se filho de Deus, membro da Igreja e templo do Espírito Santo. Para os batizados na infância, renovar as promessas batismais — especialmente na Vigília Pascal — é um gesto poderoso de retomar a própria identidade cristã."
+          },
+          {
+            "num": 2,
+            "texto": "Confirmação (Crisma) — Fortalecimento pelo Espírito Santo para o testemunho.",
+            "detalhe": "A Crisma completa o Batismo e configura mais perfeitamente à imagem de Cristo. O confirmado recebe os sete dons do Espírito Santo em plenitude, para testemunhar a fé. Infelizmente, muitos recebem a Crisma como um 'ritual de passagem' e depois se afastam da Igreja. A Crisma deveria ser um início — o começo de uma vida de testemunho ativo no mundo."
+          },
+          {
+            "num": 3,
+            "texto": "Eucaristia — O Corpo e Sangue de Cristo. Alimento da alma.",
+            "detalhe": "A Eucaristia é o 'fonte e ápice de toda a vida cristã' (LG 11). Todos os outros sacramentos apontam para ela. Jesus não disse 'façam isso em minha memória' como símbolo — disse como realidade sacramental. Frequentar a Missa dominical não é uma obrigação burocrática — é a necessidade vital de quem depende desse alimento para viver espiritualmente."
+          },
+          {
+            "num": 4,
+            "texto": "Penitência (Confissão) — Reconciliação com Deus após o pecado.",
+            "detalhe": "A Confissão é o sacramento mais subestimado e talvez o mais transformador. Jesus soprou sobre os Apóstolos e disse: 'A quem perdoardes os pecados, serão perdoados.' (Jo 20,23). O sacerdote é instrumento — é Cristo que absolve. A graça da Confissão não é apenas o perdão: é a cura interior. Confessar-se regularmente (pelo menos mensalmente) é uma das práticas mais recomendadas pelos santos para o crescimento espiritual."
+          },
+          {
+            "num": 5,
+            "texto": "Unção dos Enfermos — Graça e força para o sofrimento e a morte.",
+            "detalhe": "A Unção dos Enfermos não é o 'sacramento dos moribundos' — pode ser recebida por qualquer pessoa gravemente enferma ou em idade avançada. Ela une o sofrimento do doente ao sofrimento redentor de Cristo, traz força espiritual, pode trazer alívio físico se for a vontade de Deus, e prepara a alma para a passagem. Não espere o último momento para chamar o padre — a Unção é muito mais rica quando recebida em plena consciência."
+          },
+          {
+            "num": 6,
+            "texto": "Ordem Sagrada — Consagração de bispos, presbíteros e diáconos.",
+            "detalhe": "Pelo sacramento da Ordem, homens são configurados a Cristo Sacerdote, Profeta e Rei para servir ao Povo de Deus. Bispos recebem a plenitude do sacramento; presbíteros (padres) presidem a Eucaristia e anunciam o Evangelho; diáconos são ordenados para o serviço. Orar pelos sacerdotes e bispos é um dever de todo cristão — eles carregam um peso enorme e precisam do suporte espiritual da comunidade."
+          },
+          {
+            "num": 7,
+            "texto": "Matrimônio — O amor conjugal elevado à dignidade de sacramento.",
+            "detalhe": "No Matrimônio, os próprios esposos são os ministros do sacramento — eles se dão mutuamente a graça sacramental. O amor conjugal, fiel, exclusivo e aberto à vida, torna-se sinal visível do amor de Cristo pela Igreja (Ef 5,25-32). O casal cristão não apenas recebe uma bênção — torna-se, pelo próprio amor vivido no cotidiano, uma proclamação do Evangelho."
+          }
+        ]
+      },
+      {
+        "tipo": "destaque",
+        "texto": "\"Os sacramentos são forças que brotam do Corpo de Cristo, ações do Espírito Santo agindo no Seu Corpo.\" — CIC, n. 1116"
+      },
+      {
+        "tipo": "texto",
+        "texto": "Viver sacramentalmente é viver em comunhão com Cristo. Frequente os sacramentos com regularidade, especialmente a Eucaristia e a Confissão, que são os pilares da vida espiritual."
+      }
+    ]
+  }
+]
