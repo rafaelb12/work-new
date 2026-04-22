@@ -66,7 +66,7 @@
   {
     "id": "missa-2",
     "cat": "missa",
-    "icon": "🕯️",
+    "imagem": "https://cdn-icons-png.flaticon.com/512/4212/4212529.png",
     "titulo": "O Significado da Consagração",
     "desc": "O coração da Missa: o que acontece no altar",
     "leitura": "5 min",
@@ -115,7 +115,7 @@
   {
     "id": "santos-1",
     "cat": "santos",
-    "icon": "⭐",
+    "imagem": "https://pt.pngtree.com/so/s%C3%A3o-francisco",
     "titulo": "São Francisco de Assis",
     "desc": "O poverello de Assis e o amor radical à pobreza",
     "leitura": "6 min",
@@ -269,7 +269,7 @@
   {
     "id": "oracao-2",
     "cat": "oracao",
-    "icon": "✨",
+    "imagem": "https://cdn-icons-png.flaticon.com/512/4079/4079689.png",
     "titulo": "O Que é um Grupo de Oração?",
     "desc": "Entenda a graça de rezar em comunidade",
     "leitura": "4 min",
