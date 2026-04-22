@@ -42,6 +42,11 @@
       font-family: 'Lato', sans-serif;
       overflow-x: hidden;
     }
+    .container {
+      width: 100%;
+      max-width: 480px; /* padrão mobile */
+      margin: 0 auto;
+    }
 
     /* ── PAGES ── */
     .page {
@@ -56,12 +61,17 @@
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
 
     /* ── HOME ── */
     .home-hero {
       position: relative;
       width: 100%;
-      min-height: 55vw;
+      height: 260px;
       max-height: 320px;
       overflow: hidden;
       display: flex;
@@ -598,11 +608,52 @@
   margin: 0;
   letter-spacing: .05em;
   }
+@media (min-width: 768px) {
+  .home-hero {
+    height: 380px;
+  }
+  .home-title {
+    font-size: 2.4rem;
+  }
 
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .home-quote {
+    font-size: 1.1rem;
+  }
+  .liturgia-body,
+  .list-body,
+  .formacoes-body {
+    padding: 20px 40px;
+  }
+
+  .liturgia-card,
+  .accordion-item,
+  .formacao-card {
+    border-radius: 18px;
+  }
+  
+
+
+}
+.video-responsive {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-responsive iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
   </style>
 </head>
 <body>
-
+<div class="container"></div>
 <!-- ═══════════════ HOME ═══════════════ -->
 <section class="page active" id="page-home">
   <div class="home-hero">
@@ -725,12 +776,14 @@
     <div class="liturgia-card">
       <div class="liturgia-card-header"><h3>Reflexão do dia</h3></div>
       <div class="liturgia-card-body">
-        <iframe width="100%" height="280"
-          src="https://www.youtube.com/embed/videoseries?list=UUznKgmk792LV-JVnXXPN_CA&index=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen style="border-radius: 8px;"></iframe>
-      </div>
+        <div class="video-responsive">
+  <iframe 
+    src="https://www.youtube.com/embed/videoseries?list=UUznKgmk792LV-JVnXXPN_CA&index=1"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
     </div>
   </div>
 </section>
@@ -1180,5 +1233,6 @@ carregarFormacoes();
 
 document.getElementById("ano").textContent = new Date().getFullYear();
 </script>
+</div>
 </body>
 </html>
