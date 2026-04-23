@@ -335,10 +335,17 @@
       .playlist-info h4 { font-size: .82rem; color: var(--brown); font-weight: 700; line-height: 1.3; }
       .playlist-info p { font-size: .72rem; color: var(--text-soft); margin-top: 2px; }
       
-#oracoes-cats {
-  justify-content: center;
-  margin: 16px 0px 0 ;
-}
+      #oracoes-cats {
+        margin: 16px 20px 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+      #oracoes-cats::-webkit-scrollbar { display: none; }
+
+      
       /* ── TERÇOS ── */
       .terco-tabs {
         display: flex; overflow-x: auto; gap: 8px;
@@ -864,33 +871,29 @@
         </div>
       </div>
     </div> -->
-    <div style="margin:20px; background:var(--white); padding:16px; border-radius:16px; border:1px solid var(--beige-dark); box-shadow:0 2px 12px rgba(139,105,20,.08); margin-top:45px;">
-  <h3 style="font-family:'Playfair Display'; color:var(--brown); margin-bottom:10px;">
-    Intenções de Oração
-  </h3>
-
-  <textarea id="intencao" placeholder="Digite sua intenção..."
-    style="width:100%; height:100px; padding:10px; border-radius:10px; border:1px solid var(--beige-dark); font-family:Lato;"></textarea>
-
-  <button id="btnEnviar" onclick="enviarIntencao()"
-  style="margin-top:10px;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  border:none;
-  padding:10px 14px;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;">
+    <div style="margin: 24px 20px 0; background: var(--white); border-radius: 16px; border: 1px solid var(--beige-dark); overflow: hidden; box-shadow: 0 4px 20px rgba(139,105,20,.15);">
   
-  <span id="btnText">Enviar intenção</span>
+  <!-- Cabeçalho dourado igual aos outros cards -->
+  <div style="background: linear-gradient(90deg, var(--gold), var(--gold-light)); padding: 14px 18px; display: flex; align-items: center; gap: 10px;">
+    <div>
+      <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: color:var(--brown);; font-weight: 600; margin: 0;">Intenções de Oração</p>
+      <p style="font-size: .75rem; color: var(--brown); margin: 2px 0 0; font-style: italic;">Rezadas juntos no Terço Online às 22h00</p>
+    </div>
+  </div>
 
-  <span id="spinner" class="spinner" style="display:none;"></span>
-</button>
+  <!-- Corpo -->
+  <div style="padding: 16px 18px;">
+    <textarea id="intencao" placeholder="Digite sua intenção de oração..."
+      style="width: 100%; height: 90px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--beige-dark); background: var(--beige); font-family: 'Lato', sans-serif; font-size: .88rem; color: var(--text); resize: none; outline: none;"></textarea>
 
-  <p id="msg" style="margin-top:10px;font-size:.85rem;"></p>
+    <button id="btnEnviar" onclick="enviarIntencao()"
+      style="margin-top: 10px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: .85rem; color: var(--brown); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 10px rgba(139,105,20,.25); letter-spacing: .02em;">
+      <span id="btnText">Enviar intenção</span>
+      <span id="spinner" class="spinner" style="display: none;"></span>
+    </button>
+
+    <p id="msg" style="margin-top: 10px; font-size: .82rem; color: var(--gold-dark); font-weight: 700;"></p>
+  </div>
 </div>
   </section>
 
