@@ -1,1238 +1,1292 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Obra Nova</title>
-  <link rel="Website Icon" type="png" href="img/logo.png">
-  <meta property="og:title" content="Obra Nova" />
-  <meta property="og:description" content="Eis que eu faço obra nova, a qual já surge: não a vedes?— Is 43,19" />
-  <meta property="og:image" content="https://obranova.netlify.app/img/on.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://obranova.netlify.app/" />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
-  
-    :root {
-      --gold: #C9A84C;
-      --gold-light: #E8C96B;
-      --gold-dark: #8B6914;
-      --cream: #FAFAF7;
-      --beige: #F5EDD6;
-      --beige-dark: #EAD9B5;
-      --brown: #5C3D1E;
-      --text: #3A2A0E;
-      --text-soft: #7A6040;
-      --white: #FFFFFF;
-      --nav-height: 70px;
-    }
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Obra Nova</title>
+    <link rel="Website Icon" type="png" href="img/logo.png">
+    <meta property="og:title" content="Obra Nova" />
+    <meta property="og:description" content="Eis que eu faço obra nova, a qual já surge: não a vedes?— Is 43,19" />
+    <meta property="og:image" content="https://obranova.netlify.app/img/on.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://obranova.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
+    
+      :root {
+        --gold: #C9A84C;
+        --gold-light: #E8C96B;
+        --gold-dark: #8B6914;
+        --cream: #FAFAF7;
+        --beige: #F5EDD6;
+        --beige-dark: #EAD9B5;
+        --brown: #5C3D1E;
+        --text: #3A2A0E;
+        --text-soft: #7A6040;
+        --white: #FFFFFF;
+        --nav-height: 70px;
+      }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-    html, body {
-      height: 100%;
+      html, body {
+        height: 100%;
+        background: var(--cream);
+        color: var(--text);
+        font-family: 'Lato', sans-serif;
+        overflow-x: hidden;
+      }
+      .container {
+        width: 100%;
+        max-width: 480px; /* padrão mobile */
+        margin: 0 auto;
+      }
+
+      /* ── PAGES ── */
+      .page {
+        display: none;
+        min-height: calc(100vh - var(--nav-height));
+        padding-bottom: calc(var(--nav-height) + 16px);
+        animation: fadeIn .35s ease;
+      }
+      .page.active { display: block; }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .container {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── HOME ── */
+      .home-hero {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        max-height: 320px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 0;
+      }
+      .home-hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        animation: fadeIn .6s ease;
+      }
+      .home-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(250,250,247,0) 30%, rgba(250,250,247,1) 100%);
+      }
+      .home-hero-overlay-top {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(201,168,76,.08) 0%, transparent 50%);
+      }
+
+      .home-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem; font-weight: 700;
+        color: var(--brown);
+        letter-spacing: .04em;
+        text-align: center; line-height: 1.2;
+        position: relative;
+        margin-top: 16px;
+      }
+      .home-subtitle {
+        font-size: .85rem;
+        color: var(--gold-dark);
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        margin-top: 6px; font-weight: 700;
+        position: relative;
+      }
+
+      .divider-gold {
+        display: flex; align-items: center; gap: 10px;
+        margin: 20px auto;
+        width: 80%; max-width: 300px;
+      }
+      .divider-gold span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+      .divider-gold span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
+      .divider-gold i { color: var(--gold); font-size: 1.1rem; }
+
+      .home-text-block {
+        display: flex; flex-direction: column; align-items: center;
+        background: var(--cream);
+        width: 100%;
+        padding: 0 24px 8px;
+      }
+
+      .video-wrap {
+        width: 100%; max-width: 480px;
+        margin: 24px auto 0;
+        padding: 0 20px;
+      }
+      .video-label {
+        font-size: .75rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--gold-dark);
+        font-weight: 700;
+        margin-bottom: 10px; padding-left: 4px;
+      }
+      .video-frame-wrap {
+        border-radius: 16px; overflow: hidden;
+        box-shadow: 0 4px 24px rgba(139,105,20,.2);
+        border: 1.5px solid var(--gold-light);
+        aspect-ratio: 16/9; background: #000;
+      }
+      .video-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+      .home-quote {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-style: italic; font-size: 1rem;
+        color: var(--text-soft);
+        padding: 28px 32px 8px; line-height: 1.7;
+      }
+
+      .carrosel {
+        margin: 14px 20px 0;
+        overflow: hidden;
+        border-radius: 18px;
+        position: relative;
+        border: 1px solid var(--beige-dark);
+        box-shadow: 0 8px 30px rgba(139,105,20,.18);
+      }
+      .carrosel-track {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.25, 1, 0.3, 1);
+        will-change: transform;
+      }
+      .slide { min-width: 100%; height: 220px; flex-shrink: 0; }
+      .slide img { width: 100%; height: 100%; object-fit: cover; }
+      .dots { position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 6px; }
+      .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.5); transition: .3s; }
+      .dot.active { background: var(--gold); transform: scale(1.3); }
+
+      /* ── SECTION HEADER ── */
+      .section-header {
+        background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
+        padding: 36px 24px 20px;
+        border-bottom: 1px solid var(--beige-dark);
+        position: relative;
+      }
+      .section-header::after {
+        content: '';
+        position: absolute;
+        bottom: -1px; left: 24px; right: 24px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      }
+      .section-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem; color: var(--brown); font-weight: 700;
+      }
+      .section-header p { font-size: .82rem; color: var(--text-soft); margin-top: 4px; letter-spacing: .05em; }
+
+      /* ── LITURGIA ── */
+    
+      .liturgia-body { padding: 20px 20px 0; }
+      .liturgia-card {
+        background: var(--white); border-radius: 16px;
+        border: 1px solid var(--beige-dark); overflow: hidden;
+        box-shadow: 0 2px 12px rgba(139,105,20,.08); margin-bottom: 16px;
+      }
+      .liturgia-card-header {
+        background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+        padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+      }
+      .liturgia-card-header span { font-size: 1.2rem; }
+      .liturgia-card-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 600; }
+      .liturgia-card-body { padding: 16px 18px; }
+      .liturgia-date { font-size: .78rem; color: var(--gold-dark); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+      .liturgia-link {
+        display: flex; align-items: center; gap: 10px;
+        background: var(--beige); border-radius: 10px;
+        padding: 14px 16px; text-decoration: none;
+        color: var(--brown); font-weight: 700; font-size: .9rem;
+        border: 1px solid var(--beige-dark);
+        transition: background .2s; margin-bottom: 10px;
+      }
+      .liturgia-link:active { background: var(--beige-dark); }
+      .liturgia-link .arr { margin-left: auto; color: var(--gold); font-size: 1.1rem; }
+
+      /* ── ORAÇÕES + MÚSICA (aba unificada) ── */
+      .tab-switcher {
+        display: flex;
+        margin: 16px 20px 0;
+        background: var(--beige);
+        border-radius: 14px;
+        padding: 4px;
+        border: 1px solid var(--beige-dark);
+      }
+      .tab-switcher-btn {
+        flex: 1;
+        padding: 10px 8px;
+        border: none;
+        background: none;
+        border-radius: 10px;
+        font-family: 'Lato', sans-serif;
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+        cursor: pointer;
+        transition: all .25s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .tab-switcher-btn.active {
+        background: var(--white);
+        color: var(--gold-dark);
+        box-shadow: 0 2px 8px rgba(139,105,20,.15);
+      }
+      .tab-switcher-btn .material-symbols-outlined {
+        font-size: 18px;
+      }
+      .tab-content { display: none; }
+      .tab-content.active { display: block; }
+
+      .list-body { padding: 16px 20px 0; }
+      .accordion-item {
+        background: var(--white); border-radius: 14px;
+        border: 1px solid var(--beige-dark); margin-bottom: 12px;
+        overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06);
+      }
+      .accordion-trigger {
+        width: 100%; background: none; border: none;
+        padding: 16px 18px; display: flex;
+        align-items: center; gap: 12px;
+        cursor: pointer; text-align: left;
+      }
+      .acc-icon {
+        width: 36px; height: 36px; background: var(--beige);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--beige-dark);
+      }
+      .acc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; flex: 1; }
+      .acc-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
+      .accordion-item.open .acc-chevron { transform: rotate(180deg); }
+      .accordion-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--beige); }
+      .accordion-item.open .accordion-body { display: block; }
+      .accordion-body p { font-size: .9rem; line-height: 1.85; color: var(--text-soft); margin-top: 12px; white-space: pre-line; }
+
+
+      
+      /* ── MÚSICA (dentro de Orações) ── */
+      .musica-body { padding: 16px 20px 0; }
+      .musica-channel-card {
+        background: linear-gradient(135deg, var(--gold-dark) 0%, var(--brown) 100%);
+        border-radius: 16px; padding: 20px;
+        display: flex; align-items: center; gap: 14px;
+        margin-bottom: 20px; text-decoration: none;
+        box-shadow: 0 4px 20px rgba(139,105,20,.3);
+      }
+      .musica-channel-logo {
+        width: 56px; height: 56px; border-radius: 50%;
+        background: var(--white); overflow: hidden;
+        flex-shrink: 0; border: 2px solid var(--gold-light);
+      }
+      .musica-channel-logo img { width: 100%; height: 100%; object-fit: cover; }
+      .musica-channel-info h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); font-weight: 600; }
+      .musica-channel-info p { font-size: .78rem; color: rgba(255,255,255,.7); margin-top: 2px; }
+      .musica-channel-arrow { margin-left: auto; color: var(--gold-light); font-size: 1.3rem; }
+      .musica-section-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; margin-bottom: 12px; padding-left: 4px; }
+      .playlist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+      .playlist-card {
+        background: var(--white); border-radius: 14px;
+        border: 1px solid var(--beige-dark); overflow: hidden;
+        box-shadow: 0 2px 8px rgba(139,105,20,.07); text-decoration: none;
+      }
+      .playlist-thumb { width: 100%; aspect-ratio: 16/9; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+      .playlist-info { padding: 10px 12px; }
+      .playlist-info h4 { font-size: .82rem; color: var(--brown); font-weight: 700; line-height: 1.3; }
+      .playlist-info p { font-size: .72rem; color: var(--text-soft); margin-top: 2px; }
+      
+#oracoes-cats {
+  justify-content: center;
+  margin: 16px 0px 0 ;
+}
+      /* ── TERÇOS ── */
+      .terco-tabs {
+        display: flex; overflow-x: auto; gap: 8px;
+        padding: 16px 20px 0; scrollbar-width: none;
+      }
+      .terco-tabs::-webkit-scrollbar { display: none; }
+      .terco-tab {
+        flex-shrink: 0; padding: 8px 16px; border-radius: 20px;
+        border: 1.5px solid var(--beige-dark); background: var(--white);
+        font-size: .8rem; font-weight: 700; color: var(--text-soft);
+        cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif;
+      }
+      .terco-tab.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
+      .terco-panel { display: none; padding: 16px 20px 0; }
+      .terco-panel.active { display: block; }
+
+      .misterio-card {
+        background: var(--white); border-radius: 14px;
+        border: 1px solid var(--beige-dark); margin-bottom: 12px;
+        overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06);
+      }
+      .misterio-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+      .misterio-num {
+        width: 32px; height: 32px;
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: .8rem; font-weight: 700; color: var(--white); flex-shrink: 0;
+      }
+      .misterio-title { font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--brown); flex: 1; }
+      .misterio-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
+      .misterio-body { display: none; padding: 0 16px 14px; border-top: 1px solid var(--beige); }
+      .misterio-card.open .misterio-body { display: block; }
+      .misterio-card.open .misterio-chevron { transform: rotate(180deg); }
+      .misterio-step { margin-top: 10px; font-size: .85rem; color: var(--text-soft); line-height: 1.7; }
+      .misterio-step strong { color: var(--gold-dark); display: block; margin-bottom: 2px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+
+      /* ── FORMAÇÕES ── */
+      .formacoes-body { padding: 16px 20px 0; }
+
+      /* Categorias tabs */
+      .formacao-cats {
+        display: flex; overflow-x: auto; gap: 8px;
+        padding-bottom: 14px; scrollbar-width: none;
+      }
+      .formacao-cats::-webkit-scrollbar { display: none; }
+      .formacao-cat {
+        flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
+        border: 1.5px solid var(--beige-dark); background: var(--white);
+        font-size: .78rem; font-weight: 700; color: var(--text-soft);
+        cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif;
+      }
+      .formacao-cat.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
+
+      .formacao-panel { display: none; }
+      .formacao-panel.active { display: block; }
+
+      /* Card de formação */
+      .formacao-card {
+        background: var(--white); border-radius: 16px;
+        border: 1px solid var(--beige-dark); margin-bottom: 14px;
+        overflow: hidden; box-shadow: 0 2px 12px rgba(139,105,20,.08);
+      }
+      .formacao-card-header {
+        padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px;
+        cursor: pointer;
+      }
+      .formacao-icon {
+        width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem;
+        background: linear-gradient(135deg, var(--beige), var(--beige-dark));
+        border: 1px solid var(--beige-dark);
+      }
+      .formacao-meta { flex: 1; }
+      .formacao-cat-badge {
+        font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+        text-transform: uppercase; color: var(--gold-dark);
+        margin-bottom: 4px;
+      }
+      .formacao-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem; color: var(--brown); font-weight: 600;
+        line-height: 1.3;
+      }
+      .formacao-desc {
+        font-size: .78rem; color: var(--text-soft); margin-top: 3px;
+        line-height: 1.5;
+      }
+      .formacao-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; margin-top: 2px; flex-shrink: 0; }
+      .formacao-card.open .formacao-chevron { transform: rotate(180deg); }
+      .formacao-content {
+        display: none;
+        padding: 0 18px 20px;
+        border-top: 1px solid var(--beige);
+      }
+      .formacao-card.open .formacao-content { display: block; }
+      .formacao-content h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: .9rem; color: var(--brown); margin: 16px 0 8px;
+        font-weight: 600;
+      }
+      .formacao-content p {
+        font-size: .88rem; line-height: 1.85; color: var(--text-soft);
+      }
+      .formacao-content .highlight-box {
+        background: var(--beige); border-radius: 10px;
+        border-left: 3px solid var(--gold);
+        padding: 12px 14px; margin: 12px 0;
+        font-size: .85rem; line-height: 1.7;
+        color: var(--text); font-style: italic;
+      }
+      .formacao-content .step-list {
+        list-style: none; margin: 10px 0;
+      }
+      .formacao-content .step-list li {
+        display: flex; gap: 10px; align-items: flex-start;
+        font-size: .86rem; color: var(--text-soft); line-height: 1.6;
+        padding: 6px 0; border-bottom: 1px solid var(--beige);
+      }
+      .formacao-content .step-list li:last-child { border-bottom: none; }
+      .formacao-content .step-list li .step-num {
+        width: 22px; height: 22px; flex-shrink: 0;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px;
+      }
+      .formacao-read-time {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: .7rem; color: var(--gold-dark); font-weight: 700;
+        margin-top: 10px; padding: 4px 10px;
+        background: var(--beige); border-radius: 20px;
+      }
+
+      /* ── Item de lista com detalhe expansível ── */
+      .step-item {
+        border-bottom: 1px solid var(--beige);
+        overflow: hidden;
+      }
+      .step-item:last-child { border-bottom: none; }
+
+      .step-item-header {
+        display: flex; gap: 10px; align-items: flex-start;
+        padding: 10px 0; cursor: pointer;
+      }
+      .step-item-header .step-num {
+        width: 22px; height: 22px; flex-shrink: 0;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px;
+      }
+      .step-item-header .step-texto {
+        flex: 1; font-size: .86rem; color: var(--text-soft); line-height: 1.6;
+      }
+      .step-item-header .step-chevron {
+        font-size: .75rem; color: var(--gold); flex-shrink: 0;
+        margin-top: 3px; transition: transform .3s;
+      }
+      .step-item.open .step-chevron { transform: rotate(180deg); }
+
+      .step-item-detalhe {
+        display: none;
+        font-size: .84rem; line-height: 1.8; color: var(--text-soft);
+        background: var(--beige); border-radius: 10px;
+        padding: 12px 14px; margin: 0 0 10px 32px;
+        border-left: 3px solid var(--gold-light);
+      }
+      .step-item.open .step-item-detalhe { display: block; }
+
+      /* ── Item aprofundado (sub-acordeão dentro da formação) ── */
+      .aprofundado-item {
+        border: 1px solid var(--beige-dark);
+        border-radius: 12px;
+        margin: 10px 0;
+        overflow: hidden;
+        background: var(--cream);
+      }
+      .aprofundado-header {
+        display: flex; align-items: flex-start; gap: 10px;
+        padding: 12px 14px; cursor: pointer;
+        transition: background .2s;
+      }
+      .aprofundado-header:active { background: var(--beige); }
+      .aprofundado-meta {
+        flex: 1; display: flex; flex-direction: column; gap: 2px;
+      }
+      .aprofundado-titulo {
+        font-family: 'Playfair Display', serif;
+        font-size: .9rem; color: var(--brown); font-weight: 600;
+        line-height: 1.3;
+      }
+      .aprofundado-resumo {
+        font-size: .75rem; color: var(--text-soft); line-height: 1.4;
+      }
+      .aprofundado-chevron {
+        color: var(--gold); font-size: .9rem;
+        transition: transform .3s; margin-top: 2px; flex-shrink: 0;
+      }
+      .aprofundado-item.open .aprofundado-chevron { transform: rotate(180deg); }
+      .aprofundado-body {
+        display: none;
+        padding: 0 14px 14px;
+        border-top: 1px solid var(--beige-dark);
+      }
+      .aprofundado-item.open .aprofundado-body { display: block; }
+      .aprofundado-body p {
+        font-size: .86rem; line-height: 1.85;
+        color: var(--text-soft); margin-top: 12px;
+      }
+
+      /* ── BOTTOM NAV ── */
+
+      .nav-icon-img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: transform .2s, opacity .2s, filter .2s;
+
+  }
+
+  /* quando ativo */
+  .nav-item.active .nav-icon-img {
+    transform: scale(1.15);
+    opacity: 1;
+    filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%) hue-rotate(10deg);
+  }
+      .bottom-nav {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        height: var(--nav-height); background: var(--white);
+        border-top: 1px solid var(--beige-dark);
+        display: flex; z-index: 100;
+        box-shadow: 0 -4px 20px rgba(139,105,20,.12);
+      }
+      .nav-item {
+        flex: 1; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 4px;
+        cursor: pointer; padding: 6px 4px; position: relative;
+        border: none; background: none; -webkit-appearance: none;
+      }
+      .nav-item::before {
+        content: ''; position: absolute;
+        top: 0; left: 20%; right: 20%; height: 2.5px;
+        background: var(--gold); border-radius: 0 0 4px 4px;
+        opacity: 0; transition: opacity .2s;
+      }
+      .nav-item.active::before { opacity: 1; }
+      .nav-icon { font-size: 26px; line-height: 1; color: #7A6040; transition: transform .2s, color .2s; }
+      .nav-item.active .nav-icon { color: var(--gold-dark); transform: scale(1.15); }
+      .nav-label { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-soft); transition: color .2s; }
+      .nav-item.active .nav-label { color: var(--gold-dark); }
+
+      .btn-compartilhar {
+        background: linear-gradient(135deg, #E8C96B, #C9A84C);
+        border: none; color: #3A2A0E; font-weight: 700;
+        font-size: .85rem; padding: 10px 12px; margin-top: 12px; margin-bottom: 8px;
+        border-radius: 12px; display: inline-flex; align-items: center; gap: 6px;
+        cursor: pointer; box-shadow: 0 4px 12px rgba(139,105,20,.25);
+        transition: all .25s ease; letter-spacing: .02em;
+        
+      }
+      .btn-compartilhar:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(139,105,20,.35); }
+      .btn-compartilhar:active { transform: scale(0.96); }
+
+      .liturgia-container .card {
+        background: var(--white); border-radius: 14px;
+        margin-bottom: 12px; 
+      }
+      .liturgia-container .card h3 {
+        font-family: 'Playfair Display', serif; font-size: 1rem;
+        color: var(--brown); margin-bottom: 10px; font-weight: 600;
+      }
+      .liturgia-container .card p { font-size: .88rem; line-height: 1.8; color: var(--text-soft); ]
+      }
+
+      .footer {
+      text-align: center;
+      font-size: .7rem;
+      color: var(--text-soft);
+      padding: 20px 10px 90px; 
       background: var(--cream);
-      color: var(--text);
-      font-family: 'Lato', sans-serif;
-      overflow-x: hidden;
-    }
-    .container {
-      width: 100%;
-      max-width: 480px; /* padrão mobile */
-      margin: 0 auto;
-    }
+      border-top: 1px solid var(--beige-dark);
+      }
 
-    /* ── PAGES ── */
-    .page {
-      display: none;
-      min-height: calc(100vh - var(--nav-height));
-      padding-bottom: calc(var(--nav-height) + 16px);
-      animation: fadeIn .35s ease;
+    .footer p {
+    margin: 0;
+    letter-spacing: .05em;
     }
-    .page.active { display: block; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .container {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    /* ── HOME ── */
+  @media (min-width: 768px) {
     .home-hero {
-      position: relative;
-      width: 100%;
-      height: 260px;
-      max-height: 320px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 0;
+      height: 380px;
     }
-    .home-hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      animation: fadeIn .6s ease;
-    }
-    .home-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(250,250,247,0) 30%, rgba(250,250,247,1) 100%);
-    }
-    .home-hero-overlay-top {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(201,168,76,.08) 0%, transparent 50%);
-    }
-
     .home-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 700;
-      color: var(--brown);
-      letter-spacing: .04em;
-      text-align: center; line-height: 1.2;
-      position: relative;
-      margin-top: 16px;
+      font-size: 2.4rem;
     }
+
     .home-subtitle {
-      font-size: .85rem;
-      color: var(--gold-dark);
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      margin-top: 6px; font-weight: 700;
-      position: relative;
+      font-size: 1rem;
     }
-
-    .divider-gold {
-      display: flex; align-items: center; gap: 10px;
-      margin: 20px auto;
-      width: 80%; max-width: 300px;
-    }
-    .divider-gold span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
-    .divider-gold span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
-    .divider-gold i { color: var(--gold); font-size: 1.1rem; }
-
-    .home-text-block {
-      display: flex; flex-direction: column; align-items: center;
-      background: var(--cream);
-      width: 100%;
-      padding: 0 24px 8px;
-    }
-
-    .video-wrap {
-      width: 100%; max-width: 480px;
-      margin: 24px auto 0;
-      padding: 0 20px;
-    }
-    .video-label {
-      font-size: .75rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold-dark);
-      font-weight: 700;
-      margin-bottom: 10px; padding-left: 4px;
-    }
-    .video-frame-wrap {
-      border-radius: 16px; overflow: hidden;
-      box-shadow: 0 4px 24px rgba(139,105,20,.2);
-      border: 1.5px solid var(--gold-light);
-      aspect-ratio: 16/9; background: #000;
-    }
-    .video-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
 
     .home-quote {
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 1rem;
-      color: var(--text-soft);
-      padding: 28px 32px 8px; line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    .liturgia-body,
+    .list-body,
+    .formacoes-body {
+      padding: 20px 40px;
     }
 
-    .carrosel {
-      margin: 14px 20px 0;
-      overflow: hidden;
-      border-radius: 18px;
-      position: relative;
-      border: 1px solid var(--beige-dark);
-      box-shadow: 0 8px 30px rgba(139,105,20,.18);
-    }
-    .carrosel-track {
-      display: flex;
-      transition: transform 0.8s cubic-bezier(0.25, 1, 0.3, 1);
-      will-change: transform;
-    }
-    .slide { min-width: 100%; height: 220px; flex-shrink: 0; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-    .dots { position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 6px; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.5); transition: .3s; }
-    .dot.active { background: var(--gold); transform: scale(1.3); }
-
-    /* ── SECTION HEADER ── */
-    .section-header {
-      background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
-      padding: 36px 24px 20px;
-      border-bottom: 1px solid var(--beige-dark);
-      position: relative;
-    }
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 24px; right: 24px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .section-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; color: var(--brown); font-weight: 700;
-    }
-    .section-header p { font-size: .82rem; color: var(--text-soft); margin-top: 4px; letter-spacing: .05em; }
-
-    /* ── LITURGIA ── */
-   
-    .liturgia-body { padding: 20px 20px 0; }
-    .liturgia-card {
-      background: var(--white); border-radius: 16px;
-      border: 1px solid var(--beige-dark); overflow: hidden;
-      box-shadow: 0 2px 12px rgba(139,105,20,.08); margin-bottom: 16px;
-    }
-    .liturgia-card-header {
-      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
-      padding: 14px 18px; display: flex; align-items: center; gap: 10px;
-    }
-    .liturgia-card-header span { font-size: 1.2rem; }
-    .liturgia-card-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 600; }
-    .liturgia-card-body { padding: 16px 18px; }
-    .liturgia-date { font-size: .78rem; color: var(--gold-dark); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
-    .liturgia-link {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--beige); border-radius: 10px;
-      padding: 14px 16px; text-decoration: none;
-      color: var(--brown); font-weight: 700; font-size: .9rem;
-      border: 1px solid var(--beige-dark);
-      transition: background .2s; margin-bottom: 10px;
-    }
-    .liturgia-link:active { background: var(--beige-dark); }
-    .liturgia-link .arr { margin-left: auto; color: var(--gold); font-size: 1.1rem; }
-
-    /* ── ORAÇÕES + MÚSICA (aba unificada) ── */
-    .tab-switcher {
-      display: flex;
-      margin: 16px 20px 0;
-      background: var(--beige);
-      border-radius: 14px;
-      padding: 4px;
-      border: 1px solid var(--beige-dark);
-    }
-    .tab-switcher-btn {
-      flex: 1;
-      padding: 10px 8px;
-      border: none;
-      background: none;
-      border-radius: 10px;
-      font-family: 'Lato', sans-serif;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      cursor: pointer;
-      transition: all .25s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .tab-switcher-btn.active {
-      background: var(--white);
-      color: var(--gold-dark);
-      box-shadow: 0 2px 8px rgba(139,105,20,.15);
-    }
-    .tab-switcher-btn .material-symbols-outlined {
-      font-size: 18px;
-    }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    .list-body { padding: 16px 20px 0; }
-    .accordion-item {
-      background: var(--white); border-radius: 14px;
-      border: 1px solid var(--beige-dark); margin-bottom: 12px;
-      overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06);
-    }
-    .accordion-trigger {
-      width: 100%; background: none; border: none;
-      padding: 16px 18px; display: flex;
-      align-items: center; gap: 12px;
-      cursor: pointer; text-align: left;
-    }
-    .acc-icon {
-      width: 36px; height: 36px; background: var(--beige);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--beige-dark);
-    }
-    .acc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; flex: 1; }
-    .acc-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
-    .accordion-item.open .acc-chevron { transform: rotate(180deg); }
-    .accordion-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--beige); }
-    .accordion-item.open .accordion-body { display: block; }
-    .accordion-body p { font-size: .9rem; line-height: 1.85; color: var(--text-soft); margin-top: 12px; white-space: pre-line; }
-
-    /* ── MÚSICA (dentro de Orações) ── */
-    .musica-body { padding: 16px 20px 0; }
-    .musica-channel-card {
-      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--brown) 100%);
-      border-radius: 16px; padding: 20px;
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 20px; text-decoration: none;
-      box-shadow: 0 4px 20px rgba(139,105,20,.3);
-    }
-    .musica-channel-logo {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: var(--white); overflow: hidden;
-      flex-shrink: 0; border: 2px solid var(--gold-light);
-    }
-    .musica-channel-logo img { width: 100%; height: 100%; object-fit: cover; }
-    .musica-channel-info h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); font-weight: 600; }
-    .musica-channel-info p { font-size: .78rem; color: rgba(255,255,255,.7); margin-top: 2px; }
-    .musica-channel-arrow { margin-left: auto; color: var(--gold-light); font-size: 1.3rem; }
-    .musica-section-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; margin-bottom: 12px; padding-left: 4px; }
-    .playlist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-    .playlist-card {
-      background: var(--white); border-radius: 14px;
-      border: 1px solid var(--beige-dark); overflow: hidden;
-      box-shadow: 0 2px 8px rgba(139,105,20,.07); text-decoration: none;
-    }
-    .playlist-thumb { width: 100%; aspect-ratio: 16/9; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-    .playlist-info { padding: 10px 12px; }
-    .playlist-info h4 { font-size: .82rem; color: var(--brown); font-weight: 700; line-height: 1.3; }
-    .playlist-info p { font-size: .72rem; color: var(--text-soft); margin-top: 2px; }
-
-    /* ── TERÇOS ── */
-    .terco-tabs {
-      display: flex; overflow-x: auto; gap: 8px;
-      padding: 16px 20px 0; scrollbar-width: none;
-    }
-    .terco-tabs::-webkit-scrollbar { display: none; }
-    .terco-tab {
-      flex-shrink: 0; padding: 8px 16px; border-radius: 20px;
-      border: 1.5px solid var(--beige-dark); background: var(--white);
-      font-size: .8rem; font-weight: 700; color: var(--text-soft);
-      cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif;
-    }
-    .terco-tab.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
-    .terco-panel { display: none; padding: 16px 20px 0; }
-    .terco-panel.active { display: block; }
-
-    .misterio-card {
-      background: var(--white); border-radius: 14px;
-      border: 1px solid var(--beige-dark); margin-bottom: 12px;
-      overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06);
-    }
-    .misterio-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
-    .misterio-num {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: .8rem; font-weight: 700; color: var(--white); flex-shrink: 0;
-    }
-    .misterio-title { font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--brown); flex: 1; }
-    .misterio-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
-    .misterio-body { display: none; padding: 0 16px 14px; border-top: 1px solid var(--beige); }
-    .misterio-card.open .misterio-body { display: block; }
-    .misterio-card.open .misterio-chevron { transform: rotate(180deg); }
-    .misterio-step { margin-top: 10px; font-size: .85rem; color: var(--text-soft); line-height: 1.7; }
-    .misterio-step strong { color: var(--gold-dark); display: block; margin-bottom: 2px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
-
-    /* ── FORMAÇÕES ── */
-    .formacoes-body { padding: 16px 20px 0; }
-
-    /* Categorias tabs */
-    .formacao-cats {
-      display: flex; overflow-x: auto; gap: 8px;
-      padding-bottom: 14px; scrollbar-width: none;
-    }
-    .formacao-cats::-webkit-scrollbar { display: none; }
-    .formacao-cat {
-      flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
-      border: 1.5px solid var(--beige-dark); background: var(--white);
-      font-size: .78rem; font-weight: 700; color: var(--text-soft);
-      cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif;
-    }
-    .formacao-cat.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
-
-    .formacao-panel { display: none; }
-    .formacao-panel.active { display: block; }
-
-    /* Card de formação */
+    .liturgia-card,
+    .accordion-item,
     .formacao-card {
-      background: var(--white); border-radius: 16px;
-      border: 1px solid var(--beige-dark); margin-bottom: 14px;
-      overflow: hidden; box-shadow: 0 2px 12px rgba(139,105,20,.08);
-    }
-    .formacao-card-header {
-      padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px;
-      cursor: pointer;
-    }
-    .formacao-icon {
-      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      background: linear-gradient(135deg, var(--beige), var(--beige-dark));
-      border: 1px solid var(--beige-dark);
-    }
-    .formacao-meta { flex: 1; }
-    .formacao-cat-badge {
-      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--gold-dark);
-      margin-bottom: 4px;
-    }
-    .formacao-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: var(--brown); font-weight: 600;
-      line-height: 1.3;
-    }
-    .formacao-desc {
-      font-size: .78rem; color: var(--text-soft); margin-top: 3px;
-      line-height: 1.5;
-    }
-    .formacao-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; margin-top: 2px; flex-shrink: 0; }
-    .formacao-card.open .formacao-chevron { transform: rotate(180deg); }
-    .formacao-content {
-      display: none;
-      padding: 0 18px 20px;
-      border-top: 1px solid var(--beige);
-    }
-    .formacao-card.open .formacao-content { display: block; }
-    .formacao-content h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: .9rem; color: var(--brown); margin: 16px 0 8px;
-      font-weight: 600;
-    }
-    .formacao-content p {
-      font-size: .88rem; line-height: 1.85; color: var(--text-soft);
-    }
-    .formacao-content .highlight-box {
-      background: var(--beige); border-radius: 10px;
-      border-left: 3px solid var(--gold);
-      padding: 12px 14px; margin: 12px 0;
-      font-size: .85rem; line-height: 1.7;
-      color: var(--text); font-style: italic;
-    }
-    .formacao-content .step-list {
-      list-style: none; margin: 10px 0;
-    }
-    .formacao-content .step-list li {
-      display: flex; gap: 10px; align-items: flex-start;
-      font-size: .86rem; color: var(--text-soft); line-height: 1.6;
-      padding: 6px 0; border-bottom: 1px solid var(--beige);
-    }
-    .formacao-content .step-list li:last-child { border-bottom: none; }
-    .formacao-content .step-list li .step-num {
-      width: 22px; height: 22px; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px;
-    }
-    .formacao-read-time {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: .7rem; color: var(--gold-dark); font-weight: 700;
-      margin-top: 10px; padding: 4px 10px;
-      background: var(--beige); border-radius: 20px;
-    }
-
-    /* ── Item de lista com detalhe expansível ── */
-    .step-item {
-      border-bottom: 1px solid var(--beige);
-      overflow: hidden;
-    }
-    .step-item:last-child { border-bottom: none; }
-
-    .step-item-header {
-      display: flex; gap: 10px; align-items: flex-start;
-      padding: 10px 0; cursor: pointer;
-    }
-    .step-item-header .step-num {
-      width: 22px; height: 22px; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px;
-    }
-    .step-item-header .step-texto {
-      flex: 1; font-size: .86rem; color: var(--text-soft); line-height: 1.6;
-    }
-    .step-item-header .step-chevron {
-      font-size: .75rem; color: var(--gold); flex-shrink: 0;
-      margin-top: 3px; transition: transform .3s;
-    }
-    .step-item.open .step-chevron { transform: rotate(180deg); }
-
-    .step-item-detalhe {
-      display: none;
-      font-size: .84rem; line-height: 1.8; color: var(--text-soft);
-      background: var(--beige); border-radius: 10px;
-      padding: 12px 14px; margin: 0 0 10px 32px;
-      border-left: 3px solid var(--gold-light);
-    }
-    .step-item.open .step-item-detalhe { display: block; }
-
-    /* ── Item aprofundado (sub-acordeão dentro da formação) ── */
-    .aprofundado-item {
-      border: 1px solid var(--beige-dark);
-      border-radius: 12px;
-      margin: 10px 0;
-      overflow: hidden;
-      background: var(--cream);
-    }
-    .aprofundado-header {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 12px 14px; cursor: pointer;
-      transition: background .2s;
-    }
-    .aprofundado-header:active { background: var(--beige); }
-    .aprofundado-meta {
-      flex: 1; display: flex; flex-direction: column; gap: 2px;
-    }
-    .aprofundado-titulo {
-      font-family: 'Playfair Display', serif;
-      font-size: .9rem; color: var(--brown); font-weight: 600;
-      line-height: 1.3;
-    }
-    .aprofundado-resumo {
-      font-size: .75rem; color: var(--text-soft); line-height: 1.4;
-    }
-    .aprofundado-chevron {
-      color: var(--gold); font-size: .9rem;
-      transition: transform .3s; margin-top: 2px; flex-shrink: 0;
-    }
-    .aprofundado-item.open .aprofundado-chevron { transform: rotate(180deg); }
-    .aprofundado-body {
-      display: none;
-      padding: 0 14px 14px;
-      border-top: 1px solid var(--beige-dark);
-    }
-    .aprofundado-item.open .aprofundado-body { display: block; }
-    .aprofundado-body p {
-      font-size: .86rem; line-height: 1.85;
-      color: var(--text-soft); margin-top: 12px;
-    }
-
-    /* ── BOTTOM NAV ── */
-
-    .nav-icon-img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  opacity: 0.7;
-  transition: transform .2s, opacity .2s, filter .2s;
-
-}
-
-/* quando ativo */
-.nav-item.active .nav-icon-img {
-  transform: scale(1.15);
-  opacity: 1;
-  filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%) hue-rotate(10deg);
-}
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      height: var(--nav-height); background: var(--white);
-      border-top: 1px solid var(--beige-dark);
-      display: flex; z-index: 100;
-      box-shadow: 0 -4px 20px rgba(139,105,20,.12);
-    }
-    .nav-item {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 4px;
-      cursor: pointer; padding: 6px 4px; position: relative;
-      border: none; background: none; -webkit-appearance: none;
-    }
-    .nav-item::before {
-      content: ''; position: absolute;
-      top: 0; left: 20%; right: 20%; height: 2.5px;
-      background: var(--gold); border-radius: 0 0 4px 4px;
-      opacity: 0; transition: opacity .2s;
-    }
-    .nav-item.active::before { opacity: 1; }
-    .nav-icon { font-size: 26px; line-height: 1; color: #7A6040; transition: transform .2s, color .2s; }
-    .nav-item.active .nav-icon { color: var(--gold-dark); transform: scale(1.15); }
-    .nav-label { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-soft); transition: color .2s; }
-    .nav-item.active .nav-label { color: var(--gold-dark); }
-
-    .btn-compartilhar {
-      background: linear-gradient(135deg, #E8C96B, #C9A84C);
-      border: none; color: #3A2A0E; font-weight: 700;
-      font-size: .85rem; padding: 10px 12px; margin-top: 12px; margin-bottom: 8px;
-      border-radius: 12px; display: inline-flex; align-items: center; gap: 6px;
-      cursor: pointer; box-shadow: 0 4px 12px rgba(139,105,20,.25);
-      transition: all .25s ease; letter-spacing: .02em;
-      
-    }
-    .btn-compartilhar:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(139,105,20,.35); }
-    .btn-compartilhar:active { transform: scale(0.96); }
-
-    .liturgia-container .card {
-      background: var(--white); border-radius: 14px;
-      margin-bottom: 12px; 
-    }
-    .liturgia-container .card h3 {
-      font-family: 'Playfair Display', serif; font-size: 1rem;
-      color: var(--brown); margin-bottom: 10px; font-weight: 600;
-    }
-    .liturgia-container .card p { font-size: .88rem; line-height: 1.8; color: var(--text-soft); ]
-    }
-
-    .footer {
-    text-align: center;
-    font-size: .7rem;
-    color: var(--text-soft);
-    padding: 20px 10px 90px; 
-    background: var(--cream);
-    border-top: 1px solid var(--beige-dark);
-    }
-
-  .footer p {
-  margin: 0;
-  letter-spacing: .05em;
-  }
-@media (min-width: 768px) {
-  .home-hero {
-    height: 380px;
-  }
-  .home-title {
-    font-size: 2.4rem;
-  }
-
-  .home-subtitle {
-    font-size: 1rem;
-  }
-
-  .home-quote {
-    font-size: 1.1rem;
-  }
-  .liturgia-body,
-  .list-body,
-  .formacoes-body {
-    padding: 20px 40px;
-  }
-
-  .liturgia-card,
-  .accordion-item,
-  .formacao-card {
-    border-radius: 18px;
-  }
-  
-
-
-}
-.video-responsive {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.video-responsive iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-  </style>
-</head>
-<body>
-<div class="container"></div>
-<!-- ═══════════════ HOME ═══════════════ -->
-<section class="page active" id="page-home">
-  <div class="home-hero">
-    <img class="home-hero-img" src="https://1.bp.blogspot.com/-wa6z2KrWWqM/Xo0K21ikP1I/AAAAAAAAJv0/D5NNd7vhOAg6B4JyEfGjN3s_N6eUTyBjACLcBGAsYHQ/s640/%25C3%258Dcone%2BObra%2BNova.png" alt="Logo Obra Nova" />
-    <div class="home-hero-overlay-top"></div>
-    <div class="home-hero-overlay"></div>
-  </div>
-  <div class="home-text-block">
-    <p class="home-subtitle">Grupo de Oração</p>
-    <h1 class="home-title">Obra Nova</h1>
-    <div class="divider-gold"><span></span><i>✦</i><span></span></div>
-  </div>
-
-  <div class="video-wrap">
-    <p class="video-label">✦ em destaque</p>
-    <div class="video-frame-wrap">
-      <iframe src="https://www.youtube.com/embed/li7eul15GUY?rel=0&modestbranding=1"
-        title="Obra Nova - YouTube"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <p class="home-quote">
-    "Eis que eu faço obra nova,<br/>a qual já surge: não a vedes?"<br/>
-    <span style="font-size:.8rem;letter-spacing:.1em;font-style:normal;color:var(--gold-dark);font-weight:700;">— Is 43,19</span>
-  </p>
-
-  <div style="margin:8px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
-    <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;display:flex;align-items:center;gap:10px;">
-      <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:600;">Nossos Encontros</span>
-    </div>
-    <div style="padding:16px 18px;display:flex;flex-direction:column;gap:16px;">
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;">
-          <span style="font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);">SEG</span>
-        </div>
-        <div>
-          <p style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--brown);font-weight:600;">Toda Segunda-feira</p>
-          <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">às <strong style="color:var(--gold-dark);">19h00</strong> — venha rezar conosco!</p>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;">
-          <i class="bi bi-whatsapp"></i>
-        </div>
-        <div>
-          <p style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);font-weight:600;">Terço Diário Online</p>
-          <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">Todos os dias às <strong style="color:var(--gold-dark);">22h00</strong></p>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;">
-          <i class="bi bi-whatsapp"></i>
-        </div>
-        <div>
-          <p style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);font-weight:600;">Lectio Divina Online</p>
-          <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">Segunda a sábado às <strong style="color:var(--gold-dark);">09h00</strong></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin:14px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
-    <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;">
-      <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:600;">Sobre Nós</span>
-    </div>
-    <div style="padding:16px 18px;">
-      <p style="font-size:.9rem;line-height:1.8;color:var(--text-soft);">
-        O <strong style="color:var(--brown);">Obra Nova</strong> é um grupo de oração que reúne pessoas em busca de uma vida mais próxima de Deus. Por meio da oração, da Palavra e da comunhão, caminhamos juntos na fé, renovando o encontro com Jesus Cristo a cada semana.
-      </p>
-      <p style="font-size:.9rem;line-height:1.8;color:var(--text-soft);margin-top:10px;">
-        Todos são bem-vindos — traga sua família, seus amigos e seu coração aberto!
-      </p>
-    </div>
-  </div>
-
-  <div class="carrosel" id="carrosel">
-    <div class="carrosel-track">
-      <div class="slide"><img src="https://i.ibb.co/QvJLwRn0/Whats-App-Image-2026-04-18-at-18-24-56-3.jpg" /></div>
-      <div class="slide"><img src="https://i.ibb.co/Dgg11dx2/Whats-App-Image-2026-04-18-at-18-24-56-2.jpg" /></div>
-      <div class="slide"><img src="https://i.ibb.co/HDbcZ46N/Whats-App-Image-2026-04-18-at-18-24-56.jpg" /></div>
-    </div>
-    <div class="dots" id="dots"></div>
-  </div>
-</section>
-
-<!-- ═══════════════ LITURGIA ═══════════════ -->
-<section class="page" id="page-liturgia">
-  <div class="section-header">
-    <h1>Liturgia Diária</h1>
-    <p id="liturgia-date-text"></p>
-  </div>
-  <div class="liturgia-body">
-    <div class="liturgia-card">
-      <div class="liturgia-card-header"><span>📖</span><h3>Leituras do Dia</h3></div>
-      <div class="liturgia-card-body">
-        <p class="liturgia-date" id="liturgia-date"></p>
-        <section class="liturgia-container">
-          <div class="card"><h2 id="data"></h2></div>
-          <div class="card">
-
-            <h3>Primeira Leitura</h3>
-            <p id="leitura1"></p>
-            <button class="btn-compartilhar" onclick="compartilhar('leitura1')">Compartilhar</button>
-          </div>
-          <div class="card">
-            <h3>Salmo</h3>
-            <p id="salmo"></p>
-            <button class="btn-compartilhar" onclick="compartilhar('salmo')">Compartilhar</button>
-          </div>
-          <div class="card destaque">
-            <h3>Evangelho</h3>
-            <p id="evangelho"></p>
-            <button class="btn-compartilhar" onclick="compartilhar('evangelho')">Compartilhar</button>
-          </div>
-        </section>
-      </div>
-    </div>
-    <div class="liturgia-card">
-      <div class="liturgia-card-header"><h3>Reflexão do dia</h3></div>
-      <div class="liturgia-card-body">
-        <div class="video-responsive">
-  <iframe 
-    src="https://www.youtube.com/embed/videoseries?list=UUznKgmk792LV-JVnXXPN_CA&index=1"
-    title="YouTube video"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ ORAÇÕES + MÚSICA ═══════════════ -->
-<section class="page" id="page-oracoes">
-  <div class="section-header">
-    <h1>Orações & Música</h1>
-    <p>Orações, louvores e adoração</p>
-  </div>
-
-  <!-- Seletor de sub-aba -->
-  <!-- <div class="tab-switcher">
-    <button class="tab-switcher-btn active" data-tab="oracoes-tab">
-      <span class="material-symbols-outlined">volunteer_activism</span>
-      Orações
-    </button>
-    <button class="tab-switcher-btn" data-tab="musica-tab">
-      <span class="material-symbols-outlined">music_note</span>
-      Música
-    </button>
-  </div> -->
-
-  <!-- Conteúdo: Orações -->
-  <div class="tab-content active" id="oracoes-tab">
-    <div class="list-body" id="oracoes-list"></div>
-  </div>
-
-  <!-- Conteúdo: Música -->
-  <!-- <div class="tab-content" id="musica-tab">
-    <div class="musica-body">
-      <a class="musica-channel-card" href="https://www.youtube.com/@Casal_Orante" target="_blank">
-        <div class="musica-channel-logo">
-          <img src="https://1.bp.blogspot.com/-wa6z2KrWWqM/Xo0K21ikP1I/AAAAAAAAJv0/D5NNd7vhOAg6B4JyEfGjN3s_N6eUTyBjACLcBGAsYHQ/s640/%25C3%258Dcone%2BObra%2BNova.png" alt="Canal Obra Nova" />
-        </div>
-        <div class="musica-channel-info">
-          <h3>Canal Obra Nova</h3>
-          <p>Acesse no YouTube</p>
-        </div>
-        <span class="musica-channel-arrow">▶</span>
-      </a>
-      <p class="musica-section-title">Sugestões de Louvor</p>
-      <div class="playlist-grid">
-        <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+adoracao" target="_blank">
-          <div class="playlist-thumb">🎵</div>
-          <div class="playlist-info"><h4>Adoração</h4><p>Músicas de adoração</p></div>
-        </a>
-        <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+louvor" target="_blank">
-          <div class="playlist-thumb">🎶</div>
-          <div class="playlist-info"><h4>Louvor</h4><p>Cânticos de louvor</p></div>
-        </a>
-        <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+mariana" target="_blank">
-          <div class="playlist-thumb">🌹</div>
-          <div class="playlist-info"><h4>Marianos</h4><p>Cânticos à Nossa Senhora</p></div>
-        </a>
-        <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+missa" target="_blank">
-          <div class="playlist-thumb">✝️</div>
-          <div class="playlist-info"><h4>Missas</h4><p>Músicas litúrgicas</p></div>
-        </a>
-      </div>
-    </div>
-  </div> -->
-</section>
-
-<!-- ═══════════════ TERÇOS ═══════════════ -->
-<section class="page" id="page-tercos">
-  <div class="section-header">
-    <h1>Terços</h1>
-    <p>Selecione o mistério para rezar</p>
-  </div>
-  <div class="terco-tabs" id="terco-tabs"></div>
-  <div id="terco-panels"></div>
-</section>
-
-<!-- ═══════════════ FORMAÇÕES ═══════════════ -->
-<section class="page" id="page-formacoes">
-  <div class="section-header">
-    <h1>Formações</h1>
-    <p>Aprofunde sua fé com conteúdo formativo</p>
-  </div>
-
-  <div class="formacoes-body">
-
-    <!-- Filtros por categoria -->
-    <div class="formacao-cats" id="formacao-cats">
-      <button class="formacao-cat active" data-cat="todos">Todos</button>
-      <button class="formacao-cat" data-cat="missa">Santa Missa</button>
-      <button class="formacao-cat" data-cat="santos">Vida dos Santos</button>
-      <button class="formacao-cat" data-cat="oracao">Vida de Oração</button>
-      <button class="formacao-cat" data-cat="fe">Fundamentos da Fé</button>
-    </div>
-
-    <!-- Painel: todos (mostra tudo) -->
-    <div class="formacao-panel active" id="cat-todos" data-panel="todos"></div>
-
-    <!-- Painel por categoria (preenchidos via JS) -->
-    <div class="formacao-panel" id="cat-missa" data-panel="missa"></div>
-    <div class="formacao-panel" id="cat-santos" data-panel="santos"></div>
-    <div class="formacao-panel" id="cat-oracao" data-panel="oracao"></div>
-    <div class="formacao-panel" id="cat-fe" data-panel="fe"></div>
-
-  </div>
-</section>
-
-<!-- ═══════════════ BOTTOM NAV ═══════════════ -->
-<nav class="bottom-nav">
-  <button class="nav-item active" data-page="home">
-    <span class="nav-icon material-symbols-outlined">home</span>
-    <span class="nav-label">Início</span>
-  </button>
-  <button class="nav-item" data-page="liturgia">
-    <span class="nav-icon material-symbols-outlined">menu_book</span>
-    <span class="nav-label">Liturgia</span>
-  </button>
-  <button class="nav-item" data-page="oracoes">
-    <span class="nav-icon material-symbols-outlined">volunteer_activism</span>
-    <span class="nav-label">Orações</span>
-  </button>
-  <button class="nav-item" data-page="tercos">
-  <img class="nav-icon-img" src="https://cdn-icons-png.flaticon.com/512/3608/3608883.png" alt="">
-  <span class="nav-label">Terços</span>
-</button>
-  <button class="nav-item" data-page="formacoes">
-    <span class="nav-icon material-symbols-outlined">school</span>
-    <span class="nav-label">Formações</span>
-  </button>
-</nav>
-
-<footer class="footer">
-  <p>© <span id="ano"></span> G.O Obra Nova — Todos os direitos reservados</p>
-</footer>
-
-<script>
-// ── Navegação principal ──
-document.querySelectorAll('.nav-item').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + btn.dataset.page).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo(0, 0);
-  });
-});
-
-// ── Sub-abas Orações / Música ──
-document.querySelectorAll('.tab-switcher-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-switcher-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
-
-// ── Carrosel ──
-const track = document.querySelector('.carrosel-track');
-const slides = document.querySelectorAll('.slide');
-const dotsContainer = document.getElementById('dots');
-let carIndex = 0, carInterval;
-slides.forEach((_, i) => {
-  const dot = document.createElement('div');
-  dot.classList.add('dot');
-  if (i === 0) dot.classList.add('active');
-  dotsContainer.appendChild(dot);
-});
-const dots = document.querySelectorAll('.dot');
-function carUpdate() {
-  track.style.transform = `translateX(-${carIndex * 100}%)`;
-  dots.forEach(d => d.classList.remove('active'));
-  dots[carIndex].classList.add('active');
-}
-function carNext() { carIndex = (carIndex + 1) % slides.length; carUpdate(); }
-function carPrev() { carIndex = (carIndex - 1 + slides.length) % slides.length; carUpdate(); }
-function startAuto() { carInterval = setInterval(carNext, 4000); }
-function stopAuto() { clearInterval(carInterval); }
-let startX = 0;
-track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAuto(); });
-track.addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) carNext(); else if (endX - startX > 50) carPrev();
-  startAuto();
-});
-track.addEventListener('mouseenter', stopAuto);
-track.addEventListener('mouseleave', startAuto);
-startAuto();
-
-// ── Data ──
-const now = new Date();
-const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-const dateStr = now.toLocaleDateString('pt-BR', opts);
-const dateFmt = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
-document.getElementById('liturgia-date').textContent = dateFmt;
-document.getElementById('liturgia-date-text').textContent = dateFmt;
-
-// ── Liturgia ──
-function formatarTextoNormal(texto) {
-  return texto.replace(/(\d+)(?=[A-Za-zÀ-ÿ])/g, num => `<sup style="font-size:.7em;opacity:.7;">${num}</sup>`).replace(/\n+/g, "<br>");
-}
-function montarTexto(ref, titulo, texto, resp = false) {
-  return `<span style="font-weight:600;">${ref}</span><br>${titulo ? `<div style="margin:6px 0 10px;font-size:16px;opacity:.95;">${titulo}</div>` : ""}${formatarTextoNormal(texto)}${resp ? `<br><br><strong>— Palavra do Senhor.</strong><br><strong>— Graças a Deus.</strong>` : ""}`;
-}
-function montarSalmo(ref, titulo, refrao, texto) {
-  return `<span style="font-weight:600;">${ref}</span><br><br>${titulo ? `<div style="margin-bottom:8px;font-size:14px;opacity:.85;">${titulo}</div>` : ""}<span style="font-weight:600;">℟.</span> ${refrao}<br><br>${texto.replace(/(\d+)(?=[A-Za-zÀ-ÿ])/g, n => `<sup style="font-size:.7em;opacity:.7;">${n}</sup>`).replace(/\n/g, "<br><br>")}`;
-}
-function montarEvangelho(ref, titulo, texto) {
-  return `<div style="margin-bottom:10px;"><span style="font-weight:600;">${ref}</span></div><div style="margin-bottom:10px;line-height:1.6;"><strong>℣.</strong> O Senhor esteja convosco.<br><strong>℟.</strong> Ele está no meio de nós.<br><strong>℣.</strong> ${titulo.replace("✠","<span>✠</span>")}<br><strong>℟.</strong> Glória a vós, Senhor.</div>${formatarTextoNormal(texto)}<br><strong>℣.</strong> Palavra da Salvação.<br><strong>℟.</strong> Glória a vós, Senhor.`;
-}
-async function carregarLiturgia() {
-  try {
-    const res = await fetch("https://liturgia.up.railway.app/");
-    const data = await res.json();
-    document.getElementById('liturgia-date').textContent = `${data.data} — ${data.liturgia}`;
-    document.getElementById('liturgia-date-text').textContent = `${data.data} — ${data.liturgia}`;
-    document.getElementById("leitura1").innerHTML = montarTexto(data.primeiraLeitura.referencia, data.primeiraLeitura.titulo, data.primeiraLeitura.texto, true);
-    document.getElementById("salmo").innerHTML = montarSalmo(data.salmo.referencia, data.salmo.titulo, data.salmo.refrao, data.salmo.texto);
-    document.getElementById("evangelho").innerHTML = montarEvangelho(data.evangelho.referencia, data.evangelho.titulo, data.evangelho.texto);
-  } catch (e) {
-    document.querySelector(".liturgia-container").innerHTML = "<p>Erro ao carregar liturgia 🙏</p>";
-  }
-}
-function compartilhar(id) {
-  const texto = document.getElementById(id).innerText;
-  if (navigator.share) { navigator.share({ title: "Liturgia do Dia", text: texto }); }
-  else { alert("Compartilhamento não suportado neste dispositivo"); }
-}
-carregarLiturgia();
-
-// ── Orações ──
-async function carregarOracoes() {
-  try {
-    const res = await fetch("oracoes.json");
-    const data = await res.json();
-    document.getElementById("oracoes-list").innerHTML = data.map(or => `
-      <div class="accordion-item">
-        <button class="accordion-trigger">
-          <span class="acc-title">${or.titulo}</span>
-          <span class="acc-chevron">▾</span>
-        </button>
-        <div class="accordion-body">
-          <p>${or.texto.replace(/\n/g, "<br>")}</p>
-        </div>
-      </div>`).join("");
-    document.querySelectorAll(".accordion-trigger").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const item = btn.parentElement;
-        const wasOpen = item.classList.contains("open");
-        document.querySelectorAll(".accordion-item.open").forEach(el => el.classList.remove("open"));
-        if (!wasOpen) item.classList.add("open");
-      });
-    });
-  } catch (e) {
-    document.getElementById("oracoes-list").innerHTML = "<p>Erro ao carregar orações 🙏</p>";
-  }
-}
-carregarOracoes();
-
-// ── Terços ──
-const misterios = {
-  gozosos: { label:'Gozosos', dias:'Segunda e Sábado', lista:[
-    {n:1,t:'Anunciação do Anjo a Maria',r:'Que amemos a humildade'},
-    {n:2,t:'Visitação de Maria a Isabel',r:'Que amemos o próximo'},
-    {n:3,t:'Nascimento de Jesus em Belém',r:'Que amemos a pobreza de espírito'},
-    {n:4,t:'Apresentação de Jesus no Templo',r:'Que amemos a obediência'},
-    {n:5,t:'Jesus encontrado no Templo',r:'Que amemos a perseverança'},
-  ]},
-  luminosos: { label:'Luminosos', dias:'Quinta-feira', lista:[
-    {n:1,t:'O Batismo de Jesus no Jordão',r:'Que vivamos a graça do Batismo'},
-    {n:2,t:'O Milagre nas Bodas de Caná',r:'Que nos convertamos ao Senhor'},
-    {n:3,t:'O Anúncio do Reino de Deus',r:'Que busquemos a santidade'},
-    {n:4,t:'A Transfiguração de Jesus',r:'Que contemplemos a glória divina'},
-    {n:5,t:'Instituição da Eucaristia',r:'Que amemos a Eucaristia'},
-  ]},
-  dolorosos: { label:'Dolorosos', dias:'Terça e Sexta', lista:[
-    {n:1,t:'A Agonia de Jesus no Horto',r:'Que cumpramos a vontade de Deus'},
-    {n:2,t:'A Flagelação de Jesus',r:'Que mortifiquemos os nossos sentidos'},
-    {n:3,t:'A Coroação de Espinhos',r:'Que mereçamos a coroa eterna'},
-    {n:4,t:'Jesus carrega a Cruz',r:'Que carreguemos a cruz com paciência'},
-    {n:5,t:'A Crucificação de Jesus',r:'Que alcancemos a vida eterna'},
-  ]},
-  gloriosos: { label:'Gloriosos', dias:'Quarta e Domingo', lista:[
-    {n:1,t:'A Ressurreição de Jesus',r:'Que ressuscitemos para a vida de graça'},
-    {n:2,t:'A Ascensão de Jesus ao Céu',r:'Que desejemos o céu'},
-    {n:3,t:'A Vinda do Espírito Santo',r:'Que recebamos os dons do Espírito'},
-    {n:4,t:'A Assunção de Maria',r:'Que tenhamos uma boa morte'},
-    {n:5,t:'A Coroação de Maria',r:'Que Maria interceda por nós'},
-  ]},
-};
-const tabsEl = document.getElementById('terco-tabs');
-const panelsEl = document.getElementById('terco-panels');
-let firstT = true;
-Object.entries(misterios).forEach(([key, data]) => {
-  const tab = document.createElement('button');
-  tab.className = 'terco-tab' + (firstT ? ' active' : '');
-  tab.dataset.key = key; tab.textContent = data.label;
-  tabsEl.appendChild(tab);
-  const panel = document.createElement('div');
-  panel.className = 'terco-panel' + (firstT ? ' active' : '');
-  panel.id = 'terco-' + key;
-  panel.innerHTML = `<p style="font-size:.78rem;color:var(--gold-dark);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;">Rezados às ${data.dias}</p>`;
-  data.lista.forEach(m => {
-    const card = document.createElement('div');
-    card.className = 'misterio-card';
-    card.innerHTML = `
-      <div class="misterio-header">
-        <div class="misterio-num">${m.n}</div>
-        <div class="misterio-title">${m.t}</div>
-        <span class="misterio-chevron">▾</span>
-      </div>
-      <div class="misterio-body">
-        <div class="misterio-step"><strong>Fruto do Mistério</strong>${m.r}</div>
-        <div class="misterio-step" style="margin-top:12px;"><strong>Como rezar</strong>1 Pai Nosso → 10 Ave Marias → 1 Glória → Ó meu Jesus</div>
-        <div class="misterio-step" style="margin-top:10px;background:var(--beige);border-radius:8px;padding:10px 12px;">
-          <strong>Ó meu Jesus</strong>Perdoai-nos, Senhor, livrai-nos do fogo do inferno, levai as almas todas para o Céu, especialmente as que mais precisarem da Vossa misericórdia. Amém.
-        </div>
-      </div>`;
-    card.querySelector('.misterio-header').addEventListener('click', () => card.classList.toggle('open'));
-    panel.appendChild(card);
-  });
-  panelsEl.appendChild(panel);
-  firstT = false;
-});
-tabsEl.addEventListener('click', e => {
-  const tab = e.target.closest('.terco-tab');
-  if (!tab) return;
-  document.querySelectorAll('.terco-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.terco-panel').forEach(p => p.classList.remove('active'));
-  tab.classList.add('active');
-  document.getElementById('terco-' + tab.dataset.key).classList.add('active');
-});
-
-// ── Formações — carrega do JSON ──
-async function carregarFormacoes() {
-  try {
-    const res = await fetch('formacoes.json');
-    const formacoes = await res.json();
-    renderizarFormacoes(formacoes);
-  } catch (e) {
-    document.getElementById('cat-todos').innerHTML = '<p style="padding:20px;color:var(--text-soft);">Erro ao carregar formações 🙏</p>';
-  }
-}
-
-
-function catLabel(cat) {
-  const map = { missa: 'Santa Missa', santos: 'Vida dos Santos', oracao: 'Vida de Oração', fe: 'Fundamentos da Fé' };
-  return map[cat] || cat;
-}
-
-function renderizarConteudo(conteudo) {
-  return conteudo.map(item => {
-    if (item.tipo === 'intro') {
-      return `<p style="font-size:.9rem;line-height:1.85;color:var(--text-soft);margin-top:14px;">${item.texto}</p>`;
-    }
-    if (item.tipo === 'titulo') {
-      return `<h4>${item.texto}</h4>`;
-    }
-    if (item.tipo === 'texto') {
-      return `<p style="font-size:.88rem;line-height:1.85;color:var(--text-soft);margin-top:8px;">${item.texto}</p>`;
+      border-radius: 18px;
     }
     
-    if (item.tipo === 'destaque') {
-      return `<div class="highlight-box">${item.texto}</div>`;
-    }
-    if (item.tipo === 'lista') {
-      return `<div class="step-list">${item.itens.map(i => {
-        if (i.detalhe) {
-  return `
-    <div class="step-item" style="cursor:default;">
-      <div class="step-item-header" style="cursor:default;">
-        <span class="step-num">${i.num}</span>
-        <span class="step-texto">${i.texto}</span>
-      </div>
-      <div style="
-        margin-left:32px;
-        margin-bottom:10px;
-        padding:10px 12px;
-        background: var(--beige);
-        border-left: 3px solid var(--gold-light);
-        border-radius: 8px;
-        font-size:.84rem;
-        line-height:1.8;
-        color: var(--text-soft);
-      ">
-        ${i.detalhe}
-      </div>
-    </div>`;
-}
-        return `
-          <div class="step-item" style="cursor:default;">
-            <div class="step-item-header" style="cursor:default;">
-              <span class="step-num">${i.num}</span>
-              <span class="step-texto">${i.texto}</span>
-            </div>
-          </div>`;
-      }).join('')}</div>`;
-    }
-    return '';
-  }).join('');
-}
 
-function criarFormacaoCard(f) {
-  const card = document.createElement('div');
-  card.className = 'formacao-card';
-  card.dataset.id = f.id;
-  card.innerHTML = `
-  <div class="formacao-card-header">
-    <div class="formacao-meta">
-      <div class="formacao-cat-badge">${catLabel(f.cat)}</div>
-      <div class="formacao-title">${f.titulo}</div>
-      <div class="formacao-desc">${f.desc}</div>
+
+  }
+  .video-responsive {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .video-responsive iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+    </style>
+  </head>
+  <body>
+  <div class="container"></div>
+  <!-- ═══════════════ HOME ═══════════════ -->
+  <section class="page active" id="page-home">
+    <div class="home-hero">
+      <img class="home-hero-img" src="https://1.bp.blogspot.com/-wa6z2KrWWqM/Xo0K21ikP1I/AAAAAAAAJv0/D5NNd7vhOAg6B4JyEfGjN3s_N6eUTyBjACLcBGAsYHQ/s640/%25C3%258Dcone%2BObra%2BNova.png" alt="Logo Obra Nova" />
+      <div class="home-hero-overlay-top"></div>
+      <div class="home-hero-overlay"></div>
     </div>
-    <span class="formacao-chevron">▾</span>
+    <div class="home-text-block">
+      <p class="home-subtitle">Grupo de Oração</p>
+      <h1 class="home-title">Obra Nova</h1>
+      <div class="divider-gold"><span></span><i>✦</i><span></span></div>
+    </div>
+
+    <div class="video-wrap">
+      <p class="video-label">✦ em destaque</p>
+      <div class="video-frame-wrap">
+        <iframe src="https://www.youtube.com/embed/li7eul15GUY?rel=0&modestbranding=1"
+          title="Obra Nova - YouTube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <p class="home-quote">
+      "Eis que eu faço obra nova,<br/>a qual já surge: não a vedes?"<br/>
+      <span style="font-size:.8rem;letter-spacing:.1em;font-style:normal;color:var(--gold-dark);font-weight:700;">— Is 43,19</span>
+    </p>
+
+    <div style="margin:8px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
+      <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;display:flex;align-items:center;gap:10px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:600;">Nossos Encontros</span>
+      </div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);">SEG</span>
+          </div>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--brown);font-weight:600;">Toda Segunda-feira</p>
+            <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">às <strong style="color:var(--gold-dark);">19h00</strong> — venha rezar conosco!</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;">
+            <i class="bi bi-whatsapp"></i>
+          </div>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);font-weight:600;">Terço Diário Online</p>
+            <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">Todos os dias às <strong style="color:var(--gold-dark);">22h00</strong></p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:52px;height:52px;background:var(--beige);border-radius:12px;border:1px solid var(--beige-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;">
+            <i class="bi bi-whatsapp"></i>
+          </div>
+          <div>
+            <p style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);font-weight:600;">Lectio Divina Online</p>
+            <p style="font-size:.85rem;color:var(--text-soft);margin-top:2px;">Segunda a sábado às <strong style="color:var(--gold-dark);">09h00</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin:14px 20px 0;background:var(--white);border-radius:16px;border:1px solid var(--beige-dark);overflow:hidden;box-shadow:0 2px 12px rgba(139,105,20,.08);">
+      <div style="background:linear-gradient(90deg,var(--gold),var(--gold-light));padding:12px 18px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:600;">Sobre Nós</span>
+      </div>
+      <div style="padding:16px 18px;">
+        <p style="font-size:.9rem;line-height:1.8;color:var(--text-soft);">
+          O <strong style="color:var(--brown);">Obra Nova</strong> é um grupo de oração que reúne pessoas em busca de uma vida mais próxima de Deus. Por meio da oração, da Palavra e da comunhão, caminhamos juntos na fé, renovando o encontro com Jesus Cristo a cada semana.
+        </p>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--text-soft);margin-top:10px;">
+          Todos são bem-vindos — traga sua família, seus amigos e seu coração aberto!
+        </p>
+      </div>
+    </div>
+
+    <div class="carrosel" id="carrosel">
+      <div class="carrosel-track">
+        <div class="slide"><img src="https://i.ibb.co/QvJLwRn0/Whats-App-Image-2026-04-18-at-18-24-56-3.jpg" /></div>
+        <div class="slide"><img src="https://i.ibb.co/Dgg11dx2/Whats-App-Image-2026-04-18-at-18-24-56-2.jpg" /></div>
+        <div class="slide"><img src="https://i.ibb.co/HDbcZ46N/Whats-App-Image-2026-04-18-at-18-24-56.jpg" /></div>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ LITURGIA ═══════════════ -->
+  <section class="page" id="page-liturgia">
+    <div class="section-header">
+      <h1>Liturgia Diária</h1>
+      <p id="liturgia-date-text"></p>
+    </div>
+    <div class="liturgia-body">
+      <div class="liturgia-card">
+        <div class="liturgia-card-header"><span>📖</span><h3>Leituras do Dia</h3></div>
+        <div class="liturgia-card-body">
+          <p class="liturgia-date" id="liturgia-date"></p>
+          <section class="liturgia-container">
+            <div class="card"><h2 id="data"></h2></div>
+            <div class="card">
+
+              <h3>Primeira Leitura</h3>
+              <p id="leitura1"></p>
+              <button class="btn-compartilhar" onclick="compartilhar('leitura1')">Compartilhar</button>
+            </div>
+            <div class="card">
+              <h3>Salmo</h3>
+              <p id="salmo"></p>
+              <button class="btn-compartilhar" onclick="compartilhar('salmo')">Compartilhar</button>
+            </div>
+            <div class="card destaque">
+              <h3>Evangelho</h3>
+              <p id="evangelho"></p>
+              <button class="btn-compartilhar" onclick="compartilhar('evangelho')">Compartilhar</button>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="liturgia-card">
+        <div class="liturgia-card-header"><h3>Reflexão do dia</h3></div>
+        <div class="liturgia-card-body">
+          <div class="video-responsive">
+    <iframe 
+      src="https://www.youtube.com/embed/videoseries?list=UUznKgmk792LV-JVnXXPN_CA&index=1"
+      title="YouTube video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
-  <div class="formacao-content">
-    <span class="formacao-read-time">📖 Leitura: ${f.leitura}</span>
-    ${renderizarConteudo(f.conteudo)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ORAÇÕES + MÚSICA ═══════════════ -->
+  <section class="page" id="page-oracoes">
+    <div class="section-header">
+      <h1>Orações & Música</h1>
+      <p>Orações, louvores e adoração</p>
+    </div>
+
+    <!-- Seletor de sub-aba -->
+    <!-- <div class="tab-switcher">
+      <button class="tab-switcher-btn active" data-tab="oracoes-tab">
+        <span class="material-symbols-outlined">volunteer_activism</span>
+        Orações
+      </button>
+      <button class="tab-switcher-btn" data-tab="musica-tab">
+        <span class="material-symbols-outlined">music_note</span>
+        Música
+      </button>
+    </div> -->
+
+    <!-- Conteúdo: Orações -->
+    <div class="tab-content active" id="oracoes-tab">
+      <div class="list-body" id="oracoes-list"></div>
+    </div>
+
+    <!-- Conteúdo: Música -->
+    <!-- <div class="tab-content" id="musica-tab">
+      <div class="musica-body">
+        <a class="musica-channel-card" href="https://www.youtube.com/@Casal_Orante" target="_blank">
+          <div class="musica-channel-logo">
+            <img src="https://1.bp.blogspot.com/-wa6z2KrWWqM/Xo0K21ikP1I/AAAAAAAAJv0/D5NNd7vhOAg6B4JyEfGjN3s_N6eUTyBjACLcBGAsYHQ/s640/%25C3%258Dcone%2BObra%2BNova.png" alt="Canal Obra Nova" />
+          </div>
+          <div class="musica-channel-info">
+            <h3>Canal Obra Nova</h3>
+            <p>Acesse no YouTube</p>
+          </div>
+          <span class="musica-channel-arrow">▶</span>
+        </a>
+        <p class="musica-section-title">Sugestões de Louvor</p>
+        <div class="playlist-grid">
+          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+adoracao" target="_blank">
+            <div class="playlist-thumb">🎵</div>
+            <div class="playlist-info"><h4>Adoração</h4><p>Músicas de adoração</p></div>
+          </a>
+          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+louvor" target="_blank">
+            <div class="playlist-thumb">🎶</div>
+            <div class="playlist-info"><h4>Louvor</h4><p>Cânticos de louvor</p></div>
+          </a>
+          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+mariana" target="_blank">
+            <div class="playlist-thumb">🌹</div>
+            <div class="playlist-info"><h4>Marianos</h4><p>Cânticos à Nossa Senhora</p></div>
+          </a>
+          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+missa" target="_blank">
+            <div class="playlist-thumb">✝️</div>
+            <div class="playlist-info"><h4>Missas</h4><p>Músicas litúrgicas</p></div>
+          </a>
+        </div>
+      </div>
+    </div> -->
+  </section>
+
+  <!-- ═══════════════ TERÇOS ═══════════════ -->
+  <section class="page" id="page-tercos">
+    <div class="section-header">
+      <h1>Terços</h1>
+      <p>Selecione o mistério para rezar</p>
+    </div>
+    <div class="terco-tabs" id="terco-tabs"></div>
+    <div id="terco-panels"></div>
+  </section>
+
+  <!-- ═══════════════ FORMAÇÕES ═══════════════ -->
+  <section class="page" id="page-formacoes">
+    <div class="section-header">
+      <h1>Formações</h1>
+      <p>Aprofunde sua fé com conteúdo formativo</p>
+    </div>
+
+    <div class="formacoes-body">
+
+      <!-- Filtros por categoria -->
+      <div class="formacao-cats" id="formacao-cats">
+        <button class="formacao-cat active" data-cat="todos">Todos</button>
+        <button class="formacao-cat" data-cat="missa">Santa Missa</button>
+        <button class="formacao-cat" data-cat="santos">Vida dos Santos</button>
+        <button class="formacao-cat" data-cat="oracao">Vida de Oração</button>
+        <button class="formacao-cat" data-cat="fe">Fundamentos da Fé</button>
+      </div>
+
+      <!-- Painel: todos (mostra tudo) -->
+      <div class="formacao-panel active" id="cat-todos" data-panel="todos"></div>
+
+      <!-- Painel por categoria (preenchidos via JS) -->
+      <div class="formacao-panel" id="cat-missa" data-panel="missa"></div>
+      <div class="formacao-panel" id="cat-santos" data-panel="santos"></div>
+      <div class="formacao-panel" id="cat-oracao" data-panel="oracao"></div>
+      <div class="formacao-panel" id="cat-fe" data-panel="fe"></div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ BOTTOM NAV ═══════════════ -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="home">
+      <span class="nav-icon material-symbols-outlined">home</span>
+      <span class="nav-label">Início</span>
+    </button>
+    <button class="nav-item" data-page="liturgia">
+      <span class="nav-icon material-symbols-outlined">menu_book</span>
+      <span class="nav-label">Liturgia</span>
+    </button>
+    <button class="nav-item" data-page="oracoes">
+      <span class="nav-icon material-symbols-outlined">volunteer_activism</span>
+      <span class="nav-label">Orações</span>
+    </button>
+    <button class="nav-item" data-page="tercos">
+    <img class="nav-icon-img" src="https://cdn-icons-png.flaticon.com/512/3608/3608883.png" alt="">
+    <span class="nav-label">Terços</span>
+  </button>
+    <button class="nav-item" data-page="formacoes">
+      <span class="nav-icon material-symbols-outlined">school</span>
+      <span class="nav-label">Formações</span>
+    </button>
+  </nav>
+
+  <footer class="footer">
+    <p>© <span id="ano"></span> G.O Obra Nova — Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+  // ── Navegação principal ──
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      document.getElementById('page-' + btn.dataset.page).classList.add('active');
+      btn.classList.add('active');
+      window.scrollTo(0, 0);
+    });
+  });
+
+  // ── Sub-abas Orações / Música ──
+  document.querySelectorAll('.tab-switcher-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-switcher-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ── Carrosel ──
+  const track = document.querySelector('.carrosel-track');
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  let carIndex = 0, carInterval;
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dotsContainer.appendChild(dot);
+  });
+  const dots = document.querySelectorAll('.dot');
+  function carUpdate() {
+    track.style.transform = `translateX(-${carIndex * 100}%)`;
+    dots.forEach(d => d.classList.remove('active'));
+    dots[carIndex].classList.add('active');
+  }
+  function carNext() { carIndex = (carIndex + 1) % slides.length; carUpdate(); }
+  function carPrev() { carIndex = (carIndex - 1 + slides.length) % slides.length; carUpdate(); }
+  function startAuto() { carInterval = setInterval(carNext, 4000); }
+  function stopAuto() { clearInterval(carInterval); }
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAuto(); });
+  track.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) carNext(); else if (endX - startX > 50) carPrev();
+    startAuto();
+  });
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+  startAuto();
+
+  // ── Data ──
+  const now = new Date();
+  const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+  const dateStr = now.toLocaleDateString('pt-BR', opts);
+  const dateFmt = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+  document.getElementById('liturgia-date').textContent = dateFmt;
+  document.getElementById('liturgia-date-text').textContent = dateFmt;
+
+  // ── Liturgia ──
+  function formatarTextoNormal(texto) {
+    return texto.replace(/(\d+)(?=[A-Za-zÀ-ÿ])/g, num => `<sup style="font-size:.7em;opacity:.7;">${num}</sup>`).replace(/\n+/g, "<br>");
+  }
+  function montarTexto(ref, titulo, texto, resp = false) {
+    return `<span style="font-weight:600;">${ref}</span><br>${titulo ? `<div style="margin:6px 0 10px;font-size:16px;opacity:.95;">${titulo}</div>` : ""}${formatarTextoNormal(texto)}${resp ? `<br><br><strong>— Palavra do Senhor.</strong><br><strong>— Graças a Deus.</strong>` : ""}`;
+  }
+  function montarSalmo(ref, titulo, refrao, texto) {
+    return `<span style="font-weight:600;">${ref}</span><br><br>${titulo ? `<div style="margin-bottom:8px;font-size:14px;opacity:.85;">${titulo}</div>` : ""}<span style="font-weight:600;">℟.</span> ${refrao}<br><br>${texto.replace(/(\d+)(?=[A-Za-zÀ-ÿ])/g, n => `<sup style="font-size:.7em;opacity:.7;">${n}</sup>`).replace(/\n/g, "<br><br>")}`;
+  }
+  function montarEvangelho(ref, titulo, texto) {
+    return `<div style="margin-bottom:10px;"><span style="font-weight:600;">${ref}</span></div><div style="margin-bottom:10px;line-height:1.6;"><strong>℣.</strong> O Senhor esteja convosco.<br><strong>℟.</strong> Ele está no meio de nós.<br><strong>℣.</strong> ${titulo.replace("✠","<span>✠</span>")}<br><strong>℟.</strong> Glória a vós, Senhor.</div>${formatarTextoNormal(texto)}<br><strong>℣.</strong> Palavra da Salvação.<br><strong>℟.</strong> Glória a vós, Senhor.`;
+  }
+  async function carregarLiturgia() {
+    try {
+      const res = await fetch("https://liturgia.up.railway.app/");
+      const data = await res.json();
+      document.getElementById('liturgia-date').textContent = `${data.data} — ${data.liturgia}`;
+      document.getElementById('liturgia-date-text').textContent = `${data.data} — ${data.liturgia}`;
+      document.getElementById("leitura1").innerHTML = montarTexto(data.primeiraLeitura.referencia, data.primeiraLeitura.titulo, data.primeiraLeitura.texto, true);
+      document.getElementById("salmo").innerHTML = montarSalmo(data.salmo.referencia, data.salmo.titulo, data.salmo.refrao, data.salmo.texto);
+      document.getElementById("evangelho").innerHTML = montarEvangelho(data.evangelho.referencia, data.evangelho.titulo, data.evangelho.texto);
+    } catch (e) {
+      document.querySelector(".liturgia-container").innerHTML = "<p>Erro ao carregar liturgia 🙏</p>";
+    }
+  }
+  function compartilhar(id) {
+    const texto = document.getElementById(id).innerText;
+    if (navigator.share) { navigator.share({ title: "Liturgia do Dia", text: texto }); }
+    else { alert("Compartilhamento não suportado neste dispositivo"); }
+  }
+  carregarLiturgia();
+
+  // ── Orações ──
+  async function carregarOracoes() {
+    try {
+      const res = await fetch("oracoes.json");
+      const data = await res.json();
+
+      const lista = document.getElementById("oracoes-list");
+
+      const categorias = [...new Set(data.map(o => o.categoria))];
+
+      const catsContainer = document.createElement("div");
+      catsContainer.className = "formacao-cats";
+      catsContainer.id = "oracoes-cats";
+
+      catsContainer.innerHTML = `<button class="formacao-cat active" data-cat="todos">Todos</button>`;
+
+      categorias.forEach(cat => {
+        catsContainer.innerHTML += `
+          <button class="formacao-cat" data-cat="${cat}">
+            ${cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>`;
+      });
+
+      lista.before(catsContainer);
+
+      function render(listaFiltrada) {
+        lista.innerHTML = listaFiltrada.map(or => `
+          <div class="accordion-item">
+            <button class="accordion-trigger">
+              <span class="acc-title">${or.titulo}</span>
+              <span class="acc-chevron">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>${or.texto.replace(/\n/g, "<br>")}</p>
+            </div>
+          </div>
+        `).join("");
+
+        // reativar accordion
+        document.querySelectorAll(".accordion-trigger").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains("open");
+            document.querySelectorAll(".accordion-item.open").forEach(el => el.classList.remove("open"));
+            if (!wasOpen) item.classList.add("open");
+          });
+        });
+      }
+
+      // render inicial
+      render(data);
+
+      // 👉 FILTRO
+      catsContainer.addEventListener("click", e => {
+        const btn = e.target.closest(".formacao-cat");
+        if (!btn) return;
+
+        document.querySelectorAll("#oracoes-cats .formacao-cat")
+          .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        const cat = btn.dataset.cat;
+
+        if (cat === "todos") {
+          render(data);
+        } else {
+          render(data.filter(o => o.categoria === cat));
+        }
+      });
+
+    } catch (e) {
+      document.getElementById("oracoes-list").innerHTML = "<p>Erro ao carregar orações 🙏</p>";
+    }
+  }
+  carregarOracoes();
+
+  // ── Terços ──
+  const misterios = {
+    gozosos: { label:'Gozosos', dias:'Segunda e Sábado', lista:[
+      {n:1,t:'Anunciação do Anjo a Maria',r:'Que amemos a humildade'},
+      {n:2,t:'Visitação de Maria a Isabel',r:'Que amemos o próximo'},
+      {n:3,t:'Nascimento de Jesus em Belém',r:'Que amemos a pobreza de espírito'},
+      {n:4,t:'Apresentação de Jesus no Templo',r:'Que amemos a obediência'},
+      {n:5,t:'Jesus encontrado no Templo',r:'Que amemos a perseverança'},
+    ]},
+    luminosos: { label:'Luminosos', dias:'Quinta-feira', lista:[
+      {n:1,t:'O Batismo de Jesus no Jordão',r:'Que vivamos a graça do Batismo'},
+      {n:2,t:'O Milagre nas Bodas de Caná',r:'Que nos convertamos ao Senhor'},
+      {n:3,t:'O Anúncio do Reino de Deus',r:'Que busquemos a santidade'},
+      {n:4,t:'A Transfiguração de Jesus',r:'Que contemplemos a glória divina'},
+      {n:5,t:'Instituição da Eucaristia',r:'Que amemos a Eucaristia'},
+    ]},
+    dolorosos: { label:'Dolorosos', dias:'Terça e Sexta', lista:[
+      {n:1,t:'A Agonia de Jesus no Horto',r:'Que cumpramos a vontade de Deus'},
+      {n:2,t:'A Flagelação de Jesus',r:'Que mortifiquemos os nossos sentidos'},
+      {n:3,t:'A Coroação de Espinhos',r:'Que mereçamos a coroa eterna'},
+      {n:4,t:'Jesus carrega a Cruz',r:'Que carreguemos a cruz com paciência'},
+      {n:5,t:'A Crucificação de Jesus',r:'Que alcancemos a vida eterna'},
+    ]},
+    gloriosos: { label:'Gloriosos', dias:'Quarta e Domingo', lista:[
+      {n:1,t:'A Ressurreição de Jesus',r:'Que ressuscitemos para a vida de graça'},
+      {n:2,t:'A Ascensão de Jesus ao Céu',r:'Que desejemos o céu'},
+      {n:3,t:'A Vinda do Espírito Santo',r:'Que recebamos os dons do Espírito'},
+      {n:4,t:'A Assunção de Maria',r:'Que tenhamos uma boa morte'},
+      {n:5,t:'A Coroação de Maria',r:'Que Maria interceda por nós'},
+    ]},
+  };
+  const tabsEl = document.getElementById('terco-tabs');
+  const panelsEl = document.getElementById('terco-panels');
+  let firstT = true;
+  Object.entries(misterios).forEach(([key, data]) => {
+    const tab = document.createElement('button');
+    tab.className = 'terco-tab' + (firstT ? ' active' : '');
+    tab.dataset.key = key; tab.textContent = data.label;
+    tabsEl.appendChild(tab);
+    const panel = document.createElement('div');
+    panel.className = 'terco-panel' + (firstT ? ' active' : '');
+    panel.id = 'terco-' + key;
+    panel.innerHTML = `<p style="font-size:.78rem;color:var(--gold-dark);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;">Rezados às ${data.dias}</p>`;
+    data.lista.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'misterio-card';
+      card.innerHTML = `
+        <div class="misterio-header">
+          <div class="misterio-num">${m.n}</div>
+          <div class="misterio-title">${m.t}</div>
+          <span class="misterio-chevron">▾</span>
+        </div>
+        <div class="misterio-body">
+          <div class="misterio-step"><strong>Fruto do Mistério</strong>${m.r}</div>
+          <div class="misterio-step" style="margin-top:12px;"><strong>Como rezar</strong>1 Pai Nosso → 10 Ave Marias → 1 Glória → Ó meu Jesus</div>
+          <div class="misterio-step" style="margin-top:10px;background:var(--beige);border-radius:8px;padding:10px 12px;">
+            <strong>Ó meu Jesus</strong>Perdoai-nos, Senhor, livrai-nos do fogo do inferno, levai as almas todas para o Céu, especialmente as que mais precisarem da Vossa misericórdia. Amém.
+          </div>
+        </div>`;
+      card.querySelector('.misterio-header').addEventListener('click', () => card.classList.toggle('open'));
+      panel.appendChild(card);
+    });
+    panelsEl.appendChild(panel);
+    firstT = false;
+  });
+  tabsEl.addEventListener('click', e => {
+    const tab = e.target.closest('.terco-tab');
+    if (!tab) return;
+    document.querySelectorAll('.terco-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.terco-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('terco-' + tab.dataset.key).classList.add('active');
+  });
+
+  // ── Formações — carrega do JSON ──
+  async function carregarFormacoes() {
+    try {
+      const res = await fetch('formacoes.json');
+      const formacoes = await res.json();
+      renderizarFormacoes(formacoes);
+    } catch (e) {
+      document.getElementById('cat-todos').innerHTML = '<p style="padding:20px;color:var(--text-soft);">Erro ao carregar formações 🙏</p>';
+    }
+  }
+
+
+  function catLabel(cat) {
+    const map = { missa: 'Santa Missa', santos: 'Vida dos Santos', oracao: 'Vida de Oração', fe: 'Fundamentos da Fé' };
+    return map[cat] || cat;
+  }
+
+  function renderizarConteudo(conteudo) {
+    return conteudo.map(item => {
+      if (item.tipo === 'intro') {
+        return `<p style="font-size:.9rem;line-height:1.85;color:var(--text-soft);margin-top:14px;">${item.texto}</p>`;
+      }
+      if (item.tipo === 'titulo') {
+        return `<h4>${item.texto}</h4>`;
+      }
+      if (item.tipo === 'texto') {
+        return `<p style="font-size:.88rem;line-height:1.85;color:var(--text-soft);margin-top:8px;">${item.texto}</p>`;
+      }
+      
+      if (item.tipo === 'destaque') {
+        return `<div class="highlight-box">${item.texto}</div>`;
+      }
+      if (item.tipo === 'lista') {
+        return `<div class="step-list">${item.itens.map(i => {
+          if (i.detalhe) {
+    return `
+      <div class="step-item" style="cursor:default;">
+        <div class="step-item-header" style="cursor:default;">
+          <span class="step-num">${i.num}</span>
+          <span class="step-texto">${i.texto}</span>
+        </div>
+        <div style="
+          margin-left:32px;
+          margin-bottom:10px;
+          padding:10px 12px;
+          background: var(--beige);
+          border-left: 3px solid var(--gold-light);
+          border-radius: 8px;
+          font-size:.84rem;
+          line-height:1.8;
+          color: var(--text-soft);
+        ">
+          ${i.detalhe}
+        </div>
+      </div>`;
+  }
+          return `
+            <div class="step-item" style="cursor:default;">
+              <div class="step-item-header" style="cursor:default;">
+                <span class="step-num">${i.num}</span>
+                <span class="step-texto">${i.texto}</span>
+              </div>
+            </div>`;
+        }).join('')}</div>`;
+      }
+      return '';
+    }).join('');
+  }
+
+  function criarFormacaoCard(f) {
+    const card = document.createElement('div');
+    card.className = 'formacao-card';
+    card.dataset.id = f.id;
+    card.innerHTML = `
+    <div class="formacao-card-header">
+      <div class="formacao-meta">
+        <div class="formacao-cat-badge">${catLabel(f.cat)}</div>
+        <div class="formacao-title">${f.titulo}</div>
+        <div class="formacao-desc">${f.desc}</div>
+      </div>
+      <span class="formacao-chevron">▾</span>
+    </div>
+    <div class="formacao-content">
+      <span class="formacao-read-time">📖 Leitura: ${f.leitura}</span>
+      ${renderizarConteudo(f.conteudo)}
+    </div>
+  `;
+    card.querySelector('.formacao-card-header').addEventListener('click', () => card.classList.toggle('open'));
+    return card;
+  }
+
+  function renderizarFormacoes(formacoes) {
+    const todosPanel = document.getElementById('cat-todos');
+    todosPanel.innerHTML = '';
+    ['missa','santos','oracao','fe'].forEach(cat => {
+      const el = document.getElementById('cat-' + cat);
+      if (el) el.innerHTML = '';
+    });
+    formacoes.forEach(f => {
+      todosPanel.appendChild(criarFormacaoCard(f));
+      const panel = document.getElementById('cat-' + f.cat);
+      if (panel) panel.appendChild(criarFormacaoCard(f));
+    });
+  }
+
+  // Filtros de categoria
+  document.getElementById('formacao-cats').addEventListener('click', e => {
+    const btn = e.target.closest('.formacao-cat');
+    if (!btn) return;
+    document.querySelectorAll('.formacao-cat').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.formacao-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('cat-' + btn.dataset.cat).classList.add('active');
+  });
+
+  carregarFormacoes();
+
+  document.getElementById("ano").textContent = new Date().getFullYear();
+  </script>
   </div>
-`;
-  card.querySelector('.formacao-card-header').addEventListener('click', () => card.classList.toggle('open'));
-  return card;
-}
-
-function renderizarFormacoes(formacoes) {
-  const todosPanel = document.getElementById('cat-todos');
-  todosPanel.innerHTML = '';
-  ['missa','santos','oracao','fe'].forEach(cat => {
-    const el = document.getElementById('cat-' + cat);
-    if (el) el.innerHTML = '';
-  });
-  formacoes.forEach(f => {
-    todosPanel.appendChild(criarFormacaoCard(f));
-    const panel = document.getElementById('cat-' + f.cat);
-    if (panel) panel.appendChild(criarFormacaoCard(f));
-  });
-}
-
-// Filtros de categoria
-document.getElementById('formacao-cats').addEventListener('click', e => {
-  const btn = e.target.closest('.formacao-cat');
-  if (!btn) return;
-  document.querySelectorAll('.formacao-cat').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.formacao-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('cat-' + btn.dataset.cat).classList.add('active');
-});
-
-carregarFormacoes();
-
-document.getElementById("ano").textContent = new Date().getFullYear();
-</script>
-</div>
-</body>
-</html>
+  </body>
+  </html>
