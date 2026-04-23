@@ -45,6 +45,11 @@
     "texto": "São Miguel Arcanjo, defendei-nos no combate, sede o nosso refúgio contra as maldades e ciladas do demônio. Ordene-lhe Deus, instantemente o pedimos; e vós, príncipe da milícia celeste, pelo poder divino, precipitai no inferno a Satanás e a todos os espíritos malignos que andam pelo mundo para perder as almas. Amém."
   },
   {
+    "titulo": "São ",
+    "categoria": "santos",
+    "texto": "A Cruz Sagrada seja a minha luz, não seja o dragão meu guia. Retira-te, satanás! Nunca me aconselhes coisas vãs. É mau o que tu me ofereces, bebe tu mesmo o teu veneno! Amém!"
+  },
+  {
     "titulo": "Oração da Manhã",
     "categoria": "diaria",
     "texto": "Senhor, no início deste dia, venho oferecer-vos tudo o que sou e tenho. Iluminai meus pensamentos, palavras e ações. Guardai-me de todo mal e conduzi-me pelos caminhos da vossa vontade. Amém."
@@ -59,5 +64,7 @@
     "categoria": "diaria",
     "texto": "Ó Jesus, eu vos ofereço este dia por meio do Imaculado Coração de Maria, em união com o sacrifício da Santa Missa, em reparação dos meus pecados e pelas intenções do Sagrado Coração. Amém."
   }
+
+ 
 
 ]
