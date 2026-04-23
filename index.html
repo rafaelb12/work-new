@@ -291,6 +291,18 @@
       .accordion-item.open .accordion-body { display: block; }
       .accordion-body p { font-size: .9rem; line-height: 1.85; color: var(--text-soft); margin-top: 12px; white-space: pre-line; }
 
+      .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(0,0,0,.2);
+        border-top: 2px solid var(--brown);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
 
       
       /* ── MÚSICA (dentro de Orações) ── */
@@ -860,10 +872,23 @@
   <textarea id="intencao" placeholder="Digite sua intenção..."
     style="width:100%; height:100px; padding:10px; border-radius:10px; border:1px solid var(--beige-dark); font-family:Lato;"></textarea>
 
-  <button onclick="enviarIntencao()"
-    style="margin-top:10px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:none; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer;">
-    Enviar intenção
-  </button>
+  <button id="btnEnviar" onclick="enviarIntencao()"
+  style="margin-top:10px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;">
+  
+  <span id="btnText">Enviar intenção</span>
+
+  <span id="spinner" class="spinner" style="display:none;"></span>
+</button>
 
   <p id="msg" style="margin-top:10px;font-size:.85rem;"></p>
 </div>
@@ -1111,10 +1136,19 @@
   const texto = document.getElementById("intencao").value;
   const msg = document.getElementById("msg");
 
+  const btn = document.getElementById("btnEnviar");
+  const spinner = document.getElementById("spinner");
+  const btnText = document.getElementById("btnText");
+
   if (!texto.trim()) {
     msg.textContent = "Digite uma intenção primeiro 🙏";
     return;
   }
+
+  
+  btn.disabled = true;
+  spinner.style.display = "inline-block";
+  btnText.textContent = "Enviando...";
 
   const url = "https://script.google.com/macros/s/AKfycbx0TxGEgC3deoClqAY8d0LKc1z7IO0XZlbJaPrDyeC2D74Q1SVtDIRpsfx-N5VKleeYLQ/exec";
 
@@ -1132,6 +1166,11 @@
   } catch (e) {
     msg.textContent = "Erro ao enviar 😢";
   }
+
+  // 🔄 desativa loading
+  btn.disabled = false;
+  spinner.style.display = "none";
+  btnText.textContent = "Enviar intenção";
 }
 
   // ── Terços ──
