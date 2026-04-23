@@ -852,6 +852,21 @@
         </div>
       </div>
     </div> -->
+    <div style="margin:20px; background:var(--white); padding:16px; border-radius:16px; border:1px solid var(--beige-dark); box-shadow:0 2px 12px rgba(139,105,20,.08);">
+  <h3 style="font-family:'Playfair Display'; color:var(--brown); margin-bottom:10px;">
+    Intenções de Oração
+  </h3>
+
+  <textarea id="intencao" placeholder="Digite sua intenção..."
+    style="width:100%; height:100px; padding:10px; border-radius:10px; border:1px solid var(--beige-dark); font-family:Lato;"></textarea>
+
+  <button onclick="enviarIntencao()"
+    style="margin-top:10px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:none; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer;">
+    Enviar intenção
+  </button>
+
+  <p id="msg" style="margin-top:10px;font-size:.85rem;"></p>
+</div>
   </section>
 
   <!-- ═══════════════ TERÇOS ═══════════════ -->
@@ -1066,10 +1081,8 @@
         });
       }
 
-      // render inicial
       render(data);
 
-      // 👉 FILTRO
       catsContainer.addEventListener("click", e => {
         const btn = e.target.closest(".formacao-cat");
         if (!btn) return;
@@ -1093,6 +1106,33 @@
     }
   }
   carregarOracoes();
+
+  async function enviarIntencao() {
+  const texto = document.getElementById("intencao").value;
+  const msg = document.getElementById("msg");
+
+  if (!texto.trim()) {
+    msg.textContent = "Digite uma intenção primeiro 🙏";
+    return;
+  }
+
+  const url = "https://script.google.com/macros/s/AKfycbx0TxGEgC3deoClqAY8d0LKc1z7IO0XZlbJaPrDyeC2D74Q1SVtDIRpsfx-N5VKleeYLQ/exec";
+
+  const formData = new URLSearchParams();
+  formData.append("intencao", texto);
+
+  try {
+    await fetch(url, {
+      method: "POST",
+      body: formData
+    });
+
+    document.getElementById("intencao").value = "";
+    msg.textContent = "Intenção enviada 🙏";
+  } catch (e) {
+    msg.textContent = "Erro ao enviar 😢";
+  }
+}
 
   // ── Terços ──
   const misterios = {
