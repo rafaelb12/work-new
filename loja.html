@@ -163,7 +163,7 @@
   function renderGrid() {
     const grid = document.getElementById('produtosGrid');
     if (!todosOsProdutos.length) {
-      grid.innerHTML = `<div class="lista-empty"><i class="bi bi-box-seam"></i><p>Nenhum produto cadastrado ainda. \n (Em desenvolvimento)</p></div>`;
+      grid.innerHTML = `<div class="lista-empty"><i class="bi bi-box-seam"></i><p>Nenhum produto cadastrado ainda.</p></div>`;
       return;
     }
     grid.innerHTML = '';
@@ -208,7 +208,7 @@
     document.getElementById('modalDesc').textContent  = p.descricao;
     document.getElementById('modalChips').innerHTML = (Array.isArray(p.chips) ? p.chips : [])
       .map(c => `<div class="modal-info-chip"><i class="bi bi-check2"></i> ${c}</div>`).join('');
-    const msg = encodeURIComponent(`Olá! Gostaria de pedir: *${p.nome}* (R$ ${Number(p.preco).toFixed(2).replace('.',',')})`);
+    const msg = encodeURIComponent(`Olá! Gostaria de pedir um produto da Lojinha do Obra Nova. 🙏\n\n🛍️ *Produto:* ${p.nome}\n💰 *Preço:* R$ ${Number(p.preco).toFixed(2).replace('.',',')}\n📦 *Categoria:* ${p.cat_label||p.cat}`);
     document.getElementById('modalActions').innerHTML = p.disponivel
       ? `<a href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" class="modal-btn-whatsapp"><i class="bi bi-whatsapp"></i> Pedir pelo WhatsApp</a>`
       : `<button class="produto-btn esgotado" style="padding:15px;border-radius:14px;font-size:.92rem;" disabled><i class="bi bi-x-circle"></i> Produto esgotado</button>`;
