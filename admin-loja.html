@@ -702,7 +702,7 @@
   }
 
   // Logout
-  document.getElementById('btnLogout').addEventListener('click', async () => {
+  document.getElementById('btnLogout').addEventListener('click', () => {
     const token = localStorage.getItem('sb_access_token');
     if (token) {
       fetch(`${SUPABASE_AUTH}/logout`, {
@@ -711,9 +711,11 @@
       }).catch(() => {});
     }
     limparSessao();
-    loginOverlay.style.display = 'flex';
     document.getElementById('loginEmail').value = '';
     document.getElementById('loginSenha').value = '';
+    loginErro.style.display = 'none';
+    // Remove inline style so CSS display:flex takes over
+    loginOverlay.style.removeProperty('display');
   });
 </script>
 </body>
