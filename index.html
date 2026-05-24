@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,6 @@
     <meta name="description" content="Eis que eu faço obra nova, a qual já surge: não a vedes? — Is 43,19. Grupo de oração que se reúne toda segunda-feira às 19h00." />
     <meta name="theme-color" content="#C9A84C" />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo.png" />
     <link rel="apple-touch-icon" href="img/logo.png" />
 
@@ -17,695 +16,399 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Obra Nova" />
-    <!-- <meta property="og:url" content="https://obranova.netlify.app/" /> -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Obra Nova" />
 
-    <!-- Twitter / X Card -->
-    <!-- <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Obra Nova" />
-    <meta name="twitter:description" content="Eis que eu faço obra nova, a qual já surge: não a vedes? — Is 43,19" />
-    <meta name="twitter:image" content="https://obranova.netlify.app/img/obn.jpeg" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
-    
-      :root {
-        --gold: #C9A84C;
-        --gold-light: #E8C96B;
-        --gold-dark: #8B6914;
-        --cream: #FAFAF7;
-        --beige: #F5EDD6;
-        --beige-dark: #EAD9B5;
-        --brown: #5C3D1E;
-        --text: #3A2A0E;
-        --text-soft: #7A6040;
-        --white: #FFFFFF;
-        --nav-height: 70px;
-      }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-      * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96B;
+      --gold-dark: #8B6914;
+      --cream: #FAFAF7;
+      --beige: #F5EDD6;
+      --beige-dark: #EAD9B5;
+      --brown: #5C3D1E;
+      --text: #3A2A0E;
+      --text-soft: #7A6040;
+      --white: #FFFFFF;
+      --nav-height: 70px;
+    }
 
-      html, body {
-        height: 100%;
-        background: var(--cream);
-        color: var(--text);
-        font-family: 'Lato', sans-serif;
-        overflow-x: hidden;
-      }
-      .container {
-        width: 100%;
-        max-width: 480px; /* padrão mobile */
-        margin: 0 auto;
-      }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-      /* ── PAGES ── */
-      .page {
-        display: none;
-        min-height: calc(100vh - var(--nav-height));
-        padding-bottom: calc(var(--nav-height) + 16px);
-        animation: fadeIn .35s ease;
-      }
-      .page.active { display: block; }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-      .container {
-        width: 100%;
-        max-width: 480px;
-        margin: 0 auto;
-      }
-
-      /* ── HOME ── */
-      .home-hero {
-        position: relative;
-        width: 100%;
-        height: 260px;
-        max-height: 320px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        padding-bottom: 0;
-      }
-      .home-hero-img {
-        position: absolute;
-        inset: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
-        object-position: center top;
-        animation: fadeIn .6s ease;
-      }
-      .home-hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(250,250,247,0) 30%, rgba(250,250,247,1) 100%);
-      }
-      .home-hero-overlay-top {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(201,168,76,.08) 0%, transparent 50%);
-      }
-
-      .home-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 2rem; font-weight: 700;
-        color: var(--brown);
-        letter-spacing: .04em;
-        text-align: center; line-height: 1.2;
-        position: relative;
-        margin-top: 16px;
-      }
-      .home-subtitle {
-        font-size: .85rem;
-        color: var(--gold-dark);
-        letter-spacing: .18em;
-        text-transform: uppercase;
-        margin-top: 6px; font-weight: 700;
-        position: relative;
-      }
-
-      .divider-gold {
-        display: flex; align-items: center; gap: 10px;
-        margin: 20px auto;
-        width: 80%; max-width: 300px;
-      }
-      .divider-gold span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
-      .divider-gold span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
-      .divider-gold i { color: var(--gold); font-size: 1.1rem; }
-
-      .home-text-block {
-        display: flex; flex-direction: column; align-items: center;
-        background: var(--cream);
-        width: 100%;
-        padding: 0 24px 8px;
-      }
-
-      .video-wrap {
-        width: 100%; max-width: 480px;
-        margin: 24px auto 0;
-        padding: 0 20px;
-      }
-      .video-label {
-        font-size: .75rem;
-        letter-spacing: .14em;
-        text-transform: uppercase;
-        color: var(--gold-dark);
-        font-weight: 700;
-        margin-bottom: 10px; padding-left: 4px;
-      }
-      .video-frame-wrap {
-        border-radius: 16px; overflow: hidden;
-        box-shadow: 0 4px 24px rgba(139,105,20,.2);
-        border: 1.5px solid var(--gold-light);
-        aspect-ratio: 16/9; background: #000;
-      }
-      .video-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-
-      .home-quote {
-        text-align: center;
-        font-family: 'Playfair Display', serif;
-        font-style: italic; font-size: 1rem;
-        color: var(--text-soft);
-        padding: 28px 32px 8px; line-height: 1.7;
-      }
-
-      .carrosel {
-        margin: 14px 20px 0;
-        overflow: hidden;
-        border-radius: 18px;
-        position: relative;
-        border: 1px solid var(--beige-dark);
-        box-shadow: 0 8px 30px rgba(139,105,20,.18);
-      }
-      .carrosel-track {
-        display: flex;
-        width: 100%;
-        transition: transform 0.8s cubic-bezier(0.25, 1, 0.3, 1);
-        will-change: transform;
-      }
-
-      .slide {
-        width: 100%;
-        flex: 0 0 100%;
-        height: 220px;
-      }
-
-      .slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-      .dots { position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 6px; }
-      .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.5); transition: .3s; }
-      .dot.active { background: var(--gold); transform: scale(1.3); }
-
-      /* ── SECTION HEADER ── */
-      .section-header {
-        background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
-        padding: 36px 24px 20px;
-        border-bottom: 1px solid var(--beige-dark);
-        position: relative;
-      }
-      .section-header::after {
-        content: '';
-        position: absolute;
-        bottom: -1px; left: 24px; right: 24px;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      }
-      .section-header h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.6rem; color: var(--brown); font-weight: 700;
-      }
-      .section-header p { font-size: .82rem; color: var(--text-soft); margin-top: 4px; letter-spacing: .05em; }
-
-      /* ── LITURGIA ── */
-    
-      .liturgia-body { padding: 20px 20px 0; }
-      .liturgia-card {
-        background: var(--white); border-radius: 16px;
-        border: 1px solid var(--beige-dark); overflow: hidden;
-        box-shadow: 0 2px 12px rgba(139,105,20,.08); margin-bottom: 16px;
-      }
-      .liturgia-card-header {
-        background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
-        padding: 14px 18px; display: flex; align-items: center; gap: 10px;
-      }
-      .liturgia-card-header span { font-size: 1.2rem; }
-      .liturgia-card-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 600; }
-      .liturgia-card-body { padding: 16px 18px; }
-      .liturgia-date { font-size: .78rem; color: var(--gold-dark); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
-      .liturgia-link {
-        display: flex; align-items: center; gap: 10px;
-        background: var(--beige); border-radius: 10px;
-        padding: 14px 16px; text-decoration: none;
-        color: var(--brown); font-weight: 700; font-size: .9rem;
-        border: 1px solid var(--beige-dark);
-        transition: background .2s; margin-bottom: 10px;
-      }
-      .liturgia-link:active { background: var(--beige-dark); }
-      .liturgia-link .arr { margin-left: auto; color: var(--gold); font-size: 1.1rem; }
-
-      /* ── ORAÇÕES + MÚSICA (aba unificada) ── */
-      .tab-switcher {
-        display: flex;
-        margin: 16px 20px 0;
-        background: var(--beige);
-        border-radius: 14px;
-        padding: 4px;
-        border: 1px solid var(--beige-dark);
-      }
-      .tab-switcher-btn {
-        flex: 1;
-        padding: 10px 8px;
-        border: none;
-        background: none;
-        border-radius: 10px;
-        font-family: 'Lato', sans-serif;
-        font-size: .78rem;
-        font-weight: 700;
-        letter-spacing: .05em;
-        text-transform: uppercase;
-        color: var(--text-soft);
-        cursor: pointer;
-        transition: all .25s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-      }
-      .tab-switcher-btn.active {
-        background: var(--white);
-        color: var(--gold-dark);
-        box-shadow: 0 2px 8px rgba(139,105,20,.15);
-      }
-      .tab-switcher-btn .material-symbols-outlined {
-        font-size: 18px;
-      }
-      .tab-content { display: none; }
-      .tab-content.active { display: block; }
-
-      .list-body { padding: 16px 20px 0; }
-      .accordion-item {
-        background: var(--white); border-radius: 14px;
-        border: 1px solid var(--beige-dark); margin-bottom: 12px;
-        overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06);
-      }
-      .accordion-trigger {
-        width: 100%; background: none; border: none;
-        padding: 16px 18px; display: flex;
-        align-items: center; gap: 12px;
-        cursor: pointer; text-align: left;
-      }
-      .acc-icon {
-        width: 36px; height: 36px; background: var(--beige);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--beige-dark);
-      }
-      .acc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; flex: 1; }
-      .acc-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
-      .accordion-item.open .acc-chevron { transform: rotate(180deg); }
-      .accordion-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--beige); }
-      .accordion-item.open .accordion-body { display: block; }
-      .accordion-body p { font-size: .9rem; line-height: 1.85; color: var(--text-soft); margin-top: 12px; white-space: pre-line; }
-
-      .spinner {
-        width: 16px;
-        height: 16px;
-        border: 2px solid rgba(0,0,0,.2);
-        border-top: 2px solid var(--brown);
-        border-radius: 50%;
-        animation: spin 0.7s linear infinite;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      
-      /* ── MÚSICA (dentro de Orações) ── */
-      .musica-body { padding: 16px 20px 0; }
-      .musica-channel-card {
-        background: linear-gradient(135deg, var(--gold-dark) 0%, var(--brown) 100%);
-        border-radius: 16px; padding: 20px;
-        display: flex; align-items: center; gap: 14px;
-        margin-bottom: 20px; text-decoration: none;
-        box-shadow: 0 4px 20px rgba(139,105,20,.3);
-      }
-      .musica-channel-logo {
-        width: 56px; height: 56px; border-radius: 50%;
-        background: var(--white); overflow: hidden;
-        flex-shrink: 0; border: 2px solid var(--gold-light);
-      }
-      .musica-channel-logo img { width: 100%; height: 100%; object-fit: cover; }
-      .musica-channel-info h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); font-weight: 600; }
-      .musica-channel-info p { font-size: .78rem; color: rgba(255,255,255,.7); margin-top: 2px; }
-      .musica-channel-arrow { margin-left: auto; color: var(--gold-light); font-size: 1.3rem; }
-      .musica-section-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; margin-bottom: 12px; padding-left: 4px; }
-      .playlist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-      .playlist-card {
-        background: var(--white); border-radius: 14px;
-        border: 1px solid var(--beige-dark); overflow: hidden;
-        box-shadow: 0 2px 8px rgba(139,105,20,.07); text-decoration: none;
-      }
-      .playlist-thumb { width: 100%; aspect-ratio: 16/9; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-      .playlist-info { padding: 10px 12px; }
-      .playlist-info h4 { font-size: .82rem; color: var(--brown); font-weight: 700; line-height: 1.3; }
-      .playlist-info p { font-size: .72rem; color: var(--text-soft); margin-top: 2px; }
-      
-      #oracoes-cats {
-        margin: 16px 20px 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-      }
-      #oracoes-cats::-webkit-scrollbar { display: none; }
-
-      
-      /* ── TERÇOS ── */
-      .terco-tabs {
-        display: flex; overflow-x: auto; gap: 8px;
-        padding: 16px 20px 0; scrollbar-width: none;
-      }
-      .terco-tabs::-webkit-scrollbar { display: none; }
-      .terco-tab {
-        flex-shrink: 0; padding: 8px 16px; border-radius: 20px;
-        border: 1.5px solid var(--beige-dark); background: var(--white);
-        font-size: .8rem; font-weight: 700; color: var(--text-soft);
-        cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif;
-      }
-      .terco-tab.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
-      .terco-panel { display: none; padding: 16px 20px 0; }
-      .terco-panel.active { display: block; }
-
-      .misterio-card {
-        background: var(--white); border-radius: 14px;
-        border: 1px solid var(--beige-dark); margin-bottom: 12px;
-        overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06);
-      }
-      .misterio-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
-      .misterio-num {
-        width: 32px; height: 32px;
-        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: .8rem; font-weight: 700; color: var(--white); flex-shrink: 0;
-      }
-      .misterio-title { font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--brown); flex: 1; }
-      .misterio-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
-      .misterio-body { display: none; padding: 0 16px 14px; border-top: 1px solid var(--beige); }
-      .misterio-card.open .misterio-body { display: block; }
-      .misterio-card.open .misterio-chevron { transform: rotate(180deg); }
-      .misterio-step { margin-top: 10px; font-size: .85rem; color: var(--text-soft); line-height: 1.7; }
-      .misterio-step strong { color: var(--gold-dark); display: block; margin-bottom: 2px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
-
-      /* ── FORMAÇÕES ── */
-      .formacoes-body { padding: 16px 20px 0; }
-
-      /* Categorias tabs */
-      .formacao-cats {
-        display: flex; overflow-x: auto; gap: 8px;
-        padding-bottom: 14px; scrollbar-width: none;
-      }
-      .formacao-cats::-webkit-scrollbar { display: none; }
-      .formacao-cat {
-        flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
-        border: 1.5px solid var(--beige-dark); background: var(--white);
-        font-size: .78rem; font-weight: 700; color: var(--text-soft);
-        cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif;
-      }
-      .formacao-cat.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
-
-      .formacao-panel { display: none; }
-      .formacao-panel.active { display: block; }
-
-      /* Card de formação */
-      .formacao-card {
-        background: var(--white); border-radius: 16px;
-        border: 1px solid var(--beige-dark); margin-bottom: 14px;
-        overflow: hidden; box-shadow: 0 2px 12px rgba(139,105,20,.08);
-      }
-      .formacao-card-header {
-        padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px;
-        cursor: pointer;
-      }
-      .formacao-icon {
-        width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.4rem;
-        background: linear-gradient(135deg, var(--beige), var(--beige-dark));
-        border: 1px solid var(--beige-dark);
-      }
-      .formacao-meta { flex: 1; }
-      .formacao-cat-badge {
-        font-size: .65rem; font-weight: 700; letter-spacing: .1em;
-        text-transform: uppercase; color: var(--gold-dark);
-        margin-bottom: 4px;
-      }
-      .formacao-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1rem; color: var(--brown); font-weight: 600;
-        line-height: 1.3;
-      }
-      .formacao-desc {
-        font-size: .78rem; color: var(--text-soft); margin-top: 3px;
-        line-height: 1.5;
-      }
-      .formacao-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; margin-top: 2px; flex-shrink: 0; }
-      .formacao-card.open .formacao-chevron { transform: rotate(180deg); }
-      .formacao-content {
-        display: none;
-        padding: 0 18px 20px;
-        border-top: 1px solid var(--beige);
-      }
-      .formacao-card.open .formacao-content { display: block; }
-      .formacao-content h4 {
-        font-family: 'Playfair Display', serif;
-        font-size: .9rem; color: var(--brown); margin: 16px 0 8px;
-        font-weight: 600;
-      }
-      .formacao-content p {
-        font-size: .88rem; line-height: 1.85; color: var(--text-soft);
-      }
-      .formacao-content .highlight-box {
-        background: var(--beige); border-radius: 10px;
-        border-left: 3px solid var(--gold);
-        padding: 12px 14px; margin: 12px 0;
-        font-size: .85rem; line-height: 1.7;
-        color: var(--text); font-style: italic;
-      }
-      .formacao-content .step-list {
-        list-style: none; margin: 10px 0;
-      }
-      .formacao-content .step-list li {
-        display: flex; gap: 10px; align-items: flex-start;
-        font-size: .86rem; color: var(--text-soft); line-height: 1.6;
-        padding: 6px 0; border-bottom: 1px solid var(--beige);
-      }
-      .formacao-content .step-list li:last-child { border-bottom: none; }
-      .formacao-content .step-list li .step-num {
-        width: 22px; height: 22px; flex-shrink: 0;
-        background: linear-gradient(135deg, var(--gold), var(--gold-light));
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px;
-      }
-      .formacao-read-time {
-        display: inline-flex; align-items: center; gap: 4px;
-        font-size: .7rem; color: var(--gold-dark); font-weight: 700;
-        margin-top: 10px; padding: 4px 10px;
-        background: var(--beige); border-radius: 20px;
-      }
-
-      /* ── Item de lista com detalhe expansível ── */
-      .step-item {
-        border-bottom: 1px solid var(--beige);
-        overflow: hidden;
-      }
-      .step-item:last-child { border-bottom: none; }
-
-      .step-item-header {
-        display: flex; gap: 10px; align-items: flex-start;
-        padding: 10px 0; cursor: pointer;
-      }
-      .step-item-header .step-num {
-        width: 22px; height: 22px; flex-shrink: 0;
-        background: linear-gradient(135deg, var(--gold), var(--gold-light));
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px;
-      }
-      .step-item-header .step-texto {
-        flex: 1; font-size: .86rem; color: var(--text-soft); line-height: 1.6;
-      }
-      .step-item-header .step-chevron {
-        font-size: .75rem; color: var(--gold); flex-shrink: 0;
-        margin-top: 3px; transition: transform .3s;
-      }
-      .step-item.open .step-chevron { transform: rotate(180deg); }
-
-      .step-item-detalhe {
-        display: none;
-        font-size: .84rem; line-height: 1.8; color: var(--text-soft);
-        background: var(--beige); border-radius: 10px;
-        padding: 12px 14px; margin: 0 0 10px 32px;
-        border-left: 3px solid var(--gold-light);
-      }
-      .step-item.open .step-item-detalhe { display: block; }
-
-      /* ── Item aprofundado (sub-acordeão dentro da formação) ── */
-      .aprofundado-item {
-        border: 1px solid var(--beige-dark);
-        border-radius: 12px;
-        margin: 10px 0;
-        overflow: hidden;
-        background: var(--cream);
-      }
-      .aprofundado-header {
-        display: flex; align-items: flex-start; gap: 10px;
-        padding: 12px 14px; cursor: pointer;
-        transition: background .2s;
-      }
-      .aprofundado-header:active { background: var(--beige); }
-      .aprofundado-meta {
-        flex: 1; display: flex; flex-direction: column; gap: 2px;
-      }
-      .aprofundado-titulo {
-        font-family: 'Playfair Display', serif;
-        font-size: .9rem; color: var(--brown); font-weight: 600;
-        line-height: 1.3;
-      }
-      .aprofundado-resumo {
-        font-size: .75rem; color: var(--text-soft); line-height: 1.4;
-      }
-      .aprofundado-chevron {
-        color: var(--gold); font-size: .9rem;
-        transition: transform .3s; margin-top: 2px; flex-shrink: 0;
-      }
-      .aprofundado-item.open .aprofundado-chevron { transform: rotate(180deg); }
-      .aprofundado-body {
-        display: none;
-        padding: 0 14px 14px;
-        border-top: 1px solid var(--beige-dark);
-      }
-      .aprofundado-item.open .aprofundado-body { display: block; }
-      .aprofundado-body p {
-        font-size: .86rem; line-height: 1.85;
-        color: var(--text-soft); margin-top: 12px;
-      }
-
-      /* ── BOTTOM NAV ── */
-
-      .nav-icon-img {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
-    opacity: 0.7;
-    transition: transform .2s, opacity .2s, filter .2s;
-
-  }
-
-  /* quando ativo */
-  .nav-item.active .nav-icon-img {
-    transform: scale(1.15);
-    opacity: 1;
-    filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%) hue-rotate(10deg);
-  }
-      .bottom-nav {
-        position: fixed; bottom: 0; left: 0; right: 0;
-        height: var(--nav-height); background: var(--white);
-        border-top: 1px solid var(--beige-dark);
-        display: flex; z-index: 100;
-        box-shadow: 0 -4px 20px rgba(139,105,20,.12);
-      }
-      .nav-item {
-        flex: 1; display: flex; flex-direction: column;
-        align-items: center; justify-content: center; gap: 4px;
-        cursor: pointer; padding: 6px 4px; position: relative;
-        border: none; background: none; -webkit-appearance: none;
-      }
-      .nav-item::before {
-        content: ''; position: absolute;
-        top: 0; left: 20%; right: 20%; height: 2.5px;
-        background: var(--gold); border-radius: 0 0 4px 4px;
-        opacity: 0; transition: opacity .2s;
-      }
-      .nav-item.active::before { opacity: 1; }
-      .nav-icon { font-size: 26px; line-height: 1; color: #7A6040; transition: transform .2s, color .2s; }
-      .nav-item.active .nav-icon { color: var(--gold-dark); transform: scale(1.15); }
-      .nav-label { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-soft); transition: color .2s; }
-      .nav-item.active .nav-label { color: var(--gold-dark); }
-
-      .btn-compartilhar {
-        background: linear-gradient(135deg, #E8C96B, #C9A84C);
-        border: none; color: #3A2A0E; font-weight: 700;
-        font-size: .85rem; padding: 10px 12px; margin-top: 12px; margin-bottom: 8px;
-        border-radius: 12px; display: inline-flex; align-items: center; gap: 6px;
-        cursor: pointer; box-shadow: 0 4px 12px rgba(139,105,20,.25);
-        transition: all .25s ease; letter-spacing: .02em;
-        
-      }
-      .btn-compartilhar:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(139,105,20,.35); }
-      .btn-compartilhar:active { transform: scale(0.96); }
-
-      .liturgia-container .card {
-        background: var(--white); border-radius: 14px;
-        margin-bottom: 12px; 
-      }
-      .liturgia-container .card h3 {
-        font-family: 'Playfair Display', serif; font-size: 1rem;
-        color: var(--brown); margin-bottom: 10px; font-weight: 600;
-      }
-      .liturgia-container .card p { font-size: .88rem; line-height: 1.8; color: var(--text-soft); ]
-      }
-
-      .footer {
-      text-align: center;
-      font-size: .7rem;
-      color: var(--text-soft);
-      padding: 20px 10px 90px; 
+    html, body {
+      height: 100%;
       background: var(--cream);
-      border-top: 1px solid var(--beige-dark);
-      }
-
-    .footer p {
-    margin: 0;
-    letter-spacing: .05em;
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
     }
-  @media (min-width: 768px) {
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── PAGES ── */
+    .page {
+      display: none;
+      min-height: calc(100vh - var(--nav-height));
+      padding-bottom: calc(var(--nav-height) + 16px);
+      animation: fadeIn .35s ease;
+    }
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HOME ── */
     .home-hero {
-      height: 380px;
+      position: relative;
+      width: 100%;
+      height: 260px;
+      max-height: 320px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 0;
     }
-    .home-title {
-      font-size: 2.4rem;
+    .home-hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      animation: fadeIn .6s ease;
+    }
+    .home-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(250,250,247,0) 30%, rgba(250,250,247,1) 100%);
+    }
+    .home-hero-overlay-top {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(201,168,76,.08) 0%, transparent 50%);
     }
 
-    .home-subtitle {
-      font-size: 1rem;
+    .home-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--brown);
+      letter-spacing: .04em;
+      text-align: center; line-height: 1.2;
+      position: relative;
+      margin-top: 16px;
     }
+    .home-subtitle {
+      font-size: .85rem;
+      color: var(--gold-dark);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-top: 6px; font-weight: 700;
+      position: relative;
+    }
+
+    .divider-gold {
+      display: flex; align-items: center; gap: 10px;
+      margin: 20px auto;
+      width: 80%; max-width: 300px;
+    }
+    .divider-gold span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+    .divider-gold span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
+    .divider-gold i { color: var(--gold); font-size: 1.1rem; }
+
+    .home-text-block {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--cream);
+      width: 100%;
+      padding: 0 24px 8px;
+    }
+
+    .video-wrap {
+      width: 100%; max-width: 480px;
+      margin: 24px auto 0;
+      padding: 0 20px;
+    }
+    .video-label {
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 700;
+      margin-bottom: 10px; padding-left: 4px;
+    }
+    .video-frame-wrap {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(139,105,20,.2);
+      border: 1.5px solid var(--gold-light);
+      aspect-ratio: 16/9; background: #000;
+    }
+    .video-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
 
     .home-quote {
-      font-size: 1.1rem;
-    }
-    .liturgia-body,
-    .list-body,
-    .formacoes-body {
-      padding: 20px 40px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1rem;
+      color: var(--text-soft);
+      padding: 28px 32px 8px; line-height: 1.7;
     }
 
-    .liturgia-card,
-    .accordion-item,
-    .formacao-card {
+    .carrosel {
+      margin: 14px 20px 0;
+      overflow: hidden;
       border-radius: 18px;
+      position: relative;
+      border: 1px solid var(--beige-dark);
+      box-shadow: 0 8px 30px rgba(139,105,20,.18);
     }
-    
+    .carrosel-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .slide { width: 100%; flex: 0 0 100%; height: 220px; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dots { position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 6px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.5); transition: .3s; }
+    .dot.active { background: var(--gold); transform: scale(1.3); }
 
+    /* ── SECTION HEADER ── */
+    .section-header {
+      background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
+      padding: 36px 24px 20px;
+      border-bottom: 1px solid var(--beige-dark);
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 24px; right: 24px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .section-header h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--brown); font-weight: 700; }
+    .section-header p { font-size: .82rem; color: var(--text-soft); margin-top: 4px; letter-spacing: .05em; }
 
-  }
-  .video-responsive {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 10px;
-    overflow: hidden;
-  }
+    /* ── LITURGIA ── */
+    .liturgia-body { padding: 20px 20px 0; }
+    .liturgia-card { background: var(--white); border-radius: 16px; border: 1px solid var(--beige-dark); overflow: hidden; box-shadow: 0 2px 12px rgba(139,105,20,.08); margin-bottom: 16px; }
+    .liturgia-card-header { background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); padding: 14px 18px; display: flex; align-items: center; gap: 10px; }
+    .liturgia-card-header span { font-size: 1.2rem; }
+    .liturgia-card-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 600; }
+    .liturgia-card-body { padding: 16px 18px; }
+    .liturgia-date { font-size: .78rem; color: var(--gold-dark); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+    .liturgia-link { display: flex; align-items: center; gap: 10px; background: var(--beige); border-radius: 10px; padding: 14px 16px; text-decoration: none; color: var(--brown); font-weight: 700; font-size: .9rem; border: 1px solid var(--beige-dark); transition: background .2s; margin-bottom: 10px; }
+    .liturgia-link:active { background: var(--beige-dark); }
+    .liturgia-link .arr { margin-left: auto; color: var(--gold); font-size: 1.1rem; }
 
-  .video-responsive iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-    </style>
+    /* ── ORAÇÕES ── */
+    .tab-switcher { display: flex; margin: 16px 20px 0; background: var(--beige); border-radius: 14px; padding: 4px; border: 1px solid var(--beige-dark); }
+    .tab-switcher-btn { flex: 1; padding: 10px 8px; border: none; background: none; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-soft); cursor: pointer; transition: all .25s ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .tab-switcher-btn.active { background: var(--white); color: var(--gold-dark); box-shadow: 0 2px 8px rgba(139,105,20,.15); }
+    .tab-switcher-btn .material-symbols-outlined { font-size: 18px; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .list-body { padding: 16px 20px 0; }
+    .accordion-item { background: var(--white); border-radius: 14px; border: 1px solid var(--beige-dark); margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06); }
+    .accordion-trigger { width: 100%; background: none; border: none; padding: 16px 18px; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; }
+    .acc-icon { width: 36px; height: 36px; background: var(--beige); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--beige-dark); }
+    .acc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; flex: 1; }
+    .acc-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
+    .accordion-item.open .acc-chevron { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--beige); }
+    .accordion-item.open .accordion-body { display: block; }
+    .accordion-body p { font-size: .9rem; line-height: 1.85; color: var(--text-soft); margin-top: 12px; white-space: pre-line; }
+
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(0,0,0,.2); border-top: 2px solid var(--brown); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── MÚSICA ── */
+    .musica-body { padding: 16px 20px 0; }
+    .musica-channel-card { background: linear-gradient(135deg, var(--gold-dark) 0%, var(--brown) 100%); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 14px; margin-bottom: 20px; text-decoration: none; box-shadow: 0 4px 20px rgba(139,105,20,.3); }
+    .musica-channel-logo { width: 56px; height: 56px; border-radius: 50%; background: var(--white); overflow: hidden; flex-shrink: 0; border: 2px solid var(--gold-light); }
+    .musica-channel-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .musica-channel-info h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); font-weight: 600; }
+    .musica-channel-info p { font-size: .78rem; color: rgba(255,255,255,.7); margin-top: 2px; }
+    .musica-channel-arrow { margin-left: auto; color: var(--gold-light); font-size: 1.3rem; }
+    .musica-section-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; margin-bottom: 12px; padding-left: 4px; }
+    .playlist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .playlist-card { background: var(--white); border-radius: 14px; border: 1px solid var(--beige-dark); overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.07); text-decoration: none; }
+    .playlist-thumb { width: 100%; aspect-ratio: 16/9; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+    .playlist-info { padding: 10px 12px; }
+    .playlist-info h4 { font-size: .82rem; color: var(--brown); font-weight: 700; line-height: 1.3; }
+    .playlist-info p { font-size: .72rem; color: var(--text-soft); margin-top: 2px; }
+
+    #oracoes-cats { margin: 16px 20px 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; justify-content: flex-start; }
+    #oracoes-cats::-webkit-scrollbar { display: none; }
+
+    /* ── TERÇOS ── */
+    .terco-tabs { display: flex; overflow-x: auto; gap: 8px; padding: 16px 20px 0; scrollbar-width: none; }
+    .terco-tabs::-webkit-scrollbar { display: none; }
+    .terco-tab { flex-shrink: 0; padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--beige-dark); background: var(--white); font-size: .8rem; font-weight: 700; color: var(--text-soft); cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif; }
+    .terco-tab.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
+    .terco-panel { display: none; padding: 16px 20px 0; }
+    .terco-panel.active { display: block; }
+
+    .misterio-card { background: var(--white); border-radius: 14px; border: 1px solid var(--beige-dark); margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(139,105,20,.06); }
+    .misterio-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .misterio-num { width: 32px; height: 32px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 700; color: var(--white); flex-shrink: 0; }
+    .misterio-title { font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--brown); flex: 1; }
+    .misterio-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; }
+    .misterio-body { display: none; padding: 0 16px 14px; border-top: 1px solid var(--beige); }
+    .misterio-card.open .misterio-body { display: block; }
+    .misterio-card.open .misterio-chevron { transform: rotate(180deg); }
+    .misterio-step { margin-top: 10px; font-size: .85rem; color: var(--text-soft); line-height: 1.7; }
+    .misterio-step strong { color: var(--gold-dark); display: block; margin-bottom: 2px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* ── FORMAÇÕES ── */
+    .formacoes-body { padding: 16px 20px 0; }
+    .formacao-cats { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 14px; scrollbar-width: none; }
+    .formacao-cats::-webkit-scrollbar { display: none; }
+    .formacao-cat { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--beige-dark); background: var(--white); font-size: .78rem; font-weight: 700; color: var(--text-soft); cursor: pointer; transition: all .2s; font-family: 'Lato', sans-serif; }
+    .formacao-cat.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
+    .formacao-panel { display: none; }
+    .formacao-panel.active { display: block; }
+    .formacao-card { background: var(--white); border-radius: 16px; border: 1px solid var(--beige-dark); margin-bottom: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(139,105,20,.08); }
+    .formacao-card-header { padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; }
+    .formacao-icon { width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: linear-gradient(135deg, var(--beige), var(--beige-dark)); border: 1px solid var(--beige-dark); }
+    .formacao-meta { flex: 1; }
+    .formacao-cat-badge { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 4px; }
+    .formacao-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; line-height: 1.3; }
+    .formacao-desc { font-size: .78rem; color: var(--text-soft); margin-top: 3px; line-height: 1.5; }
+    .formacao-chevron { color: var(--gold); font-size: 1rem; transition: transform .3s; margin-top: 2px; flex-shrink: 0; }
+    .formacao-card.open .formacao-chevron { transform: rotate(180deg); }
+    .formacao-content { display: none; padding: 0 18px 20px; border-top: 1px solid var(--beige); }
+    .formacao-card.open .formacao-content { display: block; }
+    .formacao-content h4 { font-family: 'Playfair Display', serif; font-size: .9rem; color: var(--brown); margin: 16px 0 8px; font-weight: 600; }
+    .formacao-content p { font-size: .88rem; line-height: 1.85; color: var(--text-soft); }
+    .formacao-content .highlight-box { background: var(--beige); border-radius: 10px; border-left: 3px solid var(--gold); padding: 12px 14px; margin: 12px 0; font-size: .85rem; line-height: 1.7; color: var(--text); font-style: italic; }
+    .formacao-content .step-list { list-style: none; margin: 10px 0; }
+    .formacao-content .step-list li { display: flex; gap: 10px; align-items: flex-start; font-size: .86rem; color: var(--text-soft); line-height: 1.6; padding: 6px 0; border-bottom: 1px solid var(--beige); }
+    .formacao-content .step-list li:last-child { border-bottom: none; }
+    .formacao-content .step-list li .step-num { width: 22px; height: 22px; flex-shrink: 0; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px; }
+    .formacao-read-time { display: inline-flex; align-items: center; gap: 4px; font-size: .7rem; color: var(--gold-dark); font-weight: 700; margin-top: 10px; padding: 4px 10px; background: var(--beige); border-radius: 20px; }
+
+    .step-item { border-bottom: 1px solid var(--beige); overflow: hidden; }
+    .step-item:last-child { border-bottom: none; }
+    .step-item-header { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; cursor: pointer; }
+    .step-item-header .step-num { width: 22px; height: 22px; flex-shrink: 0; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 700; color: var(--white); margin-top: 1px; }
+    .step-item-header .step-texto { flex: 1; font-size: .86rem; color: var(--text-soft); line-height: 1.6; }
+    .step-item-header .step-chevron { font-size: .75rem; color: var(--gold); flex-shrink: 0; margin-top: 3px; transition: transform .3s; }
+    .step-item.open .step-chevron { transform: rotate(180deg); }
+    .step-item-detalhe { display: none; font-size: .84rem; line-height: 1.8; color: var(--text-soft); background: var(--beige); border-radius: 10px; padding: 12px 14px; margin: 0 0 10px 32px; border-left: 3px solid var(--gold-light); }
+    .step-item.open .step-item-detalhe { display: block; }
+
+    .aprofundado-item { border: 1px solid var(--beige-dark); border-radius: 12px; margin: 10px 0; overflow: hidden; background: var(--cream); }
+    .aprofundado-header { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; cursor: pointer; transition: background .2s; }
+    .aprofundado-header:active { background: var(--beige); }
+    .aprofundado-meta { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .aprofundado-titulo { font-family: 'Playfair Display', serif; font-size: .9rem; color: var(--brown); font-weight: 600; line-height: 1.3; }
+    .aprofundado-resumo { font-size: .75rem; color: var(--text-soft); line-height: 1.4; }
+    .aprofundado-chevron { color: var(--gold); font-size: .9rem; transition: transform .3s; margin-top: 2px; flex-shrink: 0; }
+    .aprofundado-item.open .aprofundado-chevron { transform: rotate(180deg); }
+    .aprofundado-body { display: none; padding: 0 14px 14px; border-top: 1px solid var(--beige-dark); }
+    .aprofundado-item.open .aprofundado-body { display: block; }
+    .aprofundado-body p { font-size: .86rem; line-height: 1.85; color: var(--text-soft); margin-top: 12px; }
+
+    /* ── BOTTOM NAV ── */
+    .nav-icon-img { width: 26px; height: 26px; object-fit: contain; opacity: 0.7; transition: transform .2s, opacity .2s, filter .2s; }
+    .nav-item.active .nav-icon-img { transform: scale(1.15); opacity: 1; filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%) hue-rotate(10deg); }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-height); background: var(--white); border-top: 1px solid var(--beige-dark); display: flex; z-index: 100; box-shadow: 0 -4px 20px rgba(139,105,20,.12); }
+    .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; padding: 6px 4px; position: relative; border: none; background: none; -webkit-appearance: none; }
+    .nav-item::before { content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 2.5px; background: var(--gold); border-radius: 0 0 4px 4px; opacity: 0; transition: opacity .2s; }
+    .nav-item.active::before { opacity: 1; }
+    .nav-icon { font-size: 26px; line-height: 1; color: #7A6040; transition: transform .2s, color .2s; }
+    .nav-item.active .nav-icon { color: var(--gold-dark); transform: scale(1.15); }
+    .nav-label { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-soft); transition: color .2s; }
+    .nav-item.active .nav-label { color: var(--gold-dark); }
+
+    .btn-compartilhar { background: linear-gradient(135deg, #E8C96B, #C9A84C); border: none; color: #3A2A0E; font-weight: 700; font-size: .85rem; padding: 10px 12px; margin-top: 12px; margin-bottom: 8px; border-radius: 12px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(139,105,20,.25); transition: all .25s ease; letter-spacing: .02em; }
+    .btn-compartilhar:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(139,105,20,.35); }
+    .btn-compartilhar:active { transform: scale(0.96); }
+
+    .liturgia-container .card { background: var(--white); border-radius: 14px; margin-bottom: 12px; }
+    .liturgia-container .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); margin-bottom: 10px; font-weight: 600; }
+    .liturgia-container .card p { font-size: .88rem; line-height: 1.8; color: var(--text-soft); }
+
+    .footer { text-align: center; font-size: .7rem; color: var(--text-soft); padding: 20px 10px 90px; background: var(--cream); border-top: 1px solid var(--beige-dark); }
+    .footer p { margin: 0; letter-spacing: .05em; }
+
+    @media (min-width: 768px) {
+      .home-hero { height: 380px; }
+      .home-title { font-size: 2.4rem; }
+      .home-subtitle { font-size: 1rem; }
+      .home-quote { font-size: 1.1rem; }
+      .liturgia-body, .list-body, .formacoes-body { padding: 20px 40px; }
+      .liturgia-card, .accordion-item, .formacao-card { border-radius: 18px; }
+    }
+
+    .video-responsive { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; }
+    .video-responsive iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── BOTÃO FLUTUANTE LOJA ── */
+    .fab-loja {
+      position: fixed;
+      bottom: calc(var(--nav-height) + 14px);
+      right: 16px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--brown) 0%, #3a2008 100%);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 11px 18px 11px 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(58,32,8,.45);
+      transition: transform .2s, box-shadow .2s, opacity .3s;
+      text-decoration: none;
+    }
+    .fab-loja:active {
+      transform: scale(.95);
+      box-shadow: 0 2px 10px rgba(58,32,8,.3);
+    }
+    .fab-loja-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    /* Esconde o FAB quando a animação de entrada termina */
+    @keyframes fabEntrada {
+      from { opacity: 0; transform: translateY(20px) scale(.8); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fab-loja { animation: fabEntrada .5s .6s cubic-bezier(.25,1,.3,1) both; }
+  </style>
   </head>
   <body>
   <div class="container"></div>
+
   <!-- ═══════════════ HOME ═══════════════ -->
   <section class="page active" id="page-home">
     <div class="home-hero">
@@ -785,8 +488,7 @@
 
     <div class="carrosel" id="carrosel">
       <div class="carrosel-track">
-
-         <div class="slide"><img src="img/foto6.jpeg" /></div>
+        <div class="slide"><img src="img/foto6.jpeg" /></div>
         <div class="slide"><img src="https://i.ibb.co/Dgg11dx2/Whats-App-Image-2026-04-18-at-18-24-56-2.jpg" /></div>
         <div class="slide"><img src="https://i.ibb.co/HDbcZ46N/Whats-App-Image-2026-04-18-at-18-24-56.jpg" /></div>
         <div class="slide"><img src="img/foto2.jpeg" /></div>
@@ -794,7 +496,6 @@
         <div class="slide"><img src="img/foto4.jpeg" /></div>
         <div class="slide"><img src="img/foto5.jpeg" /></div>
         <div class="slide"><img src="img/foto1.jpeg" /></div>
-        
       </div>
       <div class="dots" id="dots"></div>
     </div>
@@ -814,7 +515,6 @@
           <section class="liturgia-container">
             <div class="card"><h2 id="data"></h2></div>
             <div class="card">
-
               <h3>Primeira Leitura</h3>
               <p id="leitura1"></p>
               <button class="btn-compartilhar" onclick="compartilhar('leitura1')">Compartilhar</button>
@@ -836,99 +536,43 @@
         <div class="liturgia-card-header"><h3>Reflexão do dia</h3></div>
         <div class="liturgia-card-body">
           <div class="video-responsive">
-    <iframe 
-      src="https://www.youtube.com/embed/videoseries?list=UUznKgmk792LV-JVnXXPN_CA&index=1"
-      title="YouTube video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=UUznKgmk792LV-JVnXXPN_CA&index=1"
+              title="YouTube video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ ORAÇÕES + MÚSICA ═══════════════ -->
+  <!-- ═══════════════ ORAÇÕES ═══════════════ -->
   <section class="page" id="page-oracoes">
     <div class="section-header">
-      <h1>Orações </h1>
+      <h1>Orações</h1>
       <p>Orações diversas</p>
     </div>
-
-    <!-- Seletor de sub-aba -->
-    <!-- <div class="tab-switcher">
-      <button class="tab-switcher-btn active" data-tab="oracoes-tab">
-        <span class="material-symbols-outlined">volunteer_activism</span>
-        Orações
-      </button>
-      <button class="tab-switcher-btn" data-tab="musica-tab">
-        <span class="material-symbols-outlined">music_note</span>
-        Música
-      </button>
-    </div> -->
-
-    <!-- Conteúdo: Orações -->
     <div class="tab-content active" id="oracoes-tab">
       <div class="list-body" id="oracoes-list"></div>
     </div>
-
-    <!-- Conteúdo: Música -->
-    <!-- <div class="tab-content" id="musica-tab">
-      <div class="musica-body">
-        <a class="musica-channel-card" href="https://www.youtube.com/@Casal_Orante" target="_blank">
-          <div class="musica-channel-logo">
-            <img src="https://1.bp.blogspot.com/-wa6z2KrWWqM/Xo0K21ikP1I/AAAAAAAAJv0/D5NNd7vhOAg6B4JyEfGjN3s_N6eUTyBjACLcBGAsYHQ/s640/%25C3%258Dcone%2BObra%2BNova.png" alt="Canal Obra Nova" />
-          </div>
-          <div class="musica-channel-info">
-            <h3>Canal Obra Nova</h3>
-            <p>Acesse no YouTube</p>
-          </div>
-          <span class="musica-channel-arrow">▶</span>
-        </a>
-        <p class="musica-section-title">Sugestões de Louvor</p>
-        <div class="playlist-grid">
-          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+adoracao" target="_blank">
-            <div class="playlist-thumb">🎵</div>
-            <div class="playlist-info"><h4>Adoração</h4><p>Músicas de adoração</p></div>
-          </a>
-          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+louvor" target="_blank">
-            <div class="playlist-thumb">🎶</div>
-            <div class="playlist-info"><h4>Louvor</h4><p>Cânticos de louvor</p></div>
-          </a>
-          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+mariana" target="_blank">
-            <div class="playlist-thumb">🌹</div>
-            <div class="playlist-info"><h4>Marianos</h4><p>Cânticos à Nossa Senhora</p></div>
-          </a>
-          <a class="playlist-card" href="https://www.youtube.com/results?search_query=obra+nova+missa" target="_blank">
-            <div class="playlist-thumb">✝️</div>
-            <div class="playlist-info"><h4>Missas</h4><p>Músicas litúrgicas</p></div>
-          </a>
+    <div style="margin: 24px 20px 0; background: var(--white); border-radius: 16px; border: 1px solid var(--beige-dark); overflow: hidden; box-shadow: 0 4px 20px rgba(139,105,20,.15);">
+      <div style="background: linear-gradient(90deg, var(--gold), var(--gold-light)); padding: 14px 18px; display: flex; align-items: center; gap: 10px;">
+        <div>
+          <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brown); font-weight: 600; margin: 0;">Intenções de Oração</p>
+          <p style="font-size: .75rem; color: var(--brown); margin: 2px 0 0; font-style: italic;">Rezadas juntos no Terço Online às 22h00</p>
         </div>
       </div>
-    </div> -->
-    <div style="margin: 24px 20px 0; background: var(--white); border-radius: 16px; border: 1px solid var(--beige-dark); overflow: hidden; box-shadow: 0 4px 20px rgba(139,105,20,.15);">
-  
-  <!-- Cabeçalho dourado igual aos outros cards -->
-  <div style="background: linear-gradient(90deg, var(--gold), var(--gold-light)); padding: 14px 18px; display: flex; align-items: center; gap: 10px;">
-    <div>
-      <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: color:var(--brown);; font-weight: 600; margin: 0;">Intenções de Oração</p>
-      <p style="font-size: .75rem; color: var(--brown); margin: 2px 0 0; font-style: italic;">Rezadas juntos no Terço Online às 22h00</p>
+      <div style="padding: 16px 18px;">
+        <textarea id="intencao" placeholder="Digite sua intenção de oração..."
+          style="width: 100%; height: 90px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--beige-dark); background: var(--beige); font-family: 'Lato', sans-serif; font-size: .88rem; color: var(--text); resize: none; outline: none;"></textarea>
+        <button id="btnEnviar" onclick="enviarIntencao()"
+          style="margin-top: 10px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: .85rem; color: var(--brown); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 10px rgba(139,105,20,.25); letter-spacing: .02em;">
+          <span id="btnText">Enviar intenção</span>
+          <span id="spinner" class="spinner" style="display: none;"></span>
+        </button>
+        <p id="msg" style="margin-top: 10px; font-size: .82rem; color: var(--gold-dark); font-weight: 700;"></p>
+      </div>
     </div>
-  </div>
-
-  <!-- Corpo -->
-  <div style="padding: 16px 18px;">
-    <textarea id="intencao" placeholder="Digite sua intenção de oração..."
-      style="width: 100%; height: 90px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--beige-dark); background: var(--beige); font-family: 'Lato', sans-serif; font-size: .88rem; color: var(--text); resize: none; outline: none;"></textarea>
-
-    <button id="btnEnviar" onclick="enviarIntencao()"
-      style="margin-top: 10px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: .85rem; color: var(--brown); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 10px rgba(139,105,20,.25); letter-spacing: .02em;">
-      <span id="btnText">Enviar intenção</span>
-      <span id="spinner" class="spinner" style="display: none;"></span>
-    </button>
-
-    <p id="msg" style="margin-top: 10px; font-size: .82rem; color: var(--gold-dark); font-weight: 700;"></p>
-  </div>
-</div>
   </section>
 
   <!-- ═══════════════ TERÇOS ═══════════════ -->
@@ -947,10 +591,7 @@
       <h1>Formações</h1>
       <p>Aprofunde sua fé com conteúdo formativo</p>
     </div>
-
     <div class="formacoes-body">
-
-      <!-- Filtros por categoria -->
       <div class="formacao-cats" id="formacao-cats">
         <button class="formacao-cat active" data-cat="todos">Todos</button>
         <button class="formacao-cat" data-cat="missa">Santa Missa</button>
@@ -958,16 +599,11 @@
         <button class="formacao-cat" data-cat="oracao">Vida de Oração</button>
         <button class="formacao-cat" data-cat="fe">Fundamentos da Fé</button>
       </div>
-
-      <!-- Painel: todos (mostra tudo) -->
       <div class="formacao-panel active" id="cat-todos" data-panel="todos"></div>
-
-      <!-- Painel por categoria (preenchidos via JS) -->
       <div class="formacao-panel" id="cat-missa" data-panel="missa"></div>
       <div class="formacao-panel" id="cat-santos" data-panel="santos"></div>
       <div class="formacao-panel" id="cat-oracao" data-panel="oracao"></div>
       <div class="formacao-panel" id="cat-fe" data-panel="fe"></div>
-
     </div>
   </section>
 
@@ -986,14 +622,20 @@
       <span class="nav-label">Orações</span>
     </button>
     <button class="nav-item" data-page="tercos">
-    <img class="nav-icon-img" src="https://cdn-icons-png.flaticon.com/512/3608/3608883.png" alt="">
-    <span class="nav-label">Terços</span>
-  </button>
+      <img class="nav-icon-img" src="https://cdn-icons-png.flaticon.com/512/3608/3608883.png" alt="">
+      <span class="nav-label">Terços</span>
+    </button>
     <button class="nav-item" data-page="formacoes">
       <span class="nav-icon material-symbols-outlined">school</span>
       <span class="nav-label">Formações</span>
     </button>
   </nav>
+
+  <!-- ═══════════════ FAB LOJA ═══════════════ -->
+  <a class="fab-loja" href="loja.html">
+    <div class="fab-loja-icon"><i class="bi bi-cart3" style="font-size:1rem;color:var(--brown);"></i></div>
+    Loja
+  </a>
 
   <footer class="footer">
     <p>© <span id="ano"></span> G.O Obra Nova — Todos os direitos reservados</p>
@@ -1099,26 +741,16 @@
     try {
       const res = await fetch("oracoes.json");
       const data = await res.json();
-
       const lista = document.getElementById("oracoes-list");
-
       const categorias = [...new Set(data.map(o => o.categoria))];
-
       const catsContainer = document.createElement("div");
       catsContainer.className = "formacao-cats";
       catsContainer.id = "oracoes-cats";
-
       catsContainer.innerHTML = `<button class="formacao-cat active" data-cat="todos">Todos</button>`;
-
       categorias.forEach(cat => {
-        catsContainer.innerHTML += `
-          <button class="formacao-cat" data-cat="${cat}">
-            ${cat.charAt(0).toUpperCase() + cat.slice(1)}
-          </button>`;
+        catsContainer.innerHTML += `<button class="formacao-cat" data-cat="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`;
       });
-
       lista.before(catsContainer);
-
       function render(listaFiltrada) {
         lista.innerHTML = listaFiltrada.map(or => `
           <div class="accordion-item">
@@ -1131,8 +763,6 @@
             </div>
           </div>
         `).join("");
-
-        // reativar accordion
         document.querySelectorAll(".accordion-trigger").forEach(btn => {
           btn.addEventListener("click", () => {
             const item = btn.parentElement;
@@ -1142,27 +772,15 @@
           });
         });
       }
-
       render(data);
-
       catsContainer.addEventListener("click", e => {
         const btn = e.target.closest(".formacao-cat");
         if (!btn) return;
-
-        document.querySelectorAll("#oracoes-cats .formacao-cat")
-          .forEach(b => b.classList.remove("active"));
-
+        document.querySelectorAll("#oracoes-cats .formacao-cat").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-
         const cat = btn.dataset.cat;
-
-        if (cat === "todos") {
-          render(data);
-        } else {
-          render(data.filter(o => o.categoria === cat));
-        }
+        if (cat === "todos") { render(data); } else { render(data.filter(o => o.categoria === cat)); }
       });
-
     } catch (e) {
       document.getElementById("oracoes-list").innerHTML = "<p>Erro ao carregar orações 🙏</p>";
     }
@@ -1170,45 +788,29 @@
   carregarOracoes();
 
   async function enviarIntencao() {
-  const texto = document.getElementById("intencao").value;
-  const msg = document.getElementById("msg");
-
-  const btn = document.getElementById("btnEnviar");
-  const spinner = document.getElementById("spinner");
-  const btnText = document.getElementById("btnText");
-
-  if (!texto.trim()) {
-    msg.textContent = "Digite uma intenção primeiro 🙏";
-    return;
+    const texto = document.getElementById("intencao").value;
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("btnEnviar");
+    const spinner = document.getElementById("spinner");
+    const btnText = document.getElementById("btnText");
+    if (!texto.trim()) { msg.textContent = "Digite uma intenção primeiro 🙏"; return; }
+    btn.disabled = true;
+    spinner.style.display = "inline-block";
+    btnText.textContent = "Enviando...";
+    const url = "https://script.google.com/macros/s/AKfycbx0TxGEgC3deoClqAY8d0LKc1z7IO0XZlbJaPrDyeC2D74Q1SVtDIRpsfx-N5VKleeYLQ/exec";
+    const formData = new URLSearchParams();
+    formData.append("intencao", texto);
+    try {
+      await fetch(url, { method: "POST", body: formData });
+      document.getElementById("intencao").value = "";
+      msg.textContent = "Intenção enviada 🙏";
+    } catch (e) {
+      msg.textContent = "Erro ao enviar 😢";
+    }
+    btn.disabled = false;
+    spinner.style.display = "none";
+    btnText.textContent = "Enviar intenção";
   }
-
-  
-  btn.disabled = true;
-  spinner.style.display = "inline-block";
-  btnText.textContent = "Enviando...";
-
-  const url = "https://script.google.com/macros/s/AKfycbx0TxGEgC3deoClqAY8d0LKc1z7IO0XZlbJaPrDyeC2D74Q1SVtDIRpsfx-N5VKleeYLQ/exec";
-
-  const formData = new URLSearchParams();
-  formData.append("intencao", texto);
-
-  try {
-    await fetch(url, {
-      method: "POST",
-      body: formData
-    });
-
-    document.getElementById("intencao").value = "";
-    msg.textContent = "Intenção enviada 🙏";
-  } catch (e) {
-    msg.textContent = "Erro ao enviar 😢";
-  }
-
-  // 🔄 desativa loading
-  btn.disabled = false;
-  spinner.style.display = "none";
-  btnText.textContent = "Enviar intenção";
-}
 
   // ── Terços ──
   const misterios = {
@@ -1284,7 +886,7 @@
     document.getElementById('terco-' + tab.dataset.key).classList.add('active');
   });
 
-  // ── Formações — carrega do JSON ──
+  // ── Formações ──
   async function carregarFormacoes() {
     try {
       const res = await fetch('formacoes.json');
@@ -1294,87 +896,47 @@
       document.getElementById('cat-todos').innerHTML = '<p style="padding:20px;color:var(--text-soft);">Erro ao carregar formações 🙏</p>';
     }
   }
-
-
   function catLabel(cat) {
     const map = { missa: 'Santa Missa', santos: 'Vida dos Santos', oracao: 'Vida de Oração', fe: 'Fundamentos da Fé' };
     return map[cat] || cat;
   }
-
   function renderizarConteudo(conteudo) {
     return conteudo.map(item => {
-      if (item.tipo === 'intro') {
-        return `<p style="font-size:.9rem;line-height:1.85;color:var(--text-soft);margin-top:14px;">${item.texto}</p>`;
-      }
-      if (item.tipo === 'titulo') {
-        return `<h4>${item.texto}</h4>`;
-      }
-      if (item.tipo === 'texto') {
-        return `<p style="font-size:.88rem;line-height:1.85;color:var(--text-soft);margin-top:8px;">${item.texto}</p>`;
-      }
-      
-      if (item.tipo === 'destaque') {
-        return `<div class="highlight-box">${item.texto}</div>`;
-      }
+      if (item.tipo === 'intro') return `<p style="font-size:.9rem;line-height:1.85;color:var(--text-soft);margin-top:14px;">${item.texto}</p>`;
+      if (item.tipo === 'titulo') return `<h4>${item.texto}</h4>`;
+      if (item.tipo === 'texto') return `<p style="font-size:.88rem;line-height:1.85;color:var(--text-soft);margin-top:8px;">${item.texto}</p>`;
+      if (item.tipo === 'destaque') return `<div class="highlight-box">${item.texto}</div>`;
       if (item.tipo === 'lista') {
         return `<div class="step-list">${item.itens.map(i => {
           if (i.detalhe) {
-    return `
-      <div class="step-item" style="cursor:default;">
-        <div class="step-item-header" style="cursor:default;">
-          <span class="step-num">${i.num}</span>
-          <span class="step-texto">${i.texto}</span>
-        </div>
-        <div style="
-          margin-left:32px;
-          margin-bottom:10px;
-          padding:10px 12px;
-          background: var(--beige);
-          border-left: 3px solid var(--gold-light);
-          border-radius: 8px;
-          font-size:.84rem;
-          line-height:1.8;
-          color: var(--text-soft);
-        ">
-          ${i.detalhe}
-        </div>
-      </div>`;
-  }
-          return `
-            <div class="step-item" style="cursor:default;">
-              <div class="step-item-header" style="cursor:default;">
-                <span class="step-num">${i.num}</span>
-                <span class="step-texto">${i.texto}</span>
-              </div>
-            </div>`;
+            return `<div class="step-item" style="cursor:default;"><div class="step-item-header" style="cursor:default;"><span class="step-num">${i.num}</span><span class="step-texto">${i.texto}</span></div><div style="margin-left:32px;margin-bottom:10px;padding:10px 12px;background:var(--beige);border-left:3px solid var(--gold-light);border-radius:8px;font-size:.84rem;line-height:1.8;color:var(--text-soft);">${i.detalhe}</div></div>`;
+          }
+          return `<div class="step-item" style="cursor:default;"><div class="step-item-header" style="cursor:default;"><span class="step-num">${i.num}</span><span class="step-texto">${i.texto}</span></div></div>`;
         }).join('')}</div>`;
       }
       return '';
     }).join('');
   }
-
   function criarFormacaoCard(f) {
     const card = document.createElement('div');
     card.className = 'formacao-card';
     card.dataset.id = f.id;
     card.innerHTML = `
-    <div class="formacao-card-header">
-      <div class="formacao-meta">
-        <div class="formacao-cat-badge">${catLabel(f.cat)}</div>
-        <div class="formacao-title">${f.titulo}</div>
-        <div class="formacao-desc">${f.desc}</div>
+      <div class="formacao-card-header">
+        <div class="formacao-meta">
+          <div class="formacao-cat-badge">${catLabel(f.cat)}</div>
+          <div class="formacao-title">${f.titulo}</div>
+          <div class="formacao-desc">${f.desc}</div>
+        </div>
+        <span class="formacao-chevron">▾</span>
       </div>
-      <span class="formacao-chevron">▾</span>
-    </div>
-    <div class="formacao-content">
-      <span class="formacao-read-time">📖 Leitura: ${f.leitura}</span>
-      ${renderizarConteudo(f.conteudo)}
-    </div>
-  `;
+      <div class="formacao-content">
+        <span class="formacao-read-time">📖 Leitura: ${f.leitura}</span>
+        ${renderizarConteudo(f.conteudo)}
+      </div>`;
     card.querySelector('.formacao-card-header').addEventListener('click', () => card.classList.toggle('open'));
     return card;
   }
-
   function renderizarFormacoes(formacoes) {
     const todosPanel = document.getElementById('cat-todos');
     todosPanel.innerHTML = '';
@@ -1388,8 +950,6 @@
       if (panel) panel.appendChild(criarFormacaoCard(f));
     });
   }
-
-  // Filtros de categoria
   document.getElementById('formacao-cats').addEventListener('click', e => {
     const btn = e.target.closest('.formacao-cat');
     if (!btn) return;
@@ -1398,11 +958,9 @@
     btn.classList.add('active');
     document.getElementById('cat-' + btn.dataset.cat).classList.add('active');
   });
-
   carregarFormacoes();
 
   document.getElementById("ano").textContent = new Date().getFullYear();
   </script>
-  </div>
   </body>
   </html>

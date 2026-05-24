@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Admin — Lojinha Obra Nova</title>
+  <meta name="theme-color" content="#C9A84C" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #C9A84C; --gold-light: #E8C96B; --gold-dark: #8B6914;
+      --cream: #FAFAF7; --beige: #F5EDD6; --beige-dark: #EAD9B5;
+      --brown: #5C3D1E; --text: #3A2A0E; --text-soft: #7A6040; --white: #FFFFFF;
+      --red: #C0392B; --red-light: #FDECEA; --green: #27AE60; --green-light: #EAFAF1;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html,body { background:var(--cream); color:var(--text); font-family:'Lato',sans-serif; overflow-x:hidden; }
+    .container { width:100%; max-width:480px; margin:0 auto; padding-bottom:40px; }
+
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes pop { 0%{transform:scale(.8);opacity:0} 70%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
+
+    /* HEADER */
+    .page-header {
+      background:linear-gradient(135deg,var(--brown) 0%,#3a2008 100%);
+      padding:36px 24px 22px; position:relative; overflow:hidden;
+    }
+    .page-header::after { content:'✦'; position:absolute; right:20px; top:10px; font-size:5rem; color:rgba(255,255,255,.04); font-family:'Playfair Display',serif; }
+    .page-header h1 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--white); font-weight:700; display:flex; align-items:center; gap:10px; }
+    .page-header p { font-size:.8rem; color:rgba(255,255,255,.6); margin-top:4px; }
+    .header-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(201,168,76,.2); border:1px solid rgba(201,168,76,.4); border-radius:20px; padding:4px 10px; font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px; }
+
+    /* TABS */
+    .tabs { display:flex; background:var(--white); border-bottom:1.5px solid var(--beige-dark); position:sticky; top:0; z-index:50; }
+    .tab-btn { flex:1; padding:14px 8px; border:none; background:none; font-family:'Lato',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); cursor:pointer; border-bottom:2.5px solid transparent; margin-bottom:-1.5px; transition:all .2s; display:flex; align-items:center; justify-content:center; gap:6px; }
+    .tab-btn.active { color:var(--gold-dark); border-bottom-color:var(--gold); }
+    .tab-count { background:var(--gold); color:var(--white); border-radius:20px; padding:1px 7px; font-size:.6rem; }
+    .tab-panel { display:none; animation:fadeIn .3s ease; }
+    .tab-panel.active { display:block; }
+
+    /* FORM */
+    .form-body { padding:20px; }
+    .form-section-title { font-family:'Playfair Display',serif; font-size:.9rem; color:var(--brown); font-weight:600; margin-bottom:14px; padding-left:2px; display:flex; align-items:center; gap:8px; }
+    .form-section-title::before { content:''; display:inline-block; width:3px; height:16px; background:var(--gold); border-radius:2px; }
+
+    /* UPLOAD FOTO */
+    .foto-upload-area { width:100%; aspect-ratio:4/3; border-radius:16px; border:2px dashed var(--beige-dark); background:var(--beige); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:pointer; transition:all .2s; position:relative; overflow:hidden; margin-bottom:20px; }
+    .foto-upload-area:hover, .foto-upload-area.drag-over { border-color:var(--gold); background:#f8f0e0; }
+    .foto-upload-area .upload-icon { font-size:2.4rem; color:var(--gold-dark); }
+    .foto-upload-area p { font-size:.82rem; color:var(--text-soft); text-align:center; line-height:1.5; }
+    .foto-upload-area small { font-size:.7rem; color:var(--gold-dark); font-weight:700; }
+    .foto-upload-area input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; }
+    .foto-preview { position:absolute; inset:0; background-size:cover; background-position:center; border-radius:14px; }
+    .foto-preview-actions { position:absolute; top:10px; right:10px; display:flex; gap:6px; }
+    .foto-action-btn { width:32px; height:32px; border-radius:50%; border:none; background:rgba(0,0,0,.45); color:var(--white); font-size:.85rem; display:flex; align-items:center; justify-content:center; cursor:pointer; backdrop-filter:blur(4px); }
+    .foto-uploading { position:absolute; inset:0; background:rgba(92,61,30,.6); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-radius:14px; }
+    .foto-uploading p { font-size:.82rem; color:var(--white); font-weight:700; }
+    .progress-bar-wrap { width:70%; height:6px; background:rgba(255,255,255,.3); border-radius:3px; }
+    .progress-bar { height:100%; background:var(--gold-light); border-radius:3px; transition:width .3s; }
+
+    /* CAMPOS */
+    .field { margin-bottom:16px; }
+    .field label { display:block; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:6px; }
+    .field input, .field textarea, .field select { width:100%; background:var(--white); border:1.5px solid var(--beige-dark); border-radius:12px; padding:13px 14px; font-family:'Lato',sans-serif; font-size:.88rem; color:var(--text); outline:none; transition:border-color .2s,box-shadow .2s; -webkit-appearance:none; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,.15); }
+    .field textarea { resize:none; min-height:90px; line-height:1.6; }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    /* CHIPS */
+    .chips-input-wrap { background:var(--white); border:1.5px solid var(--beige-dark); border-radius:12px; padding:10px 12px; display:flex; flex-wrap:wrap; gap:7px; align-items:center; min-height:48px; cursor:text; transition:border-color .2s,box-shadow .2s; }
+    .chips-input-wrap:focus-within { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,.15); }
+    .chip-tag { background:var(--beige); border:1px solid var(--beige-dark); border-radius:20px; padding:4px 10px 4px 12px; font-size:.75rem; color:var(--brown); font-weight:700; display:flex; align-items:center; gap:5px; animation:pop .2s ease; }
+    .chip-tag button { background:none; border:none; color:var(--text-soft); cursor:pointer; font-size:.7rem; padding:0; line-height:1; display:flex; align-items:center; }
+    .chips-field-input { border:none; outline:none; background:none; font-family:'Lato',sans-serif; font-size:.85rem; color:var(--text); min-width:80px; flex:1; padding:2px 4px; }
+    .chips-hint { font-size:.7rem; color:var(--text-soft); margin-top:5px; }
+
+    /* TOGGLE */
+    .toggle-row { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--beige-dark); border-radius:12px; padding:14px 16px; margin-bottom:12px; }
+    .toggle-info h4 { font-size:.88rem; color:var(--brown); font-weight:700; }
+    .toggle-info p { font-size:.75rem; color:var(--text-soft); margin-top:2px; }
+    .toggle { width:46px; height:26px; background:var(--beige-dark); border-radius:13px; position:relative; cursor:pointer; border:none; transition:background .25s; flex-shrink:0; }
+    .toggle.on { background:var(--gold); }
+    .toggle::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--white); transition:transform .25s; box-shadow:0 1px 4px rgba(0,0,0,.2); }
+    .toggle.on::after { transform:translateX(20px); }
+
+    /* BTN SALVAR */
+    .btn-salvar { width:100%; padding:16px; background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 100%); color:var(--white); border:none; border-radius:14px; font-family:'Lato',sans-serif; font-size:.95rem; font-weight:700; letter-spacing:.06em; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 16px rgba(201,168,76,.4); transition:opacity .2s,transform .15s; margin-top:24px; }
+    .btn-salvar:active { opacity:.88; transform:scale(.98); }
+    .btn-salvar:disabled { opacity:.6; cursor:not-allowed; }
+
+    /* LISTA */
+    .lista-body { padding:20px; }
+    .lista-empty { text-align:center; padding:48px 20px; color:var(--text-soft); }
+    .lista-empty i { font-size:3rem; color:var(--beige-dark); display:block; margin-bottom:14px; }
+    .lista-empty p { font-size:.88rem; line-height:1.6; }
+    .produto-admin-card { background:var(--white); border-radius:16px; border:1px solid var(--beige-dark); margin-bottom:14px; overflow:hidden; box-shadow:0 2px 12px rgba(139,105,20,.07); display:flex; flex-direction:column; animation:fadeIn .3s ease both; }
+    .pad-top { display:flex; }
+    .pad-thumb { width:90px; flex-shrink:0; background:linear-gradient(135deg,var(--beige),var(--beige-dark)); display:flex; align-items:center; justify-content:center; font-size:2.2rem; background-size:cover; background-position:center; min-height:90px; }
+    .pad-info { flex:1; padding:14px; display:flex; flex-direction:column; }
+    .pad-cat { font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-dark); }
+    .pad-nome { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--brown); font-weight:600; margin-top:2px; line-height:1.3; }
+    .pad-preco { font-size:.88rem; font-weight:700; color:var(--gold-dark); margin-top:4px; }
+    .pad-badges { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
+    .pad-badge { font-size:.6rem; font-weight:700; padding:2px 8px; border-radius:20px; letter-spacing:.06em; }
+    .pad-badge.disponivel { background:var(--green-light); color:var(--green); }
+    .pad-badge.esgotado { background:#f5f5f5; color:#999; }
+    .pad-badge.destaque { background:#FEF9EC; color:var(--gold-dark); }
+    .pad-actions { display:flex; gap:8px; padding:10px 14px 14px; border-top:1px solid var(--beige); }
+    .pad-btn { flex:1; padding:9px; border-radius:10px; border:1.5px solid var(--beige-dark); background:var(--beige); font-family:'Lato',sans-serif; font-size:.75rem; font-weight:700; color:var(--text-soft); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px; transition:all .2s; }
+    .pad-btn:active { background:var(--beige-dark); }
+    .pad-btn.danger { color:var(--red); border-color:#f5c6c2; background:var(--red-light); }
+
+    /* TOAST */
+    .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--brown); color:var(--white); border-radius:12px; padding:12px 20px; font-size:.85rem; font-weight:700; display:flex; align-items:center; gap:8px; box-shadow:0 8px 24px rgba(0,0,0,.25); z-index:999; transition:transform .35s cubic-bezier(.25,1,.3,1),opacity .35s; opacity:0; white-space:nowrap; }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+    .toast.success i { color:#5EDB8C; }
+    .toast.error i { color:#F97676; }
+
+    /* CONFIRM */
+    .confirm-overlay { display:none; position:fixed; inset:0; background:rgba(58,42,14,.5); z-index:200; align-items:center; justify-content:center; backdrop-filter:blur(2px); }
+    .confirm-overlay.open { display:flex; animation:fadeIn .2s ease; }
+    .confirm-box { background:var(--white); border-radius:20px; padding:28px 24px; width:calc(100% - 48px); max-width:360px; text-align:center; animation:pop .25s ease; }
+    .confirm-box i { font-size:2.5rem; color:var(--red); display:block; margin-bottom:14px; }
+    .confirm-box h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--brown); margin-bottom:8px; }
+    .confirm-box p { font-size:.82rem; color:var(--text-soft); line-height:1.6; }
+    .confirm-btns { display:flex; gap:10px; margin-top:20px; }
+    .confirm-btns button { flex:1; padding:13px; border-radius:12px; border:none; font-family:'Lato',sans-serif; font-size:.88rem; font-weight:700; cursor:pointer; }
+    .btn-cancel { background:var(--beige); color:var(--text-soft); border:1.5px solid var(--beige-dark) !important; }
+    .btn-delete { background:var(--red); color:var(--white); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <div class="header-badge"><i class="bi bi-shield-lock"></i> Área Restrita</div>
+    <h1><i class="bi bi-shop-window"></i> Admin — Loja</h1>
+    <p>Gerencie os produtos da lojinha do Obra Nova</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="cadastrar"><i class="bi bi-plus-circle"></i> Cadastrar</button>
+    <button class="tab-btn" data-tab="produtos"><i class="bi bi-grid"></i> Produtos <span class="tab-count" id="tabCount">0</span></button>
+  </div>
+
+  <!-- TAB CADASTRAR -->
+  <div class="tab-panel active" id="tab-cadastrar">
+    <div class="form-body">
+
+      <div class="form-section-title">Foto do produto</div>
+      <div class="foto-upload-area" id="fotoUpload">
+        <i class="bi bi-image upload-icon"></i>
+        <p>Toque para escolher uma foto<br>ou arraste aqui</p>
+        <small>JPG, PNG ou WEBP · máx. 5 MB</small>
+        <input type="file" accept="image/*" id="fotoInput" />
+        <div class="foto-preview" id="fotoPreview" style="display:none"></div>
+        <div class="foto-preview-actions" id="fotoPreviewActions" style="display:none">
+          <button class="foto-action-btn" id="fotoRemoveBtn"><i class="bi bi-trash"></i></button>
+        </div>
+        <div class="foto-uploading" id="fotoUploading" style="display:none">
+          <p>Enviando foto…</p>
+          <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <div class="form-section-title" style="margin-top:4px">Informações</div>
+
+      <div class="field">
+        <label>Nome do produto *</label>
+        <input type="text" id="fNome" placeholder="Ex: Terço de Nossa Senhora" maxlength="80" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Categoria *</label>
+          <select id="fCat">
+            <option value="">Selecionar…</option>
+            <option value="devocionais">📿 Devocionais</option>
+            <option value="livros">📖 Livros</option>
+            <option value="vestuario">👕 Vestuário</option>
+            <option value="papelaria">✏️ Papelaria</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preço (R$) *</label>
+          <input type="number" id="fPreco" placeholder="0,00" min="0" step="0.01" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Descrição *</label>
+        <textarea id="fDesc" placeholder="Descreva o produto: material, tamanho, o que acompanha…"></textarea>
+      </div>
+      <div class="field">
+        <label>Informações rápidas (chips)</label>
+        <div class="chips-input-wrap" id="chipsWrap">
+          <input class="chips-field-input" id="chipInput" placeholder="Ex: Artesanal" maxlength="30" />
+        </div>
+        <p class="chips-hint">Digite e pressione <strong>Enter</strong> ou <strong>vírgula</strong> para adicionar</p>
+      </div>
+
+      <div class="form-section-title" style="margin-top:4px">Configurações</div>
+      <div class="field">
+        <label>Badge de destaque</label>
+        <input type="text" id="fDestaque" placeholder="Ex: Novidade, Mais pedido (deixe vazio para nenhum)" maxlength="20" />
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <h4>Disponível para venda</h4>
+          <p>Desative para marcar como esgotado</p>
+        </div>
+        <button class="toggle on" id="toggleDisp"></button>
+      </div>
+
+      <button class="btn-salvar" id="btnSalvar">
+        <i class="bi bi-check-circle"></i>
+        <span id="btnSalvarLabel">Salvar produto</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- TAB PRODUTOS -->
+  <div class="tab-panel" id="tab-produtos">
+    <div class="lista-body" id="listaBody">
+      <div class="lista-empty"><i class="bi bi-arrow-clockwise" style="animation:spin 1s linear infinite"></i><p>Carregando…</p></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"><i class="bi bi-check-circle-fill"></i><span id="toastMsg"></span></div>
+
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <i class="bi bi-trash3"></i>
+    <h3>Remover produto?</h3>
+    <p>Esta ação não pode ser desfeita.</p>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn-delete" id="btnConfirmDelete">Remover</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<!-- FIREBASE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ── CONFIG ──
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6BZ4XLrSeycRsTD1ZM5hSdSksZZWVINE",
+    authDomain: "lojaobra-d9982.firebaseapp.com",
+    projectId: "lojaobra-d9982",
+    storageBucket: "lojaobra-d9982.firebasestorage.app",
+    messagingSenderId: "540660133178",
+    appId: "1:540660133178:web:7dfa2737fcbd98eed33403"
+  };
+  const CLOUDINARY_CLOUD = "da77tfiqb";
+  const CLOUDINARY_PRESET = "ml_default";
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+  const col = collection(db, "produtos");
+
+  // ── STATE ──
+  let chips = [];
+  let fotoUrl = null;
+  let editingId = null;
+  let disponivel = true;
+  let deleteTargetId = null;
+  let produtosCache = [];
+
+  // ── TABS ──
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+    });
+  });
+
+  // ── FIRESTORE LISTENER (tempo real) ──
+  onSnapshot(col, snap => {
+    produtosCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    produtosCache.sort((a, b) => (b.criadoEm?.seconds || 0) - (a.criadoEm?.seconds || 0));
+    document.getElementById('tabCount').textContent = produtosCache.length;
+    renderLista();
+  });
+
+  // ── FOTO: CLOUDINARY UPLOAD ──
+  const fotoInput   = document.getElementById('fotoInput');
+  const fotoPreview = document.getElementById('fotoPreview');
+  const fotoPreviewActions = document.getElementById('fotoPreviewActions');
+  const fotoUploading = document.getElementById('fotoUploading');
+  const fotoUpload  = document.getElementById('fotoUpload');
+  const progressBar = document.getElementById('progressBar');
+
+  fotoInput.addEventListener('change', e => { if (e.target.files[0]) uploadCloudinary(e.target.files[0]); });
+
+  fotoUpload.addEventListener('dragover', e => { e.preventDefault(); fotoUpload.classList.add('drag-over'); });
+  fotoUpload.addEventListener('dragleave', () => fotoUpload.classList.remove('drag-over'));
+  fotoUpload.addEventListener('drop', e => {
+    e.preventDefault(); fotoUpload.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) uploadCloudinary(f);
+  });
+
+  async function uploadCloudinary(file) {
+    if (file.size > 5 * 1024 * 1024) { showToast('Foto muito grande (máx. 5 MB)', 'error'); return; }
+    fotoUploading.style.display = 'flex';
+    progressBar.style.width = '10%';
+
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', CLOUDINARY_PRESET);
+
+    try {
+      // Simula progresso visual
+      let prog = 10;
+      const iv = setInterval(() => { prog = Math.min(prog + 10, 80); progressBar.style.width = prog + '%'; }, 200);
+
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method:'POST', body:fd });
+      clearInterval(iv);
+      progressBar.style.width = '100%';
+
+      if (!res.ok) throw new Error('Erro Cloudinary');
+      const data = await res.json();
+      fotoUrl = data.secure_url;
+
+      fotoPreview.style.backgroundImage = `url(${fotoUrl})`;
+      fotoPreview.style.display = 'block';
+      fotoPreviewActions.style.display = 'flex';
+      hideUploadPlaceholder();
+      showToast('Foto enviada!', 'success');
+    } catch(e) {
+      showToast('Erro ao enviar foto', 'error');
+    } finally {
+      fotoUploading.style.display = 'none';
+      progressBar.style.width = '0%';
+    }
+  }
+
+  document.getElementById('fotoRemoveBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    fotoUrl = null;
+    fotoPreview.style.display = 'none';
+    fotoPreviewActions.style.display = 'none';
+    fotoInput.value = '';
+    showUploadPlaceholder();
+  });
+
+  function hideUploadPlaceholder() {
+    fotoUpload.querySelector('.upload-icon').style.display = 'none';
+    fotoUpload.querySelectorAll('p,small').forEach(el => el.style.display = 'none');
+  }
+  function showUploadPlaceholder() {
+    fotoUpload.querySelector('.upload-icon').style.display = '';
+    fotoUpload.querySelectorAll('p,small').forEach(el => el.style.display = '');
+  }
+
+  // ── CHIPS ──
+  const chipInput = document.getElementById('chipInput');
+  const chipsWrap = document.getElementById('chipsWrap');
+
+  chipInput.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ',') && chipInput.value.trim()) {
+      e.preventDefault(); addChip(chipInput.value.trim().replace(/,/g,'')); chipInput.value = '';
+    }
+    if (e.key === 'Backspace' && !chipInput.value && chips.length) removeChip(chips[chips.length-1]);
+  });
+  chipInput.addEventListener('blur', () => { if(chipInput.value.trim()){ addChip(chipInput.value.trim()); chipInput.value=''; }});
+  chipsWrap.addEventListener('click', () => chipInput.focus());
+
+  function addChip(text) { if(!text||chips.includes(text)||chips.length>=6) return; chips.push(text); renderChips(); }
+  function removeChip(text) { chips = chips.filter(c=>c!==text); renderChips(); }
+  window.removeChip = removeChip;
+
+  function renderChips() {
+    chipsWrap.querySelectorAll('.chip-tag').forEach(el => el.remove());
+    chips.forEach(c => {
+      const tag = document.createElement('div');
+      tag.className = 'chip-tag';
+      tag.innerHTML = `${c} <button type="button" onclick="removeChip('${c}')"><i class="bi bi-x"></i></button>`;
+      chipsWrap.insertBefore(tag, chipInput);
+    });
+  }
+
+  // ── TOGGLE DISPONÍVEL ──
+  document.getElementById('toggleDisp').addEventListener('click', function() {
+    disponivel = !disponivel; this.classList.toggle('on', disponivel);
+  });
+
+  // ── SALVAR no FIRESTORE ──
+  const btnSalvar = document.getElementById('btnSalvar');
+  btnSalvar.addEventListener('click', salvar);
+
+  const catLabels = { devocionais:'Devocional', livros:'Livros', vestuario:'Vestuário', papelaria:'Papelaria' };
+
+  async function salvar() {
+    const nome   = document.getElementById('fNome').value.trim();
+    const cat    = document.getElementById('fCat').value;
+    const preco  = parseFloat(document.getElementById('fPreco').value);
+    const desc   = document.getElementById('fDesc').value.trim();
+    const destaque = document.getElementById('fDestaque').value.trim();
+
+    if (!nome)          { showToast('Informe o nome do produto', 'error'); return; }
+    if (!cat)           { showToast('Selecione uma categoria', 'error'); return; }
+    if (!preco||preco<=0){ showToast('Informe um preço válido', 'error'); return; }
+    if (!desc)          { showToast('Adicione uma descrição', 'error'); return; }
+
+    btnSalvar.disabled = true;
+    btnSalvar.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando…';
+
+    const dados = {
+      nome, cat, catLabel: catLabels[cat],
+      preco, desc,
+      chips: [...chips],
+      destaque: destaque || null,
+      disponivel,
+      foto: fotoUrl || null
+    };
+
+    try {
+      if (editingId) {
+        await updateDoc(doc(db, 'produtos', editingId), dados);
+        showToast('Produto atualizado!', 'success');
+      } else {
+        dados.criadoEm = serverTimestamp();
+        await addDoc(col, dados);
+        showToast('Produto salvo com sucesso!', 'success');
+      }
+      resetForm();
+    } catch(e) {
+      showToast('Erro ao salvar. Tente novamente.', 'error');
+      console.error(e);
+    } finally {
+      btnSalvar.disabled = false;
+      document.getElementById('btnSalvarLabel').textContent = 'Salvar produto';
+      btnSalvar.innerHTML = '<i class="bi bi-check-circle"></i> <span id="btnSalvarLabel">Salvar produto</span>';
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('fNome').value = '';
+    document.getElementById('fCat').value = '';
+    document.getElementById('fPreco').value = '';
+    document.getElementById('fDesc').value = '';
+    document.getElementById('fDestaque').value = '';
+    chips = []; renderChips();
+    fotoUrl = null;
+    fotoPreview.style.display = 'none';
+    fotoPreviewActions.style.display = 'none';
+    fotoInput.value = '';
+    showUploadPlaceholder();
+    disponivel = true;
+    document.getElementById('toggleDisp').classList.add('on');
+    editingId = null;
+  }
+
+  // ── RENDER LISTA ──
+  function renderLista() {
+    const body = document.getElementById('listaBody');
+    if (!produtosCache.length) {
+      body.innerHTML = `<div class="lista-empty"><i class="bi bi-box-seam"></i><p>Nenhum produto cadastrado ainda.<br>Vá em <strong>Cadastrar</strong> para adicionar o primeiro!</p></div>`;
+      return;
+    }
+    const emojiMap = { devocionais:'📿', livros:'📖', vestuario:'👕', papelaria:'✏️' };
+    body.innerHTML = '';
+    produtosCache.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'produto-admin-card';
+      card.style.animationDelay = `${i*50}ms`;
+      const thumbStyle = p.foto ? `background-image:url(${p.foto});background-size:cover;background-position:center;font-size:0` : '';
+      card.innerHTML = `
+        <div class="pad-top">
+          <div class="pad-thumb" style="${thumbStyle}">${p.foto?'':(emojiMap[p.cat]||'🛍️')}</div>
+          <div class="pad-info">
+            <div class="pad-cat">${p.catLabel||''}</div>
+            <div class="pad-nome">${p.nome}</div>
+            <div class="pad-preco">R$ ${Number(p.preco).toFixed(2).replace('.',',')}</div>
+            <div class="pad-badges">
+              ${p.disponivel?'<span class="pad-badge disponivel">✓ Disponível</span>':'<span class="pad-badge esgotado">✗ Esgotado</span>'}
+              ${p.destaque?`<span class="pad-badge destaque">★ ${p.destaque}</span>`:''}
+            </div>
+          </div>
+        </div>
+        <div class="pad-actions">
+          <button class="pad-btn" onclick="editarProduto('${p.id}')"><i class="bi bi-pencil"></i> Editar</button>
+          <button class="pad-btn" onclick="toggleDisp('${p.id}')">${p.disponivel?'<i class="bi bi-slash-circle"></i> Esgotado':'<i class="bi bi-check2-circle"></i> Ativar'}</button>
+          <button class="pad-btn danger" onclick="confirmarDelete('${p.id}')"><i class="bi bi-trash"></i></button>
+        </div>`;
+      body.appendChild(card);
+    });
+  }
+
+  // ── EDITAR ──
+  window.editarProduto = function(id) {
+    const p = produtosCache.find(x => x.id === id);
+    if (!p) return;
+    editingId = id;
+    document.getElementById('fNome').value = p.nome;
+    document.getElementById('fCat').value = p.cat;
+    document.getElementById('fPreco').value = p.preco;
+    document.getElementById('fDesc').value = p.desc;
+    document.getElementById('fDestaque').value = p.destaque || '';
+    chips = [...(p.chips||[])]; renderChips();
+    disponivel = p.disponivel;
+    document.getElementById('toggleDisp').classList.toggle('on', disponivel);
+    if (p.foto) {
+      fotoUrl = p.foto;
+      fotoPreview.style.backgroundImage = `url(${p.foto})`;
+      fotoPreview.style.display = 'block';
+      fotoPreviewActions.style.display = 'flex';
+      hideUploadPlaceholder();
+    }
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelector('[data-tab="cadastrar"]').classList.add('active');
+    document.getElementById('tab-cadastrar').classList.add('active');
+    btnSalvar.innerHTML = '<i class="bi bi-arrow-repeat"></i> <span id="btnSalvarLabel">Atualizar produto</span>';
+    window.scrollTo({top:0,behavior:'smooth'});
+    showToast('Editando produto…');
+  };
+
+  // ── TOGGLE DISPONÍVEL ──
+  window.toggleDisp = async function(id) {
+    const p = produtosCache.find(x => x.id === id);
+    if (!p) return;
+    await updateDoc(doc(db, 'produtos', id), { disponivel: !p.disponivel });
+    showToast(p.disponivel ? 'Marcado como esgotado' : 'Produto ativado!', 'success');
+  };
+
+  // ── DELETE ──
+  window.confirmarDelete = function(id) {
+    deleteTargetId = id;
+    document.getElementById('confirmOverlay').classList.add('open');
+  };
+  window.closeConfirm = function() {
+    deleteTargetId = null;
+    document.getElementById('confirmOverlay').classList.remove('open');
+  };
+  document.getElementById('btnConfirmDelete').addEventListener('click', async () => {
+    if (!deleteTargetId) return;
+    await deleteDoc(doc(db, 'produtos', deleteTargetId));
+    closeConfirm();
+    showToast('Produto removido', 'error');
+  });
+  document.getElementById('confirmOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('confirmOverlay')) closeConfirm();
+  });
+
+  // ── TOAST ──
+  let toastTimer;
+  window.showToast = function(msg, type='success') {
+    const toast = document.getElementById('toast');
+    const icon  = toast.querySelector('i');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.className = `toast ${type}`;
+    icon.className = type==='success' ? 'bi bi-check-circle-fill' : type==='error' ? 'bi bi-x-circle-fill' : 'bi bi-pencil-fill';
+    requestAnimationFrame(() => toast.classList.add('show'));
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+  };
+</script>
+</body>
+</html>
