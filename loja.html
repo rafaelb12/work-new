@@ -15,16 +15,14 @@
       --gold: #C9A84C; --gold-light: #E8C96B; --gold-dark: #8B6914;
       --cream: #FAFAF7; --beige: #F5EDD6; --beige-dark: #EAD9B5;
       --brown: #5C3D1E; --text: #3A2A0E; --text-soft: #7A6040; --white: #FFFFFF;
-      --nav-height: 70px;
     }
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
     html,body { background:var(--cream); color:var(--text); font-family:'Lato',sans-serif; overflow-x:hidden; }
-    .container { width:100%; max-width:480px; margin:0 auto; padding-bottom:calc(var(--nav-height) + 16px); }
+    .container { width:100%; max-width:480px; margin:0 auto; padding-bottom:32px; }
 
     @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
     @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    @keyframes spin { to{transform:rotate(360deg)} }
 
     .section-header { background:linear-gradient(135deg,var(--beige) 0%,var(--cream) 100%); padding:36px 24px 20px; border-bottom:1px solid var(--beige-dark); position:relative; animation:fadeIn .35s ease; }
     .section-header::after { content:''; position:absolute; bottom:-1px; left:24px; right:24px; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
@@ -37,12 +35,6 @@
     .loja-banner-text h3 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--white); font-weight:600; }
     .loja-banner-text p { font-size:.75rem; color:rgba(255,255,255,.7); margin-top:3px; line-height:1.5; }
 
-    .cats-wrap { padding:16px 20px 0; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
-    .cats-wrap::-webkit-scrollbar { display:none; }
-    .cats-row { display:flex; gap:8px; flex-wrap:nowrap; }
-    .cat-btn { flex-shrink:0; padding:8px 16px; border-radius:20px; border:1.5px solid var(--beige-dark); background:var(--white); font-size:.78rem; font-weight:700; color:var(--text-soft); cursor:pointer; transition:all .2s; font-family:'Lato',sans-serif; white-space:nowrap; }
-    .cat-btn.active { background:var(--gold); border-color:var(--gold); color:var(--white); }
-
     .produtos-body { padding:16px 20px 0; animation:fadeIn .35s ease; }
     .produtos-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
 
@@ -52,7 +44,7 @@
     .skel-body { padding:12px; }
     .skel-line { height:10px; margin-bottom:8px; border-radius:4px; }
 
-    .produto-card { background:var(--white); border-radius:16px; border:1px solid var(--beige-dark); overflow:hidden; box-shadow:0 2px 12px rgba(139,105,20,.07); cursor:pointer; transition:transform .2s,box-shadow .2s; animation:fadeIn .35s ease both; display:flex; flex-direction:column; }
+    .produto-card { background:var(--white); border-radius:16px; border:1px solid var(--beige-dark); overflow:hidden; box-shadow:0 2px 12px rgba(139,105,20,.07); cursor:pointer; transition:transform .2s; animation:fadeIn .35s ease both; display:flex; flex-direction:column; }
     .produto-card:active { transform:scale(.97); }
     .produto-img { width:100%; aspect-ratio:1/1; background:linear-gradient(135deg,var(--beige),var(--beige-dark)); display:flex; align-items:center; justify-content:center; font-size:3rem; position:relative; overflow:hidden; }
     .produto-img img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -66,7 +58,7 @@
     .produto-btn:active { opacity:.85; }
     .produto-btn.esgotado { background:#e0e0e0; color:#999; cursor:not-allowed; }
 
-    .lista-empty { text-align:center; padding:48px 20px; color:var(--text-soft); }
+    .lista-empty { text-align:center; padding:48px 20px; color:var(--text-soft); grid-column:1/-1; }
     .lista-empty i { font-size:3rem; color:var(--beige-dark); display:block; margin-bottom:14px; }
     .lista-empty p { font-size:.88rem; line-height:1.6; }
 
@@ -92,13 +84,6 @@
     .modal-actions { margin-top:20px; display:flex; flex-direction:column; gap:10px; }
     .modal-btn-whatsapp { width:100%; padding:15px; background:#25D366; color:var(--white); border:none; border-radius:14px; font-family:'Lato',sans-serif; font-size:.92rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.3); }
     .modal-btn-close { width:100%; padding:13px; background:var(--beige); color:var(--text-soft); border:1.5px solid var(--beige-dark); border-radius:14px; font-family:'Lato',sans-serif; font-size:.88rem; font-weight:700; cursor:pointer; }
-
-    .bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-height); background:var(--white); border-top:1px solid var(--beige-dark); display:flex; align-items:center; justify-content:space-around; z-index:100; max-width:480px; margin:0 auto; }
-    .nav-item { display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 12px; cursor:pointer; flex:1; }
-    .nav-item i { font-size:1.3rem; color:var(--text-soft); }
-    .nav-item span { font-size:.6rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); }
-    .nav-item.active i { color:var(--gold); }
-    .nav-item.active span { color:var(--gold-dark); }
   </style>
 </head>
 <body>
@@ -117,7 +102,6 @@
     </div>
   </div>
 
-
   <div class="produtos-body">
     <div class="produtos-grid" id="produtosGrid">
       <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:50%"></div><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
@@ -133,8 +117,6 @@
   </div>
 
 </div>
-
-
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
@@ -154,51 +136,38 @@
 </div>
 
 <script>
-  // ══════════════════════════════════════════════
-  //  ⚙️  CONFIGURAÇÃO — edite apenas aqui
-  // ══════════════════════════════════════════════
-  const SUPABASE_URL  = "https://awbydbewgzvrunenayzc.supabase.co";
-  const SUPABASE_KEY  = "sb_publishable_kEbVHEOLsNevkAojNZPP9A_p_H1ykkl";
-  const WHATSAPP     = "5588997081540";             // número com DDI+DDD, sem espaços
-  // ══════════════════════════════════════════════
+  const SUPABASE_URL = "https://awbydbewgzvrunenayzc.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_kEbVHEOLsNevkAojNZPP9A_p_H1ykkl";
+  const WHATSAPP     = "5588997081540";
 
   const emojiMap = { devocionais:'📿', livros:'📖', vestuario:'👕', papelaria:'✏️' };
   let todosOsProdutos = [];
 
-
   async function carregarProdutos() {
     try {
       const r = await fetch(`${SUPABASE_URL}/rest/v1/produtos?order=criado_em.desc`, {
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`
-        }
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
       });
       if (!r.ok) throw new Error(await r.text());
       todosOsProdutos = await r.json();
       renderGrid();
     } catch(e) {
       console.error('Erro ao carregar produtos:', e);
-      document.getElementById('produtosGrid').innerHTML = `<div class="lista-empty" style="grid-column:1/-1"><i class="bi bi-wifi-off"></i><p>Erro ao carregar produtos.</p></div>`;
+      document.getElementById('produtosGrid').innerHTML = `<div class="lista-empty"><i class="bi bi-wifi-off"></i><p>Erro ao carregar produtos.</p></div>`;
     }
   }
 
   carregarProdutos();
-
-  // Recarrega a cada 30 segundos para pegar novos produtos
   setInterval(carregarProdutos, 30000);
 
-  function renderGrid(cat) {
+  function renderGrid() {
     const grid = document.getElementById('produtosGrid');
-    const lista = todosOsProdutos;
-
-    if (!lista.length) {
-      grid.innerHTML = `<div class="lista-empty" style="grid-column:1/-1"><i class="bi bi-box-seam"></i><p>Nenhum produto nessa categoria ainda.\n (Em desenvolvimento)</p></div>`;
+    if (!todosOsProdutos.length) {
+      grid.innerHTML = `<div class="lista-empty"><i class="bi bi-box-seam"></i><p>Nenhum produto cadastrado ainda.</p></div>`;
       return;
     }
-
     grid.innerHTML = '';
-    lista.forEach((p, i) => {
+    todosOsProdutos.forEach((p, i) => {
       const card = document.createElement('div');
       card.className = 'produto-card';
       card.style.animationDelay = `${i*60}ms`;
@@ -226,31 +195,25 @@
     });
   }
 
-  // MODAL
   window.openModal = function(id) {
     const p = todosOsProdutos.find(x => x.id == id);
     if (!p) return;
-
     const imgEl = document.getElementById('modalImg');
     imgEl.innerHTML = p.foto
       ? `<img src="${p.foto}" alt="${p.nome}" />`
       : `<span>${emojiMap[p.cat]||'🛍️'}</span>`;
-
     document.getElementById('modalCat').textContent   = (p.cat_label||'').toUpperCase();
     document.getElementById('modalNome').textContent  = p.nome;
     document.getElementById('modalPreco').textContent = `R$ ${Number(p.preco).toFixed(2).replace('.',',')}`;
     document.getElementById('modalDesc').textContent  = p.descricao;
-
     document.getElementById('modalChips').innerHTML = (Array.isArray(p.chips) ? p.chips : [])
       .map(c => `<div class="modal-info-chip"><i class="bi bi-check2"></i> ${c}</div>`).join('');
-
     const msg = encodeURIComponent(`Olá! Gostaria de pedir: *${p.nome}* (R$ ${Number(p.preco).toFixed(2).replace('.',',')})`);
     document.getElementById('modalActions').innerHTML = p.disponivel
       ? `<a href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" class="modal-btn-whatsapp"><i class="bi bi-whatsapp"></i> Pedir pelo WhatsApp</a>`
       : `<button class="produto-btn esgotado" style="padding:15px;border-radius:14px;font-size:.92rem;" disabled><i class="bi bi-x-circle"></i> Produto esgotado</button>`;
     document.getElementById('modalActions').innerHTML +=
       `<button class="modal-btn-close" onclick="closeModal()">Fechar</button>`;
-
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   };
