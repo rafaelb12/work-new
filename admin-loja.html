@@ -415,10 +415,8 @@
     if (!cat)           { showToast('Selecione uma categoria', 'error'); return; }
     if (!preco||preco<=0){ showToast('Informe um preço válido', 'error'); return; }
     if (!desc)          { showToast('Adicione uma descrição', 'error'); return; }
-
-    btnSalvar.disabled = true;
-    btnSalvar.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando…';
-
+    btnSalvar.disabled = false;
+    btnSalvar.innerHTML = '<i class="bi bi-check-circle"></i> <span id="btnSalvarLabel">Salvar produto</span>';
     const dados = {
       nome, cat, catLabel: catLabels[cat],
       preco, desc,
@@ -440,7 +438,7 @@
       resetForm();
     } catch(e) {
       showToast('Erro ao salvar. Tente novamente.', 'error');
-      console.error(e);
+      console.error('ERRO SALVAR:', e);
     } finally {
       btnSalvar.disabled = false;
       document.getElementById('btnSalvarLabel').textContent = 'Salvar produto';
