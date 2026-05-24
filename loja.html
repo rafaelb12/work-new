@@ -51,7 +51,6 @@
     .produto-badge { position:absolute; top:8px; left:8px; background:var(--gold); color:var(--white); font-size:.6rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:20px; }
     .produto-badge.esgotado { background:#999; }
     .produto-info { padding:12px 14px 14px; flex:1; display:flex; flex-direction:column; }
-    .produto-cat { font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:4px; }
     .produto-nome { font-family:'Playfair Display',serif; font-size:.88rem; color:var(--brown); font-weight:600; line-height:1.3; flex:1; }
     .produto-preco { font-size:1rem; font-weight:700; color:var(--gold-dark); margin-top:8px; }
     .produto-btn { margin-top:10px; width:100%; padding:9px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); color:var(--white); border:none; border-radius:10px; font-family:'Lato',sans-serif; font-size:.78rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; transition:opacity .2s; }
@@ -74,7 +73,6 @@
     .modal-img { width:100%; aspect-ratio:4/3; background:linear-gradient(135deg,var(--beige),var(--beige-dark)); display:flex; align-items:center; justify-content:center; font-size:5rem; margin-top:16px; overflow:hidden; }
     .modal-img img { width:100%; height:100%; object-fit:cover; }
     .modal-body { padding:20px 24px 24px; }
-    .modal-cat { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:6px; }
     .modal-nome { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--brown); font-weight:700; line-height:1.2; }
     .modal-preco { font-size:1.3rem; font-weight:700; color:var(--gold-dark); margin-top:12px; }
     .modal-divider { height:1px; background:var(--beige-dark); margin:16px 0; }
@@ -104,10 +102,10 @@
 
   <div class="produtos-body">
     <div class="produtos-grid" id="produtosGrid">
-      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:50%"></div><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
-      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:50%"></div><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
-      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:50%"></div><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
-      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:50%"></div><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-img"></div><div class="skel-body"><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:40%;margin-top:12px"></div></div></div>
     </div>
   </div>
 
@@ -124,7 +122,6 @@
     <div class="modal-handle"></div>
     <div class="modal-img" id="modalImg"></div>
     <div class="modal-body">
-      <div class="modal-cat" id="modalCat"></div>
       <div class="modal-nome" id="modalNome"></div>
       <div class="modal-preco" id="modalPreco"></div>
       <div class="modal-divider"></div>
@@ -181,7 +178,6 @@
           ${!p.disponivel ? `<div class="produto-badge esgotado">Esgotado</div>` : ''}
         </div>
         <div class="produto-info">
-          <div class="produto-cat">${p.cat_label||''}</div>
           <div class="produto-nome">${p.nome}</div>
           <div class="produto-preco">R$ ${Number(p.preco).toFixed(2).replace('.',',')}</div>
           <button class="produto-btn ${!p.disponivel?'esgotado':''}" ${!p.disponivel?'disabled':''}>
@@ -202,13 +198,12 @@
     imgEl.innerHTML = p.foto
       ? `<img src="${p.foto}" alt="${p.nome}" />`
       : `<span>${emojiMap[p.cat]||'🛍️'}</span>`;
-    document.getElementById('modalCat').textContent   = (p.cat_label||'').toUpperCase();
     document.getElementById('modalNome').textContent  = p.nome;
     document.getElementById('modalPreco').textContent = `R$ ${Number(p.preco).toFixed(2).replace('.',',')}`;
     document.getElementById('modalDesc').textContent  = p.descricao;
     document.getElementById('modalChips').innerHTML = (Array.isArray(p.chips) ? p.chips : [])
       .map(c => `<div class="modal-info-chip"><i class="bi bi-check2"></i> ${c}</div>`).join('');
-    const msg = encodeURIComponent(`Olá! Gostaria de pedir um produto da Lojinha do Obra Nova. 🙏\n\n🛍️ *Produto:* ${p.nome}\n💰 *Preço:* R$ ${Number(p.preco).toFixed(2).replace('.',',')}\n📦 *Categoria:* ${p.cat_label||p.cat}`);
+    const msg = encodeURIComponent(`Olá! Gostaria de pedir um produto da Lojinha do Obra Nova. 🙏\n\n🛍️ *Produto:* ${p.nome}\n💰 *Preço:* R$ ${Number(p.preco).toFixed(2).replace('.',',')}`);
     document.getElementById('modalActions').innerHTML = p.disponivel
       ? `<a href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" class="modal-btn-whatsapp"><i class="bi bi-whatsapp"></i> Pedir pelo WhatsApp</a>`
       : `<button class="produto-btn esgotado" style="padding:15px;border-radius:14px;font-size:.92rem;" disabled><i class="bi bi-x-circle"></i> Produto esgotado</button>`;

@@ -64,7 +64,6 @@
     .field input, .field textarea, .field select { width:100%; background:var(--white); border:1.5px solid var(--beige-dark); border-radius:12px; padding:13px 14px; font-family:'Lato',sans-serif; font-size:.88rem; color:var(--text); outline:none; transition:border-color .2s,box-shadow .2s; -webkit-appearance:none; }
     .field input:focus, .field textarea:focus, .field select:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,.15); }
     .field textarea { resize:none; min-height:90px; line-height:1.6; }
-    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
     .chips-input-wrap { background:var(--white); border:1.5px solid var(--beige-dark); border-radius:12px; padding:10px 12px; display:flex; flex-wrap:wrap; gap:7px; align-items:center; min-height:48px; cursor:text; transition:border-color .2s,box-shadow .2s; }
     .chips-input-wrap:focus-within { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,.15); }
@@ -93,7 +92,6 @@
     .pad-top { display:flex; }
     .pad-thumb { width:90px; flex-shrink:0; background:linear-gradient(135deg,var(--beige),var(--beige-dark)); display:flex; align-items:center; justify-content:center; font-size:2.2rem; background-size:cover; background-position:center; min-height:90px; }
     .pad-info { flex:1; padding:14px; display:flex; flex-direction:column; }
-    .pad-cat { font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-dark); }
     .pad-nome { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--brown); font-weight:600; margin-top:2px; line-height:1.3; }
     .pad-preco { font-size:.88rem; font-weight:700; color:var(--gold-dark); margin-top:4px; }
     .pad-badges { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
@@ -122,13 +120,11 @@
     .btn-cancel { background:var(--beige); color:var(--text-soft); border:1.5px solid var(--beige-dark) !important; }
     .btn-delete { background:var(--red); color:var(--white); }
 
-    /* AVISO DE CONFIGURAÇÃO */
     .config-aviso { margin:20px; background:#FEF9EC; border:1.5px solid var(--gold); border-radius:14px; padding:18px; }
     .config-aviso h3 { font-family:'Playfair Display',serif; color:var(--brown); font-size:1rem; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
     .config-aviso p { font-size:.8rem; color:var(--text-soft); line-height:1.7; }
     .config-aviso code { background:var(--beige); padding:2px 6px; border-radius:4px; font-size:.78rem; color:var(--brown); font-family:monospace; }
 
-    /* LOGIN */
     .login-overlay { position:fixed; inset:0; background:linear-gradient(135deg,var(--brown) 0%,#3a2008 100%); z-index:999; display:flex; align-items:center; justify-content:center; padding:24px; }
     .login-box { width:100%; max-width:360px; animation:pop .3s ease; }
     .login-logo { text-align:center; margin-bottom:32px; }
@@ -172,12 +168,10 @@
     <p>Gerencie os produtos da lojinha do Obra Nova</p>
   </div>
 
-  <!-- AVISO SE NÃO CONFIGUROU -->
   <div class="config-aviso" id="configAviso" style="display:none">
     <h3><i class="bi bi-exclamation-triangle" style="color:var(--gold)"></i> Configure o Supabase</h3>
     <p>Edite as linhas no topo do JavaScript com suas chaves do Supabase:<br><br>
-    <code>SUPABASE_URL</code> e <code>SUPABASE_KEY</code><br><br>
-    Veja o passo a passo no arquivo <strong>LEIA-ME.txt</strong> que acompanha.</p>
+    <code>SUPABASE_URL</code> e <code>SUPABASE_KEY</code></p>
   </div>
 
   <div class="tabs">
@@ -211,21 +205,9 @@
         <label>Nome do produto *</label>
         <input type="text" id="fNome" placeholder="Ex: Terço de Nossa Senhora" maxlength="80" />
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Categoria *</label>
-          <select id="fCat">
-            <option value="">Selecionar…</option>
-            <option value="devocionais">📿 Devocionais</option>
-            <option value="livros">📖 Livros</option>
-            <option value="vestuario">👕 Vestuário</option>
-            <option value="papelaria">✏️ Papelaria</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Preço (R$) *</label>
-          <input type="number" id="fPreco" placeholder="0,00" min="0" step="0.01" />
-        </div>
+      <div class="field">
+        <label>Preço (R$) *</label>
+        <input type="number" id="fPreco" placeholder="0,00" min="0" step="0.01" />
       </div>
       <div class="field">
         <label>Descrição *</label>
@@ -282,21 +264,15 @@
 </div>
 
 <script>
-  // ══════════════════════════════════════════════
-  //  ⚙️  CONFIGURAÇÃO — edite apenas aqui
-  // ══════════════════════════════════════════════
   const SUPABASE_URL  = "https://awbydbewgzvrunenayzc.supabase.co";
   const SUPABASE_KEY  = "sb_publishable_kEbVHEOLsNevkAojNZPP9A_p_H1ykkl";
   const CLOUDINARY_CLOUD  = "da77tfiqb";
-  const CLOUDINARY_PRESET = "ml_default";           // troque se necessário
-  // ══════════════════════════════════════════════
+  const CLOUDINARY_PRESET = "ml_default";
 
-  // Verifica configuração
   if (SUPABASE_URL === "COLE_SUA_URL_AQUI") {
     document.getElementById('configAviso').style.display = 'block';
   }
 
-  // ── HELPERS SUPABASE (sem SDK, usa fetch puro) ──
   const SB = {
     headers: {
       'apikey': SUPABASE_KEY,
@@ -331,7 +307,6 @@
     }
   };
 
-  // ── STATE ──
   let chips = [];
   let fotoUrl = null;
   let editingId = null;
@@ -339,7 +314,7 @@
   let deleteTargetId = null;
   let produtosCache = [];
 
-  // ── TABS ──
+  // TABS
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -350,7 +325,6 @@
     });
   });
 
-  // ── CARREGAR PRODUTOS ──
   async function carregarProdutos() {
     try {
       produtosCache = await SB.select();
@@ -363,7 +337,7 @@
   }
   carregarProdutos();
 
-  // ── FOTO: CLOUDINARY UPLOAD ──
+  // FOTO CLOUDINARY
   const fotoInput   = document.getElementById('fotoInput');
   const fotoPreview = document.getElementById('fotoPreview');
   const fotoPreviewActions = document.getElementById('fotoPreviewActions');
@@ -372,7 +346,6 @@
   const progressBar = document.getElementById('progressBar');
 
   fotoInput.addEventListener('change', e => { if (e.target.files[0]) uploadCloudinary(e.target.files[0]); });
-
   fotoUpload.addEventListener('dragover', e => { e.preventDefault(); fotoUpload.classList.add('drag-over'); });
   fotoUpload.addEventListener('dragleave', () => fotoUpload.classList.remove('drag-over'));
   fotoUpload.addEventListener('drop', e => {
@@ -429,7 +402,7 @@
     fotoUpload.querySelectorAll('p,small').forEach(el => el.style.display = '');
   }
 
-  // ── CHIPS ──
+  // CHIPS
   const chipInput = document.getElementById('chipInput');
   const chipsWrap = document.getElementById('chipsWrap');
 
@@ -456,24 +429,21 @@
     });
   }
 
-  // ── TOGGLE DISPONÍVEL ──
+  // TOGGLE DISPONÍVEL
   document.getElementById('toggleDisp').addEventListener('click', function() {
     disponivel = !disponivel; this.classList.toggle('on', disponivel);
   });
 
-  // ── SALVAR NO SUPABASE ──
+  // SALVAR
   const btnSalvar = document.getElementById('btnSalvar');
-  const catLabels = { devocionais:'Devocional', livros:'Livros', vestuario:'Vestuário', papelaria:'Papelaria' };
 
   btnSalvar.addEventListener('click', async () => {
     const nome    = document.getElementById('fNome').value.trim();
-    const cat     = document.getElementById('fCat').value;
     const preco   = parseFloat(document.getElementById('fPreco').value);
     const descricao = document.getElementById('fDesc').value.trim();
     const destaque = document.getElementById('fDestaque').value.trim();
 
     if (!nome)           { showToast('Informe o nome do produto', 'error'); return; }
-    if (!cat)            { showToast('Selecione uma categoria', 'error'); return; }
     if (!preco||preco<=0){ showToast('Informe um preço válido', 'error'); return; }
     if (!descricao)      { showToast('Adicione uma descrição', 'error'); return; }
 
@@ -482,8 +452,6 @@
 
     const dados = {
       nome,
-      cat,
-      cat_label: catLabels[cat],
       preco,
       descricao,
       chips: chips,
@@ -513,7 +481,6 @@
 
   function resetForm() {
     document.getElementById('fNome').value = '';
-    document.getElementById('fCat').value = '';
     document.getElementById('fPreco').value = '';
     document.getElementById('fDesc').value = '';
     document.getElementById('fDestaque').value = '';
@@ -529,14 +496,13 @@
     btnSalvar.innerHTML = '<i class="bi bi-check-circle"></i> Salvar produto';
   }
 
-  // ── RENDER LISTA ──
+  // RENDER LISTA
   function renderLista() {
     const body = document.getElementById('listaBody');
     if (!produtosCache.length) {
       body.innerHTML = `<div class="lista-empty"><i class="bi bi-box-seam"></i><p>Nenhum produto cadastrado ainda.<br>Vá em <strong>Cadastrar</strong> para adicionar o primeiro!</p></div>`;
       return;
     }
-    const emojiMap = { devocionais:'📿', livros:'📖', vestuario:'👕', papelaria:'✏️' };
     body.innerHTML = '';
     produtosCache.forEach((p, i) => {
       const card = document.createElement('div');
@@ -545,9 +511,8 @@
       const thumbStyle = p.foto ? `background-image:url(${p.foto});background-size:cover;background-position:center;font-size:0` : '';
       card.innerHTML = `
         <div class="pad-top">
-          <div class="pad-thumb" style="${thumbStyle}">${p.foto?'':(emojiMap[p.cat]||'🛍️')}</div>
+          <div class="pad-thumb" style="${thumbStyle}">${p.foto?'':'🛍️'}</div>
           <div class="pad-info">
-            <div class="pad-cat">${p.cat_label||''}</div>
             <div class="pad-nome">${p.nome}</div>
             <div class="pad-preco">R$ ${Number(p.preco).toFixed(2).replace('.',',')}</div>
             <div class="pad-badges">
@@ -565,13 +530,12 @@
     });
   }
 
-  // ── EDITAR ──
+  // EDITAR
   window.editarProduto = function(id) {
     const p = produtosCache.find(x => x.id == id);
     if (!p) return;
     editingId = id;
     document.getElementById('fNome').value = p.nome;
-    document.getElementById('fCat').value = p.cat;
     document.getElementById('fPreco').value = p.preco;
     document.getElementById('fDesc').value = p.descricao;
     document.getElementById('fDestaque').value = p.destaque || '';
@@ -595,7 +559,7 @@
     showToast('Editando produto…');
   };
 
-  // ── TOGGLE DISPONÍVEL ──
+  // TOGGLE DISPONÍVEL PRODUTO
   window.toggleDispProd = async function(id) {
     const p = produtosCache.find(x => x.id == id);
     if (!p) return;
@@ -608,7 +572,7 @@
     }
   };
 
-  // ── DELETE ──
+  // DELETE
   window.confirmarDelete = function(id) {
     deleteTargetId = id;
     document.getElementById('confirmOverlay').classList.add('open');
@@ -632,7 +596,7 @@
     if (e.target === document.getElementById('confirmOverlay')) closeConfirm();
   });
 
-  // ── TOAST ──
+  // TOAST
   let toastTimer;
   window.showToast = function(msg, type='success') {
     const toast = document.getElementById('toast');
@@ -645,13 +609,12 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
   };
 
-  // ── LOGIN ──
+  // LOGIN
   const SENHA_ADMIN = "adminobra1";
   const loginOverlay = document.getElementById('loginOverlay');
   const loginSenha   = document.getElementById('loginSenha');
   const loginErro    = document.getElementById('loginErro');
 
-  // Verifica se já está logado na sessão
   if (sessionStorage.getItem('adminLogado') === '1') {
     loginOverlay.style.display = 'none';
   }
