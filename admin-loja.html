@@ -149,12 +149,16 @@
     <div class="login-logo">
       <i class="bi bi-shield-lock-fill"></i>
       <h2>Admin — Obra Nova</h2>
-      <p>Área restrita · Digite a senha para entrar</p>
+      <p>Área restrita · Faça login para continuar</p>
     </div>
-    <div class="login-erro" id="loginErro"><i class="bi bi-x-circle"></i> Senha incorreta</div>
+    <div class="login-erro" id="loginErro"><i class="bi bi-x-circle"></i> <span id="loginErroMsg">Email ou senha incorretos</span></div>
+    <div class="login-field">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="email" />
+    </div>
     <div class="login-field">
       <label>Senha</label>
-      <input type="password" id="loginSenha" placeholder="••••••••••" />
+      <input type="password" id="loginSenha" placeholder="••••••••••" autocomplete="current-password" />
     </div>
     <button class="btn-entrar" id="btnEntrar"><i class="bi bi-unlock-fill"></i> Entrar</button>
   </div>
@@ -163,7 +167,12 @@
 <div class="container">
 
   <div class="page-header">
-    <div class="header-badge"><i class="bi bi-shield-lock"></i> Área Restrita</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="header-badge"><i class="bi bi-shield-lock"></i> Área Restrita</div>
+      <button id="btnLogout" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);border-radius:20px;padding:4px 12px;font-size:.72rem;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;display:flex;align-items:center;gap:5px;letter-spacing:.06em;">
+        <i class="bi bi-box-arrow-right"></i> Sair
+      </button>
+    </div>
     <h1><i class="bi bi-shop-window"></i> Admin — Loja</h1>
     <p>Gerencie os produtos da lojinha do Obra Nova</p>
   </div>
@@ -609,30 +618,103 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
   };
 
-  // LOGIN
-  const SENHA_ADMIN = "adminobra1";
-  const loginOverlay = document.getElementById('loginOverlay');
-  const loginSenha   = document.getElementById('loginSenha');
-  const loginErro    = document.getElementById('loginErro');
+  // ── LOGIN via Supabase Auth ──
+  const loginOverlay  = document.getElementById('loginOverlay');
+  const loginErro     = document.getElementById('loginErro');
+  const loginErroMsg  = document.getElementById('loginErroMsg');
+  const btnEntrar     = document.getElementById('btnEntrar');
 
-  if (sessionStorage.getItem('adminLogado') === '1') {
-    loginOverlay.style.display = 'none';
+  const SUPABASE_AUTH = `${SUPABASE_URL}/auth/v1`;
+  const authHeaders   = { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' };
+
+  // Checa sessão salva
+  (async function iniciarSessao() {
+    const token = localStorage.getItem('sb_access_token');
+    const exp   = parseInt(localStorage.getItem('sb_expires_at') || '0');
+    if (token && Date.now() / 1000 < exp) {
+      // Token ainda válido
+      loginOverlay.style.display = 'none';
+      return;
+    }
+    const refresh = localStorage.getItem('sb_refresh_token');
+    if (refresh) {
+      // Tenta renovar token
+      try {
+        const r = await fetch(`${SUPABASE_AUTH}/token?grant_type=refresh_token`, {
+          method: 'POST', headers: authHeaders,
+          body: JSON.stringify({ refresh_token: refresh })
+        });
+        if (r.ok) {
+          const d = await r.json();
+          salvarSessao(d);
+          loginOverlay.style.display = 'none';
+          return;
+        }
+      } catch(e) {}
+    }
+    // Sem sessão válida — mostra login
+    limparSessao();
+  })();
+
+  function salvarSessao(data) {
+    localStorage.setItem('sb_access_token',  data.access_token);
+    localStorage.setItem('sb_refresh_token', data.refresh_token);
+    localStorage.setItem('sb_expires_at',    String(Math.floor(Date.now()/1000) + data.expires_in));
+  }
+  function limparSessao() {
+    localStorage.removeItem('sb_access_token');
+    localStorage.removeItem('sb_refresh_token');
+    localStorage.removeItem('sb_expires_at');
   }
 
-  document.getElementById('btnEntrar').addEventListener('click', tentarLogin);
-  loginSenha.addEventListener('keydown', e => { if (e.key === 'Enter') tentarLogin(); });
+  btnEntrar.addEventListener('click', tentarLogin);
+  document.getElementById('loginSenha').addEventListener('keydown', e => { if (e.key === 'Enter') tentarLogin(); });
+  document.getElementById('loginEmail').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('loginSenha').focus(); });
 
-  function tentarLogin() {
-    if (loginSenha.value === SENHA_ADMIN) {
-      sessionStorage.setItem('adminLogado', '1');
+  async function tentarLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const senha = document.getElementById('loginSenha').value;
+    if (!email || !senha) {
+      loginErroMsg.textContent = 'Preencha email e senha';
+      loginErro.style.display = 'block'; return;
+    }
+    btnEntrar.disabled = true;
+    btnEntrar.innerHTML = '<i class="bi bi-hourglass-split"></i> Entrando…';
+    loginErro.style.display = 'none';
+    try {
+      const r = await fetch(`${SUPABASE_AUTH}/token?grant_type=password`, {
+        method: 'POST', headers: authHeaders,
+        body: JSON.stringify({ email, password: senha })
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error_description || data.msg || 'Credenciais inválidas');
+      salvarSessao(data);
       loginOverlay.style.display = 'none';
-      loginErro.style.display = 'none';
-    } else {
+    } catch(e) {
+      loginErroMsg.textContent = e.message;
       loginErro.style.display = 'block';
-      loginSenha.value = '';
-      loginSenha.focus();
+      document.getElementById('loginSenha').value = '';
+      document.getElementById('loginSenha').focus();
+    } finally {
+      btnEntrar.disabled = false;
+      btnEntrar.innerHTML = '<i class="bi bi-unlock-fill"></i> Entrar';
     }
   }
+
+  // Logout
+  document.getElementById('btnLogout').addEventListener('click', async () => {
+    const token = localStorage.getItem('sb_access_token');
+    if (token) {
+      fetch(`${SUPABASE_AUTH}/logout`, {
+        method: 'POST',
+        headers: { ...authHeaders, 'Authorization': `Bearer ${token}` }
+      }).catch(() => {});
+    }
+    limparSessao();
+    loginOverlay.style.display = 'flex';
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginSenha').value = '';
+  });
 </script>
 </body>
 </html>
