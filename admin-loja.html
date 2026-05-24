@@ -435,13 +435,13 @@
     const nome    = document.getElementById('fNome').value.trim();
     const cat     = document.getElementById('fCat').value;
     const preco   = parseFloat(document.getElementById('fPreco').value);
-    const desc    = document.getElementById('fDesc').value.trim();
+    const descricao = document.getElementById('fDesc').value.trim();
     const destaque = document.getElementById('fDestaque').value.trim();
 
     if (!nome)           { showToast('Informe o nome do produto', 'error'); return; }
     if (!cat)            { showToast('Selecione uma categoria', 'error'); return; }
     if (!preco||preco<=0){ showToast('Informe um preço válido', 'error'); return; }
-    if (!desc)           { showToast('Adicione uma descrição', 'error'); return; }
+    if (!descricao)      { showToast('Adicione uma descrição', 'error'); return; }
 
     btnSalvar.disabled = true;
     btnSalvar.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando…';
