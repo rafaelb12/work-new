@@ -117,15 +117,6 @@
     </div>
   </div>
 
-  <div class="cats-wrap">
-    <div class="cats-row" id="catRow">
-      <button class="cat-btn active" data-cat="todos">✦ Todos</button>
-      <button class="cat-btn" data-cat="devocionais">📿 Devocionais</button>
-      <button class="cat-btn" data-cat="livros">📖 Livros</button>
-      <button class="cat-btn" data-cat="vestuario">👕 Vestuário</button>
-      <button class="cat-btn" data-cat="papelaria">✏️ Papelaria</button>
-    </div>
-  </div>
 
   <div class="produtos-body">
     <div class="produtos-grid" id="produtosGrid">
@@ -179,7 +170,7 @@
 
   const emojiMap = { devocionais:'📿', livros:'📖', vestuario:'👕', papelaria:'✏️' };
   let todosOsProdutos = [];
-  let catAtiva = 'todos';
+
 
   async function carregarProdutos() {
     try {
@@ -191,7 +182,7 @@
       });
       if (!r.ok) throw new Error(await r.text());
       todosOsProdutos = await r.json();
-      renderGrid(catAtiva);
+      renderGrid();
     } catch(e) {
       console.error('Erro ao carregar produtos:', e);
       document.getElementById('produtosGrid').innerHTML = `<div class="lista-empty" style="grid-column:1/-1"><i class="bi bi-wifi-off"></i><p>Erro ao carregar produtos.</p></div>`;
@@ -203,19 +194,9 @@
   // Recarrega a cada 30 segundos para pegar novos produtos
   setInterval(carregarProdutos, 30000);
 
-  // FILTRO
-  document.getElementById('catRow').addEventListener('click', e => {
-    const btn = e.target.closest('.cat-btn');
-    if (!btn) return;
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    catAtiva = btn.dataset.cat;
-    renderGrid(catAtiva);
-  });
-
   function renderGrid(cat) {
     const grid = document.getElementById('produtosGrid');
-    const lista = cat === 'todos' ? todosOsProdutos : todosOsProdutos.filter(p => p.cat === cat);
+    const lista = todosOsProdutos;
 
     if (!lista.length) {
       grid.innerHTML = `<div class="lista-empty" style="grid-column:1/-1"><i class="bi bi-box-seam"></i><p>Nenhum produto nessa categoria ainda.</p></div>`;
