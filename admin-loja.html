@@ -103,7 +103,6 @@
     .pad-btn.danger{color:var(--red);border-color:#f5c6c2;background:var(--red-light)}
     .pad-btn.share{color:var(--gold-dark)}
 
-    /* MODAL CARD */
     .modal-overlay{display:none;position:fixed;inset:0;background:rgba(58,42,14,.6);z-index:300;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px)}
     .modal-overlay.open{display:flex;animation:fadeIn .2s ease}
     .modal-sheet{background:var(--cream);width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px));max-height:95vh;overflow-y:auto;animation:slideUp .3s cubic-bezier(.25,1,.3,1)}
@@ -223,7 +222,8 @@
           <h4>Disponível para venda</h4>
           <p>Desative para marcar como esgotado</p>
         </div>
-        <button class="toggle on" id="toggleDisp"></button>
+        <!-- CORREÇÃO: id renomeado de "toggleDisp" para "btnToggleDisp" -->
+        <button class="toggle on" id="btnToggleDisp"></button>
       </div>
 
       <button class="btn-salvar" id="btnSalvar">
@@ -288,18 +288,17 @@
     messagingSenderId: "540660133178",
     appId: "1:540660133178:web:7dfa2737fcbd98eed33403"
   };
-  const CLOUDINARY_CLOUD = "da77tfiqb";
+  const CLOUDINARY_CLOUD  = "da77tfiqb";
   const CLOUDINARY_PRESET = "ml_default";
   const LOJA_URL = "https://obranova.netlify.app/loja.html";
 
-  // ── FORNECEDORES (fixo no código) ──
   const FORNECEDORES = {
     clara: { nome: "Clara", whatsapp: "5588921759665" },
     paulo: { nome: "Paulo", whatsapp: "5588943883820" }
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
+  const app     = initializeApp(firebaseConfig);
+  const db      = getFirestore(app);
   const colProd = collection(db, "produtos");
 
   let chips = [], fotoUrl = null, editingId = null, disponivel = true;
@@ -319,18 +318,21 @@
   // ── FIRESTORE LISTENER ──
   onSnapshot(colProd, snap => {
     produtosCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    produtosCache.sort((a,b) => (b.criadoEm?.seconds||0) - (a.criadoEm?.seconds||0));
+    produtosCache.sort((a, b) => (b.criadoEm?.seconds || 0) - (a.criadoEm?.seconds || 0));
     document.getElementById('tabCount').textContent = produtosCache.length;
     renderLista();
+  }, err => {
+    console.error('Firestore erro:', err);
+    showToast('Erro ao conectar ao banco de dados', 'error');
   });
 
   // ── FOTO CLOUDINARY ──
-  const fotoInput = document.getElementById('fotoInput');
-  const fotoPreview = document.getElementById('fotoPreview');
+  const fotoInput          = document.getElementById('fotoInput');
+  const fotoPreview        = document.getElementById('fotoPreview');
   const fotoPreviewActions = document.getElementById('fotoPreviewActions');
-  const fotoUploading = document.getElementById('fotoUploading');
-  const fotoUpload = document.getElementById('fotoUpload');
-  const progressBar = document.getElementById('progressBar');
+  const fotoUploading      = document.getElementById('fotoUploading');
+  const fotoUpload         = document.getElementById('fotoUpload');
+  const progressBar        = document.getElementById('progressBar');
 
   fotoInput.addEventListener('change', e => { if (e.target.files[0]) uploadCloudinary(e.target.files[0]); });
   fotoUpload.addEventListener('dragover', e => { e.preventDefault(); fotoUpload.classList.add('drag-over'); });
@@ -342,14 +344,14 @@
   });
 
   async function uploadCloudinary(file) {
-    if (file.size > 5*1024*1024) { showToast('Foto muito grande (máx. 5 MB)', 'error'); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast('Foto muito grande (máx. 5 MB)', 'error'); return; }
     fotoUploading.style.display = 'flex'; progressBar.style.width = '10%';
     const fd = new FormData();
     fd.append('file', file); fd.append('upload_preset', CLOUDINARY_PRESET);
     try {
       let prog = 10;
-      const iv = setInterval(() => { prog = Math.min(prog+10,80); progressBar.style.width = prog+'%'; }, 200);
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method:'POST', body:fd });
+      const iv = setInterval(() => { prog = Math.min(prog + 10, 80); progressBar.style.width = prog + '%'; }, 200);
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
       clearInterval(iv); progressBar.style.width = '100%';
       if (!res.ok) throw new Error();
       const data = await res.json();
@@ -368,6 +370,7 @@
     fotoPreview.style.display = 'none'; fotoPreviewActions.style.display = 'none';
     fotoInput.value = ''; showUploadPlaceholder();
   });
+
   function hideUploadPlaceholder() {
     fotoUpload.querySelector('.upload-icon').style.display = 'none';
     fotoUpload.querySelectorAll('p,small').forEach(el => el.style.display = 'none');
@@ -380,17 +383,20 @@
   // ── CHIPS ──
   const chipInput = document.getElementById('chipInput');
   const chipsWrap = document.getElementById('chipsWrap');
+
   chipInput.addEventListener('keydown', e => {
-    if ((e.key==='Enter'||e.key===',') && chipInput.value.trim()) {
-      e.preventDefault(); addChip(chipInput.value.trim().replace(/,/g,'')); chipInput.value='';
+    if ((e.key === 'Enter' || e.key === ',') && chipInput.value.trim()) {
+      e.preventDefault(); addChip(chipInput.value.trim().replace(/,/g, '')); chipInput.value = '';
     }
-    if (e.key==='Backspace' && !chipInput.value && chips.length) removeChip(chips[chips.length-1]);
+    if (e.key === 'Backspace' && !chipInput.value && chips.length) removeChip(chips[chips.length - 1]);
   });
-  chipInput.addEventListener('blur', () => { if(chipInput.value.trim()){ addChip(chipInput.value.trim()); chipInput.value=''; }});
+  chipInput.addEventListener('blur', () => { if (chipInput.value.trim()) { addChip(chipInput.value.trim()); chipInput.value = ''; } });
   chipsWrap.addEventListener('click', () => chipInput.focus());
-  function addChip(t) { if(!t||chips.includes(t)||chips.length>=6) return; chips.push(t); renderChips(); }
-  function removeChip(t) { chips=chips.filter(c=>c!==t); renderChips(); }
+
+  function addChip(t) { if (!t || chips.includes(t) || chips.length >= 6) return; chips.push(t); renderChips(); }
+  function removeChip(t) { chips = chips.filter(c => c !== t); renderChips(); }
   window.removeChip = removeChip;
+
   function renderChips() {
     chipsWrap.querySelectorAll('.chip-tag').forEach(el => el.remove());
     chips.forEach(c => {
@@ -401,14 +407,17 @@
     });
   }
 
-  // ── TOGGLE ──
-  document.getElementById('toggleDisp').addEventListener('click', function() {
-    disponivel = !disponivel; this.classList.toggle('on', disponivel);
+  // ── TOGGLE DISPONÍVEL (formulário) ──
+  // CORREÇÃO: referenciado pelo novo id "btnToggleDisp"
+  const btnToggleDisp = document.getElementById('btnToggleDisp');
+  btnToggleDisp.addEventListener('click', function () {
+    disponivel = !disponivel;
+    this.classList.toggle('on', disponivel);
   });
 
   // ── SALVAR ──
   const btnSalvar = document.getElementById('btnSalvar');
-  const catLabels = { devocionais:'Devocional', livros:'Livros', vestuario:'Vestuário', papelaria:'Papelaria' };
+  const catLabels = { devocionais: 'Devocional', livros: 'Livros', vestuario: 'Vestuário', papelaria: 'Papelaria' };
   btnSalvar.addEventListener('click', salvar);
 
   async function salvar() {
@@ -419,11 +428,11 @@
     const destaque = document.getElementById('fDestaque').value.trim();
     const fornKey  = document.getElementById('fFornecedor').value;
 
-    if (!nome)           { showToast('Informe o nome do produto', 'error'); return; }
-    if (!cat)            { showToast('Selecione uma categoria', 'error'); return; }
-    if (!preco||preco<=0){ showToast('Informe um preço válido', 'error'); return; }
-    if (!desc)           { showToast('Adicione uma descrição', 'error'); return; }
-    if (!fornKey)        { showToast('Selecione um fornecedor', 'error'); return; }
+    if (!nome)            { showToast('Informe o nome do produto', 'error'); return; }
+    if (!cat)             { showToast('Selecione uma categoria', 'error'); return; }
+    if (!preco || preco <= 0) { showToast('Informe um preço válido', 'error'); return; }
+    if (!desc)            { showToast('Adicione uma descrição', 'error'); return; }
+    if (!fornKey)         { showToast('Selecione um fornecedor', 'error'); return; }
 
     const forn = FORNECEDORES[fornKey];
     btnSalvar.disabled = true;
@@ -431,8 +440,8 @@
 
     const dados = {
       nome, cat, catLabel: catLabels[cat], preco, desc,
-      chips: [...chips], destaque: destaque||null, disponivel,
-      foto: fotoUrl||null,
+      chips: [...chips], destaque: destaque || null, disponivel,
+      foto: fotoUrl || null,
       fornecedorKey: fornKey,
       fornecedorNome: forn.nome,
       fornecedorWhatsapp: forn.whatsapp
@@ -440,7 +449,7 @@
 
     try {
       if (editingId) {
-        await updateDoc(doc(db,'produtos',editingId), dados);
+        await updateDoc(doc(db, 'produtos', editingId), dados);
         showToast('Produto atualizado!', 'success');
       } else {
         dados.criadoEm = serverTimestamp();
@@ -448,7 +457,7 @@
         showToast('Produto salvo!', 'success');
       }
       resetForm();
-    } catch(e) {
+    } catch (e) {
       showToast('Erro ao salvar. Tente novamente.', 'error');
       console.error(e);
     } finally {
@@ -458,16 +467,18 @@
   }
 
   function resetForm() {
-    ['fNome','fCat','fPreco','fDesc','fDestaque','fFornecedor'].forEach(id => document.getElementById(id).value = '');
+    ['fNome', 'fCat', 'fPreco', 'fDesc', 'fDestaque', 'fFornecedor'].forEach(id => document.getElementById(id).value = '');
     chips = []; renderChips();
-    fotoUrl = null; fotoPreview.style.display='none'; fotoPreviewActions.style.display='none';
-    fotoInput.value=''; showUploadPlaceholder();
-    disponivel = true; document.getElementById('toggleDisp').classList.add('on');
+    fotoUrl = null;
+    fotoPreview.style.display = 'none'; fotoPreviewActions.style.display = 'none';
+    fotoInput.value = ''; showUploadPlaceholder();
+    disponivel = true; btnToggleDisp.classList.add('on');
     editingId = null;
   }
 
   // ── LISTA ──
-  const emojiMap = { devocionais:'📿', livros:'📖', vestuario:'👕', papelaria:'✏️' };
+  const emojiMap = { devocionais: '📿', livros: '📖', vestuario: '👕', papelaria: '✏️' };
+
   function renderLista() {
     const body = document.getElementById('listaBody');
     if (!produtosCache.length) {
@@ -475,28 +486,28 @@
       return;
     }
     body.innerHTML = '';
-    produtosCache.forEach((p,i) => {
+    produtosCache.forEach((p, i) => {
       const card = document.createElement('div');
       card.className = 'produto-admin-card';
-      card.style.animationDelay = `${i*50}ms`;
+      card.style.animationDelay = `${i * 50}ms`;
       const thumbStyle = p.foto ? `background-image:url(${p.foto});background-size:cover;background-position:center;font-size:0` : '';
       card.innerHTML = `
         <div class="pad-top">
-          <div class="pad-thumb" style="${thumbStyle}">${p.foto?'':(emojiMap[p.cat]||'🛍️')}</div>
+          <div class="pad-thumb" style="${thumbStyle}">${p.foto ? '' : (emojiMap[p.cat] || '🛍️')}</div>
           <div class="pad-info">
-            <div class="pad-cat">${p.catLabel||''}</div>
+            <div class="pad-cat">${p.catLabel || ''}</div>
             <div class="pad-nome">${p.nome}</div>
-            <div class="pad-preco">R$ ${Number(p.preco).toFixed(2).replace('.',',')}</div>
-            <div class="pad-forn"><i class="bi bi-person-fill"></i> ${p.fornecedorNome||''}</div>
+            <div class="pad-preco">R$ ${Number(p.preco).toFixed(2).replace('.', ',')}</div>
+            <div class="pad-forn"><i class="bi bi-person-fill"></i> ${p.fornecedorNome || '—'}</div>
             <div class="pad-badges">
-              ${p.disponivel?'<span class="pad-badge disponivel">✓ Disponível</span>':'<span class="pad-badge esgotado">✗ Esgotado</span>'}
-              ${p.destaque?`<span class="pad-badge destaque">★ ${p.destaque}</span>`:''}
+              ${p.disponivel ? '<span class="pad-badge disponivel">✓ Disponível</span>' : '<span class="pad-badge esgotado">✗ Esgotado</span>'}
+              ${p.destaque ? `<span class="pad-badge destaque">★ ${p.destaque}</span>` : ''}
             </div>
           </div>
         </div>
         <div class="pad-actions">
           <button class="pad-btn" onclick="editarProduto('${p.id}')"><i class="bi bi-pencil"></i> Editar</button>
-          <button class="pad-btn" onclick="toggleDisp('${p.id}')">${p.disponivel?'<i class="bi bi-slash-circle"></i> Esgotar':'<i class="bi bi-check2-circle"></i> Ativar'}</button>
+          <button class="pad-btn" onclick="alternarDisponivel('${p.id}')">${p.disponivel ? '<i class="bi bi-slash-circle"></i> Esgotar' : '<i class="bi bi-check2-circle"></i> Ativar'}</button>
           <button class="pad-btn share" onclick="abrirCard('${p.id}')"><i class="bi bi-share"></i> Card</button>
           <button class="pad-btn danger" onclick="confirmarDelete('${p.id}')"><i class="bi bi-trash"></i></button>
         </div>`;
@@ -505,19 +516,19 @@
   }
 
   // ── EDITAR ──
-  window.editarProduto = function(id) {
-    const p = produtosCache.find(x => x.id===id);
+  window.editarProduto = function (id) {
+    const p = produtosCache.find(x => x.id === id);
     if (!p) return;
     editingId = id;
-    document.getElementById('fNome').value = p.nome;
-    document.getElementById('fCat').value = p.cat;
-    document.getElementById('fPreco').value = p.preco;
-    document.getElementById('fDesc').value = p.desc;
-    document.getElementById('fDestaque').value = p.destaque||'';
-    document.getElementById('fFornecedor').value = p.fornecedorKey||'';
-    chips = [...(p.chips||[])]; renderChips();
+    document.getElementById('fNome').value     = p.nome;
+    document.getElementById('fCat').value      = p.cat || '';
+    document.getElementById('fPreco').value    = p.preco;
+    document.getElementById('fDesc').value     = p.desc || '';
+    document.getElementById('fDestaque').value = p.destaque || '';
+    document.getElementById('fFornecedor').value = p.fornecedorKey || '';
+    chips = [...(p.chips || [])]; renderChips();
     disponivel = p.disponivel;
-    document.getElementById('toggleDisp').classList.toggle('on', disponivel);
+    btnToggleDisp.classList.toggle('on', disponivel);
     if (p.foto) {
       fotoUrl = p.foto;
       fotoPreview.style.backgroundImage = `url(${p.foto})`;
@@ -525,43 +536,54 @@
       fotoPreviewActions.style.display = 'flex';
       hideUploadPlaceholder();
     }
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelector('[data-tab="cadastrar"]').classList.add('active');
     document.getElementById('tab-cadastrar').classList.add('active');
     btnSalvar.innerHTML = '<i class="bi bi-arrow-repeat"></i> <span id="btnSalvarLabel">Atualizar produto</span>';
-    window.scrollTo({top:0,behavior:'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     showToast('Editando produto…');
   };
 
-  window.toggleDisp = async function(id) {
-    const p = produtosCache.find(x=>x.id===id);
+  // CORREÇÃO: função renomeada de "toggleDisp" para "alternarDisponivel"
+  window.alternarDisponivel = async function (id) {
+    const p = produtosCache.find(x => x.id === id);
     if (!p) return;
-    await updateDoc(doc(db,'produtos',id), { disponivel: !p.disponivel });
-    showToast(p.disponivel?'Marcado como esgotado':'Produto ativado!','success');
+    try {
+      await updateDoc(doc(db, 'produtos', id), { disponivel: !p.disponivel });
+      showToast(p.disponivel ? 'Marcado como esgotado' : 'Produto ativado!', 'success');
+    } catch (e) {
+      showToast('Erro ao atualizar', 'error');
+      console.error(e);
+    }
   };
 
   // ── DELETE ──
-  window.confirmarDelete = function(id) {
+  window.confirmarDelete = function (id) {
     deleteTargetId = id;
     document.getElementById('confirmOverlay').classList.add('open');
   };
-  window.closeConfirm = function() {
+  window.closeConfirm = function () {
     deleteTargetId = null;
     document.getElementById('confirmOverlay').classList.remove('open');
   };
   document.getElementById('btnConfirmDelete').addEventListener('click', async () => {
     if (!deleteTargetId) return;
-    await deleteDoc(doc(db,'produtos',deleteTargetId));
-    closeConfirm(); showToast('Produto removido','error');
+    try {
+      await deleteDoc(doc(db, 'produtos', deleteTargetId));
+      closeConfirm(); showToast('Produto removido', 'error');
+    } catch (e) {
+      showToast('Erro ao remover', 'error');
+      console.error(e);
+    }
   });
   document.getElementById('confirmOverlay').addEventListener('click', e => {
-    if (e.target===document.getElementById('confirmOverlay')) closeConfirm();
+    if (e.target === document.getElementById('confirmOverlay')) closeConfirm();
   });
 
   // ── CARD COMPARTILHÁVEL ──
-  window.abrirCard = function(id) {
-    cardProduto = produtosCache.find(x => x.id===id);
+  window.abrirCard = function (id) {
+    cardProduto = produtosCache.find(x => x.id === id);
     if (!cardProduto) return;
     cardFormato = 'story';
     document.getElementById('btnStory').classList.add('active');
@@ -570,14 +592,14 @@
     document.body.style.overflow = 'hidden';
     desenharCard();
   };
-  window.closeCardModal = function() {
+  window.closeCardModal = function () {
     document.getElementById('cardModal').classList.remove('open');
     document.body.style.overflow = '';
   };
-  window.setFormato = function(f) {
+  window.setFormato = function (f) {
     cardFormato = f;
-    document.getElementById('btnStory').classList.toggle('active', f==='story');
-    document.getElementById('btnSquare').classList.toggle('active', f==='square');
+    document.getElementById('btnStory').classList.toggle('active', f === 'story');
+    document.getElementById('btnSquare').classList.toggle('active', f === 'square');
     desenharCard();
   };
 
@@ -589,127 +611,120 @@
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext('2d');
 
-    // Fundo
-    const grad = ctx.createLinearGradient(0,0,0,H);
-    grad.addColorStop(0,'#3a2008'); grad.addColorStop(1,'#5C3D1E');
-    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, '#3a2008'); grad.addColorStop(1, '#5C3D1E');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
 
-    // Círculos decorativos
     ctx.fillStyle = 'rgba(201,168,76,0.05)';
-    for(let i=0;i<6;i++){
+    for (let i = 0; i < 6; i++) {
       ctx.beginPath();
-      ctx.arc(W*0.9, H*0.1+i*150, 180+i*40, 0, Math.PI*2);
+      ctx.arc(W * 0.9, H * 0.1 + i * 150, 180 + i * 40, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Topo
     ctx.fillStyle = '#C9A84C';
-    ctx.font = `bold ${isStory?52:40}px sans-serif`;
+    ctx.font = `bold ${isStory ? 52 : 40}px sans-serif`;
     ctx.textAlign = 'center';
-    ctx.fillText('✦ OBRA NOVA ✦', W/2, isStory?110:80);
+    ctx.fillText('✦ OBRA NOVA ✦', W / 2, isStory ? 110 : 80);
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = `${isStory?30:24}px sans-serif`;
-    ctx.fillText('Lojinha do Grupo de Oração', W/2, isStory?158:118);
+    ctx.font = `${isStory ? 30 : 24}px sans-serif`;
+    ctx.fillText('Lojinha do Grupo de Oração', W / 2, isStory ? 158 : 118);
 
-    // Imagem do produto
     const imgY = isStory ? 210 : 155;
     const imgH = isStory ? 880 : 560;
     const pad  = 60;
 
-    roundRect(ctx, pad, imgY, W-pad*2, imgH, 40);
+    roundRect(ctx, pad, imgY, W - pad * 2, imgH, 40);
     ctx.fillStyle = '#EAD9B5'; ctx.fill();
 
     if (p.foto) {
       try {
         const img = await carregarImagem(p.foto);
         ctx.save();
-        roundRect(ctx, pad, imgY, W-pad*2, imgH, 40);
+        roundRect(ctx, pad, imgY, W - pad * 2, imgH, 40);
         ctx.clip();
-        const scale = Math.max((W-pad*2)/img.width, imgH/img.height);
-        const dw = img.width*scale, dh = img.height*scale;
-        ctx.drawImage(img, pad+(W-pad*2-dw)/2, imgY+(imgH-dh)/2, dw, dh);
+        const scale = Math.max((W - pad * 2) / img.width, imgH / img.height);
+        const dw = img.width * scale, dh = img.height * scale;
+        ctx.drawImage(img, pad + (W - pad * 2 - dw) / 2, imgY + (imgH - dh) / 2, dw, dh);
         ctx.restore();
       } catch {
-        ctx.fillStyle='#8B6914'; ctx.font=`${isStory?100:70}px serif`;
-        ctx.textAlign='center'; ctx.fillText('🛍️', W/2, imgY+imgH/2+30);
+        ctx.fillStyle = '#8B6914'; ctx.font = `${isStory ? 100 : 70}px serif`;
+        ctx.textAlign = 'center'; ctx.fillText('🛍️', W / 2, imgY + imgH / 2 + 30);
       }
     } else {
-      ctx.fillStyle='#8B6914'; ctx.font=`${isStory?100:70}px serif`;
-      ctx.textAlign='center'; ctx.fillText('🛍️', W/2, imgY+imgH/2+30);
+      ctx.fillStyle = '#8B6914'; ctx.font = `${isStory ? 100 : 70}px serif`;
+      ctx.textAlign = 'center'; ctx.fillText('🛍️', W / 2, imgY + imgH / 2 + 30);
     }
 
-    // Info produto
     const infoY = imgY + imgH + 50;
-    ctx.fillStyle='#C9A84C'; ctx.font=`bold ${isStory?30:24}px sans-serif`;
-    ctx.textAlign='center'; ctx.fillText((p.catLabel||'').toUpperCase(), W/2, infoY);
+    ctx.fillStyle = '#C9A84C'; ctx.font = `bold ${isStory ? 30 : 24}px sans-serif`;
+    ctx.textAlign = 'center'; ctx.fillText((p.catLabel || '').toUpperCase(), W / 2, infoY);
 
-    ctx.fillStyle='#FFFFFF'; ctx.font=`bold ${isStory?68:50}px serif`;
-    wrapText(ctx, p.nome, W/2, infoY+68, W-120, isStory?78:58);
+    ctx.fillStyle = '#FFFFFF'; ctx.font = `bold ${isStory ? 68 : 50}px serif`;
+    wrapText(ctx, p.nome, W / 2, infoY + 68, W - 120, isStory ? 78 : 58);
 
-    const precoY = isStory ? infoY+210 : infoY+150;
-    ctx.fillStyle='#E8C96B'; ctx.font=`bold ${isStory?76:56}px sans-serif`;
-    ctx.fillText(`R$ ${Number(p.preco).toFixed(2).replace('.',',')}`, W/2, precoY);
+    const precoY = isStory ? infoY + 210 : infoY + 150;
+    ctx.fillStyle = '#E8C96B'; ctx.font = `bold ${isStory ? 76 : 56}px sans-serif`;
+    ctx.fillText(`R$ ${Number(p.preco).toFixed(2).replace('.', ',')}`, W / 2, precoY);
 
-    // Linha
-    ctx.strokeStyle='rgba(201,168,76,0.4)'; ctx.lineWidth=2;
-    ctx.beginPath(); ctx.moveTo(120,precoY+38); ctx.lineTo(W-120,precoY+38); ctx.stroke();
+    ctx.strokeStyle = 'rgba(201,168,76,0.4)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(120, precoY + 38); ctx.lineTo(W - 120, precoY + 38); ctx.stroke();
 
-    // Link e fornecedor
-    ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.font=`${isStory?32:26}px sans-serif`;
-    ctx.fillText(LOJA_URL, W/2, precoY+82);
+    ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.font = `${isStory ? 32 : 26}px sans-serif`;
+    ctx.fillText(LOJA_URL, W / 2, precoY + 82);
 
     if (p.fornecedorNome) {
-      ctx.fillStyle='rgba(255,255,255,0.45)'; ctx.font=`${isStory?26:21}px sans-serif`;
-      ctx.fillText(`Vendedor(a): ${p.fornecedorNome}`, W/2, precoY+126);
+      ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.font = `${isStory ? 26 : 21}px sans-serif`;
+      ctx.fillText(`Vendedor(a): ${p.fornecedorNome}`, W / 2, precoY + 126);
     }
 
     document.getElementById('canvasWrap').style.aspectRatio = isStory ? '9/16' : '1/1';
   }
 
   function carregarImagem(url) {
-    return new Promise((res,rej) => {
-      const img = new Image(); img.crossOrigin='anonymous';
-      img.onload=()=>res(img); img.onerror=rej; img.src=url;
+    return new Promise((res, rej) => {
+      const img = new Image(); img.crossOrigin = 'anonymous';
+      img.onload = () => res(img); img.onerror = rej; img.src = url;
     });
   }
-  function roundRect(ctx,x,y,w,h,r) {
+  function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();
-    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-    ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-    ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
-    ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
   }
-  function wrapText(ctx,text,x,y,maxW,lineH) {
-    const words=text.split(' '); let line='';
-    for(let i=0;i<words.length;i++){
-      const test=line+words[i]+' ';
-      if(ctx.measureText(test).width>maxW && i>0){ ctx.fillText(line.trim(),x,y); line=words[i]+' '; y+=lineH; }
-      else line=test;
+  function wrapText(ctx, text, x, y, maxW, lineH) {
+    const words = text.split(' '); let line = '';
+    for (let i = 0; i < words.length; i++) {
+      const test = line + words[i] + ' ';
+      if (ctx.measureText(test).width > maxW && i > 0) { ctx.fillText(line.trim(), x, y); line = words[i] + ' '; y += lineH; }
+      else line = test;
     }
-    ctx.fillText(line.trim(),x,y);
+    ctx.fillText(line.trim(), x, y);
   }
 
-  window.downloadCard = function() {
+  window.downloadCard = function () {
     const canvas = document.getElementById('cardCanvas');
     const a = document.createElement('a');
-    a.download = `card-${cardProduto?.nome?.replace(/\s+/g,'-').toLowerCase()||'produto'}-${cardFormato}.png`;
+    a.download = `card-${cardProduto?.nome?.replace(/\s+/g, '-').toLowerCase() || 'produto'}-${cardFormato}.png`;
     a.href = canvas.toDataURL('image/png'); a.click();
-    showToast('Card salvo!','success');
+    showToast('Card salvo!', 'success');
   };
   document.getElementById('cardModal').addEventListener('click', e => {
-    if(e.target===document.getElementById('cardModal')) closeCardModal();
+    if (e.target === document.getElementById('cardModal')) closeCardModal();
   });
 
   // ── TOAST ──
   let toastTimer;
-  window.showToast = function(msg, type='success') {
+  window.showToast = function (msg, type = 'success') {
     const toast = document.getElementById('toast');
     document.getElementById('toastMsg').textContent = msg;
     toast.className = `toast ${type}`;
-    toast.querySelector('i').className = type==='success'?'bi bi-check-circle-fill':type==='error'?'bi bi-x-circle-fill':'bi bi-pencil-fill';
-    requestAnimationFrame(()=>toast.classList.add('show'));
+    toast.querySelector('i').className = type === 'success' ? 'bi bi-check-circle-fill' : type === 'error' ? 'bi bi-x-circle-fill' : 'bi bi-pencil-fill';
+    requestAnimationFrame(() => toast.classList.add('show'));
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(()=>toast.classList.remove('show'), 2800);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
   };
 </script>
 </body>
