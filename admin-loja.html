@@ -110,9 +110,8 @@
     .modal-handle{width:40px;height:4px;background:var(--beige-dark);border-radius:2px;margin:0 auto 16px}
     .modal-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--brown);font-weight:700;margin-bottom:4px}
     .modal-sub{font-size:.78rem;color:var(--text-soft);margin-bottom:20px}
-    .format-toggle{display:flex;background:var(--beige);border-radius:12px;padding:4px;border:1px solid var(--beige-dark);margin-bottom:16px}
-    .format-btn{flex:1;padding:10px;border:none;background:none;border-radius:8px;font-family:'Lato',sans-serif;font-size:.78rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
-    .format-btn.active{background:var(--white);color:var(--gold-dark);box-shadow:0 2px 8px rgba(139,105,20,.15)}
+    .btns-card-row{display:flex;gap:10px;margin-bottom:10px}
+    .btn-compartilhar{flex:1;padding:15px;background:var(--beige);color:var(--brown);border:1.5px solid var(--beige-dark);border-radius:14px;font-family:'Lato',sans-serif;font-size:.92rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;}
     .canvas-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--beige-dark);margin-bottom:16px;box-shadow:0 4px 20px rgba(139,105,20,.15);display:flex;align-items:center;justify-content:center;background:var(--beige)}
     .canvas-wrap canvas{display:block;max-width:100%;height:auto}
     .btn-download{width:100%;padding:15px;background:linear-gradient(90deg,var(--gold),var(--gold-light));color:var(--white);border:none;border-radius:14px;font-family:'Lato',sans-serif;font-size:.92rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,.4);margin-bottom:10px}
@@ -261,15 +260,14 @@
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title">Gerar card para compartilhar</div>
-    <div class="modal-sub">Salve a imagem e compartilhe no WhatsApp, Instagram e redes sociais</div>
-    <div class="format-toggle">
-      <button class="format-btn active" id="btnStory" onclick="setFormato('story')"><i class="bi bi-phone"></i> Story (9:16)</button>
-      <button class="format-btn" id="btnSquare" onclick="setFormato('square')"><i class="bi bi-square"></i> Quadrado (1:1)</button>
-    </div>
-    <div class="canvas-wrap" id="canvasWrap">
+    <div class="modal-sub">Salve ou compartilhe o card do produto</div>
+    <div class="canvas-wrap" id="canvasWrap" style="aspect-ratio:1/1">
       <canvas id="cardCanvas"></canvas>
     </div>
-    <button class="btn-download" onclick="downloadCard()"><i class="bi bi-download"></i> Salvar imagem</button>
+    <div class="btns-card-row">
+      <button class="btn-download" onclick="downloadCard()" style="margin-bottom:0"><i class="bi bi-download"></i> Salvar</button>
+      <button class="btn-compartilhar" onclick="compartilharCard()"><i class="bi bi-share"></i> Compartilhar</button>
+    </div>
     <button class="btn-fechar" onclick="closeCardModal()">Fechar</button>
   </div>
 </div>
@@ -289,12 +287,12 @@
     appId: "1:540660133178:web:7dfa2737fcbd98eed33403"
   };
   const CLOUDINARY_CLOUD  = "da77tfiqb";
-  const CLOUDINARY_PRESET = "obranova";
+  const CLOUDINARY_PRESET = "ml_default";
   const LOJA_URL = "https://obranova.netlify.app/loja.html";
 
   const FORNECEDORES = {
     clara: { nome: "Clara", whatsapp: "5588921759665" },
-    paulo: { nome: "Paulo", whatsapp: "5588994388382" }
+    paulo: { nome: "Paulo", whatsapp: "5588943883820" }
   };
 
   const app     = initializeApp(firebaseConfig);
@@ -303,7 +301,7 @@
 
   let chips = [], fotoUrl = null, editingId = null, disponivel = true;
   let deleteTargetId = null, produtosCache = [];
-  let cardProduto = null, cardFormato = 'story';
+  let cardProduto = null;
 
   // ── TABS ──
   document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -585,9 +583,6 @@
   window.abrirCard = function (id) {
     cardProduto = produtosCache.find(x => x.id === id);
     if (!cardProduto) return;
-    cardFormato = 'story';
-    document.getElementById('btnStory').classList.add('active');
-    document.getElementById('btnSquare').classList.remove('active');
     document.getElementById('cardModal').classList.add('open');
     document.body.style.overflow = 'hidden';
     desenharCard();
@@ -596,25 +591,20 @@
     document.getElementById('cardModal').classList.remove('open');
     document.body.style.overflow = '';
   };
-  window.setFormato = function (f) {
-    cardFormato = f;
-    document.getElementById('btnStory').classList.toggle('active', f === 'story');
-    document.getElementById('btnSquare').classList.toggle('active', f === 'square');
-    desenharCard();
-  };
 
   async function desenharCard() {
     const p = cardProduto;
-    const isStory = cardFormato === 'story';
-    const W = 1080, H = isStory ? 1920 : 1080;
+    const W = 1080, H = 1080;
     const canvas = document.getElementById('cardCanvas');
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext('2d');
 
+    // Fundo
     const grad = ctx.createLinearGradient(0, 0, 0, H);
     grad.addColorStop(0, '#3a2008'); grad.addColorStop(1, '#5C3D1E');
     ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
 
+    // Círculos decorativos
     ctx.fillStyle = 'rgba(201,168,76,0.05)';
     for (let i = 0; i < 6; i++) {
       ctx.beginPath();
@@ -622,63 +612,51 @@
       ctx.fill();
     }
 
-    ctx.fillStyle = '#C9A84C';
-    ctx.font = `bold ${isStory ? 52 : 40}px sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.fillText('✦ OBRA NOVA ✦', W / 2, isStory ? 110 : 80);
-    ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = `${isStory ? 30 : 24}px sans-serif`;
-    ctx.fillText('Lojinha do Grupo de Oração', W / 2, isStory ? 158 : 118);
+    // Imagem do produto (ocupa a parte superior)
+    const pad  = 50;
+    const imgY = pad;
+    const imgH = 620;
 
-    const imgY = isStory ? 210 : 155;
-    const imgH = isStory ? 880 : 560;
-    const pad  = 60;
-
-    roundRect(ctx, pad, imgY, W - pad * 2, imgH, 40);
+    roundRect(ctx, pad, imgY, W - pad * 2, imgH, 36);
     ctx.fillStyle = '#EAD9B5'; ctx.fill();
 
     if (p.foto) {
       try {
         const img = await carregarImagem(p.foto);
         ctx.save();
-        roundRect(ctx, pad, imgY, W - pad * 2, imgH, 40);
+        roundRect(ctx, pad, imgY, W - pad * 2, imgH, 36);
         ctx.clip();
         const scale = Math.max((W - pad * 2) / img.width, imgH / img.height);
         const dw = img.width * scale, dh = img.height * scale;
         ctx.drawImage(img, pad + (W - pad * 2 - dw) / 2, imgY + (imgH - dh) / 2, dw, dh);
         ctx.restore();
       } catch {
-        ctx.fillStyle = '#8B6914'; ctx.font = `${isStory ? 100 : 70}px serif`;
-        ctx.textAlign = 'center'; ctx.fillText('🛍️', W / 2, imgY + imgH / 2 + 30);
+        ctx.fillStyle = '#8B6914'; ctx.font = '80px serif';
+        ctx.textAlign = 'center'; ctx.fillText('🛍️', W / 2, imgY + imgH / 2 + 28);
       }
     } else {
-      ctx.fillStyle = '#8B6914'; ctx.font = `${isStory ? 100 : 70}px serif`;
-      ctx.textAlign = 'center'; ctx.fillText('🛍️', W / 2, imgY + imgH / 2 + 30);
+      ctx.fillStyle = '#8B6914'; ctx.font = '80px serif';
+      ctx.textAlign = 'center'; ctx.fillText('🛍️', W / 2, imgY + imgH / 2 + 28);
     }
 
-    const infoY = imgY + imgH + 50;
-    ctx.fillStyle = '#C9A84C'; ctx.font = `bold ${isStory ? 30 : 24}px sans-serif`;
-    ctx.textAlign = 'center'; ctx.fillText((p.catLabel || '').toUpperCase(), W / 2, infoY);
+    // Categoria
+    const infoY = imgY + imgH + 44;
+    ctx.fillStyle = '#C9A84C'; ctx.font = 'bold 26px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText((p.catLabel || '').toUpperCase(), W / 2, infoY);
 
-    ctx.fillStyle = '#FFFFFF'; ctx.font = `bold ${isStory ? 68 : 50}px serif`;
-    wrapText(ctx, p.nome, W / 2, infoY + 68, W - 120, isStory ? 78 : 58);
+    // Nome
+    ctx.fillStyle = '#FFFFFF'; ctx.font = 'bold 54px serif';
+    wrapText(ctx, p.nome, W / 2, infoY + 62, W - 120, 64);
 
-    const precoY = isStory ? infoY + 210 : infoY + 150;
-    ctx.fillStyle = '#E8C96B'; ctx.font = `bold ${isStory ? 76 : 56}px sans-serif`;
+    // Preço
+    const precoY = infoY + 190;
+    ctx.fillStyle = '#E8C96B'; ctx.font = 'bold 72px sans-serif';
     ctx.fillText(`R$ ${Number(p.preco).toFixed(2).replace('.', ',')}`, W / 2, precoY);
 
+    // Linha decorativa
     ctx.strokeStyle = 'rgba(201,168,76,0.4)'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(120, precoY + 38); ctx.lineTo(W - 120, precoY + 38); ctx.stroke();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.font = `${isStory ? 32 : 26}px sans-serif`;
-    ctx.fillText(LOJA_URL, W / 2, precoY + 82);
-
-    if (p.fornecedorNome) {
-      ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.font = `${isStory ? 26 : 21}px sans-serif`;
-      ctx.fillText(`Vendedor(a): ${p.fornecedorNome}`, W / 2, precoY + 126);
-    }
-
-    document.getElementById('canvasWrap').style.aspectRatio = isStory ? '9/16' : '1/1';
+    ctx.beginPath(); ctx.moveTo(120, precoY + 30); ctx.lineTo(W - 120, precoY + 30); ctx.stroke();
   }
 
   function carregarImagem(url) {
@@ -707,9 +685,29 @@
   window.downloadCard = function () {
     const canvas = document.getElementById('cardCanvas');
     const a = document.createElement('a');
-    a.download = `card-${cardProduto?.nome?.replace(/\s+/g, '-').toLowerCase() || 'produto'}-${cardFormato}.png`;
+    a.download = `card-${cardProduto?.nome?.replace(/\s+/g, '-').toLowerCase() || 'produto'}.png`;
     a.href = canvas.toDataURL('image/png'); a.click();
     showToast('Card salvo!', 'success');
+  };
+
+  window.compartilharCard = async function () {
+    const canvas = document.getElementById('cardCanvas');
+    const texto = `✦ Lojinha Obra Nova ✦\n\n${cardProduto.nome}\nR$ ${Number(cardProduto.preco).toFixed(2).replace('.', ',')}\n\n${LOJA_URL}`;
+    try {
+      canvas.toBlob(async blob => {
+        const file = new File([blob], `card-${cardProduto.nome.replace(/\s+/g,'-').toLowerCase()}.png`, { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], text: texto });
+        } else if (navigator.share) {
+          await navigator.share({ text: texto });
+        } else {
+          await navigator.clipboard.writeText(texto);
+          showToast('Link copiado!', 'success');
+        }
+      }, 'image/png');
+    } catch (e) {
+      if (e.name !== 'AbortError') showToast('Erro ao compartilhar', 'error');
+    }
   };
   document.getElementById('cardModal').addEventListener('click', e => {
     if (e.target === document.getElementById('cardModal')) closeCardModal();
