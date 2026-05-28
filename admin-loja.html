@@ -802,7 +802,7 @@
 
   window.compartilharCard = async function() {
     const canvas = document.getElementById('cardCanvas');
-    const texto = `✦ Lojinha Obra Nova ✦\n\n${cardProduto.nome}\nR$ ${Number(cardProduto.preco).toFixed(2).replace('.',',')}\n\n${LOJA_URL}`;
+    const texto = `${LOJA_URL}`;
     try {
       canvas.toBlob(async blob => {
         const file = new File([blob], `card-${cardProduto.nome.replace(/\s+/g,'-').toLowerCase()}.png`, { type:'image/png' });
